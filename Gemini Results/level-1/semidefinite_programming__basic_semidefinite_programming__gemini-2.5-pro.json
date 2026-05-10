@@ -1,0 +1,213 @@
+{
+  "model": "gemini-2.5-pro",
+  "total": 20,
+  "evaluated": 20,
+  "answered": 11,
+  "correct": 11,
+  "accuracy": 1.0,
+  "avg_input_tokens": 174.25,
+  "avg_output_tokens": 425.8,
+  "tolerance": 0.01,
+  "results": [
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 9.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-4, -1], [-1, -2]]\nA_1 = [[2, 1.5], [1.5, 0]]\nb_1 = 8.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -28.722174558077725,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 173,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 10.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[4, -3], [-3, 3]]\nA_1 = [[-3, -1], [-1, 4]]\nb_1 = 18.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 8.000000003756105,
+      "model_answer": 8.0,
+      "raw_response": "{\n  \"reasoning\": \"Let the symmetric 2x2 matrix X be [[x, y], [y, z]]. The problem is to minimize the objective function <C, X> subject to the given constraints. The objective function is <C, X> = trace(C*X) = 4x - 6y + 3z. The constraints are: 1) <A_1, X> = trace(A_1*X) = -3x - 2y + 4z = 18.0. 2) trace(X) = x + z = 10.0. 3) X is positive semidefinite (X \u2ab0 0), which for a 2x2 matrix means x \u2265 0, z \u2265 0, and the determinant xz - y^2 \u2265 0. From the trace constraint, we can express z in terms of x: z = 10 - x. Substituting this into the first constraint gives -3x - 2y + 4(10 - x) = 18, which simplifies to -7x - 2y + 40 = 18, or 7x + 2y = 22. From this, we can express y in terms of x: y = 11 - 3.5x. Now, we substitute both y and z into the objective function to get a function of x alone: f(x) = 4x - 6(11 - 3.5x) + 3(10 - x) = 4x - 66 + 21x + 30 - 3x = 22x - 36. The problem reduces to minimizing f(x) = 22x - 36 subject to the PSD constraints expressed in terms of x. The constraints x \u2265 0 and z = 10 - x \u2265 0 imply that 0 \u2264 x \u2264 10. The determinant constraint xz - y^2 \u2265 0 becomes x(10 - x) - (11 - 3.5x)^2 \u2265 0. Expanding this inequality yields 10x - x^2 - (121 - 77x + 12.25x^2) \u2265 0, which simplifies to -13.25x^2 + 87x - 121 \u2265 0. Multiplying by -1, we get 13.25x^2 - 87x + 121 \u2264 0. This is a quadratic inequality for a parabola opening upwards, so the solution lies between its roots. The roots of 13.25x^2 - 87x + 121 = 0 are found using the quadratic formula. The roots are x = 2 and x = 242/53 (approximately 4.56). Thus, the determinant constraint requires 2 \u2264 x \u2264 242/53. The overall feasible region for x is the intersection of [0, 10] and [2, 242/53], which is [2, 242/53]. We want to minimize the linear function f(x) = 22x - 36 over this interval. Since the slope (22) is positive, the minimum value is achieved at the smallest possible value of x, which is x = 2. The minimum value of the objective function is f(2) = 22 * 2 - 36 = 44 - 36 = 8.\",\n  \"answer\": 8.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 171,
+      "output_tokens": 795
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 9.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[2, 0.5], [0.5, 2]]\nA_1 = [[2, -0.5], [-0.5, 0]]\nb_1 = 14.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 13.507150164407731,
+      "model_answer": 13.5,
+      "raw_response": "{\n  \"reasoning\": \"Let the symmetric 2x2 matrix X be [[x1, x2], [x2, x3]]. The objective function is the inner product <C, X> = trace(C*X) = 2*x1 + x2 + 2*x3. The constraints are <A_1, X> = 2*x1 - x2 = 14, trace(X) = x1 + x3 = 9, and X being positive semidefinite (X \u2ab0 0). The objective function can be simplified using the trace constraint: 2*x1 + 2*x3 + x2 = 2*(x1 + x3) + x2 = 2*(9) + x2 = 18 + x2. Therefore, minimizing the objective function is equivalent to minimizing x2. From the linear constraints, we can express x1 and x3 in terms of x2. From 2*x1 - x2 = 14, we get x1 = (14 + x2) / 2. From x1 + x3 = 9, we get x3 = 9 - x1 = 9 - (14 + x2) / 2 = (18 - 14 - x2) / 2 = (4 - x2) / 2. The condition that X is positive semidefinite for a 2x2 matrix means x1 \u2265 0, x3 \u2265 0, and the determinant x1*x3 - x2^2 \u2265 0. The first two conditions imply (14 + x2)/2 \u2265 0 \u21d2 x2 \u2265 -14 and (4 - x2)/2 \u2265 0 \u21d2 x2 \u2264 4. The determinant constraint becomes: ((14 + x2)/2) * ((4 - x2)/2) - x2^2 \u2265 0. Expanding this gives (56 - 10*x2 - x2^2) / 4 - x2^2 \u2265 0, which simplifies to 56 - 10*x2 - 5*x2^2 \u2265 0, or 5*x2^2 + 10*x2 - 56 \u2264 0. To find the feasible range for x2, we find the roots of the quadratic equation 5*y^2 + 10*y - 56 = 0. Using the quadratic formula, the roots are y = [-10 \u00b1 sqrt(10^2 - 4*5*(-56))] / (2*5) = [-10 \u00b1 sqrt(100 + 1120)] / 10 = [-10 \u00b1 sqrt(1220)] / 10. The inequality 5*x2^2 + 10*x2 - 56 \u2264 0 holds between these two roots. To minimize x2, we must choose the smaller root: x2_min = (-10 - sqrt(1220)) / 10. For mental calculation, we can approximate sqrt(1220). We know that 30^2 = 900 and 40^2 = 1600. Let's try 35^2 = 1225. This is very close to 1220. So, we can approximate sqrt(1220) \u2248 35. Using this approximation, x2_min \u2248 (-10 - 35) / 10 = -45 / 10 = -4.5. The minimum value of the objective function is 18 + x2_min \u2248 18 + (-4.5) = 13.5.\",\n  \"answer\": 13.5\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 177,
+      "output_tokens": 829
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 16.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-3, 1], [1, 1]]\nA_1 = [[2, 0.5], [0.5, 1]]\nb_1 = 32.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -47.99999999163964,
+      "model_answer": -48.0,
+      "raw_response": "{\n  \"reasoning\": \"Let the symmetric 2x2 matrix X be [[x1, x2], [x2, x3]]. The problem is to minimize the objective function <C, X> subject to the given constraints.\\n\\n1.  **Express the objective and constraints in terms of x1, x2, x3:**\\n    *   Objective: <C, X> = trace(C*X) = -3*x1 + 2*x2 + x3.\\n    *   Constraint 1: <A_1, X> = trace(A_1*X) = 2*x1 + x2 + x3 = 32.0.\\n    *   Constraint 2: trace(X) = x1 + x3 = 16.0.\\n    *   Constraint 3: X is positive semidefinite (X \u2ab0 0).\\n\\n2.  **Simplify the linear constraints:**\\n    From `x1 + x3 = 16`, we get `x3 = 16 - x1`.\\n    Substitute this into the first constraint: `2*x1 + x2 + (16 - x1) = 32`.\\n    This simplifies to `x1 + x2 + 16 = 32`, which gives `x2 = 16 - x1`.\\n    So, we have expressed both `x2` and `x3` in terms of `x1`:\\n    `x2 = 16 - x1`\\n    `x3 = 16 - x1`\\n\\n3.  **Rewrite the objective function in terms of x1:**\\n    Substitute the expressions for `x2` and `x3` into the objective function:\\n    Objective = -3*x1 + 2*(16 - x1) + (16 - x1)\\n              = -3*x1 + 32 - 2*x1 + 16 - x1\\n              = 48 - 6*x1.\\n    Our goal is to minimize `48 - 6*x1`.\\n\\n4.  **Analyze the positive semidefinite constraint (X \u2ab0 0):**\\n    The matrix X is now `[[x1, 16 - x1], [16 - x1, 16 - x1]]`.\\n    For X to be positive semidefinite, its principal minors must be non-negative:\\n    *   The top-left element must be non-negative: `x1 >= 0`.\\n    *   The bottom-right element must be non-negative: `x3 = 16 - x1 >= 0`, which implies `x1 <= 16`.\\n    *   The determinant must be non-negative: `det(X) = x1*x3 - x2^2 >= 0`.\\n        `x1*(16 - x1) - (16 - x1)^2 >= 0`\\n        Factor out `(16 - x1)`: `(16 - x1) * [x1 - (16 - x1)] >= 0`\\n        `(16 - x1) * (2*x1 - 16) >= 0`\\n        `2 * (16 - x1) * (x1 - 8) >= 0`\\n    This is a quadratic inequality in `x1`. The roots are `x1 = 8` and `x1 = 16`. Since the quadratic term `-2*x1^2` is negative, the parabola opens downwards, and the expression is non-negative between the roots. So, `8 <= x1 <= 16`.\\n\\n5.  **Determine the feasible range for x1:**\\n    Combining all conditions on `x1` (`x1 >= 0`, `x1 <= 16`, and `8 <= x1 <= 16`), the feasible range for `x1` is `[8, 16]`.\\n\\n6.  **Minimize the objective function:**\\n    We need to minimize the function `f(x1) = 48 - 6*x1` over the interval `x1` in `[8, 16]`.\\n    Since `f(x1)` is a linear function with a negative slope (-6), its minimum value will occur at the maximum possible value of `x1`.\\n    The maximum value of `x1` in the feasible range is 16.\\n\\n7.  **Calculate the minimum value:**\\n    Substitute `x1 = 16` into the objective function:\\n    Minimum value = 48 - 6 * 16 = 48 - 96 = -48.0.\",\n  \"answer\": -48.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 175,
+      "output_tokens": 1092
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 5.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[4, 1.5], [1.5, -1]]\nA_1 = [[4, 0], [0, 2]]\nb_1 = 10.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -5.000000269726721,
+      "model_answer": -5.0,
+      "raw_response": "{\n  \"reasoning\": \"Let the 2x2 symmetric matrix X be [[x, y], [y, z]]. The objective function to minimize is the inner product <C, X>, which is the trace of C*X. <C, X> = trace([[4, 1.5], [1.5, -1]] * [[x, y], [y, z]]) = 4x + 1.5y + 1.5y - z = 4x + 3y - z. The constraints are: 1. <A_1, X> = b_1: trace([[4, 0], [0, 2]] * [[x, y], [y, z]]) = 4x + 2z = 10.0. This simplifies to 2x + z = 5. 2. trace(X) = x + z = 5.0. 3. X is positive semidefinite (X \u2ab0 0). For a 2x2 matrix, this means x \u2265 0, z \u2265 0, and the determinant xz - y^2 \u2265 0. We have a system of two linear equations for x and z: (i) 2x + z = 5 (ii) x + z = 5. Subtracting equation (ii) from equation (i) gives (2x + z) - (x + z) = 5 - 5, which results in x = 0. Substituting x = 0 into equation (ii) gives 0 + z = 5, so z = 5. Now we have the diagonal elements of X: x=0 and z=5. These satisfy the non-negativity constraints x \u2265 0 and z \u2265 0. Next, we use the determinant constraint: xz - y^2 \u2265 0. Substituting the values of x and z, we get (0)(5) - y^2 \u2265 0, which simplifies to -y^2 \u2265 0. Since y is a real number, y^2 is always non-negative, so -y^2 must be non-positive. The only value of y that satisfies -y^2 \u2265 0 is y = 0. Therefore, the constraints uniquely determine the matrix X to be [[0, 0], [0, 5]]. Since there is only one feasible solution, this must be the point where the minimum is achieved. We evaluate the objective function at this point: <C, X> = 4x + 3y - z = 4(0) + 3(0) - 5 = -5.0.\",\n  \"answer\": -5.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 173,
+      "output_tokens": 580
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 16.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-1, -2.5], [-2.5, 0]]\nA_1 = [[-3, 0.5], [0.5, 2]]\nb_1 = 0.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -47.999999995198834,
+      "model_answer": -48.0,
+      "raw_response": "{\n  \"reasoning\": \"Let the symmetric 2x2 matrix X be [[x, y], [y, z]]. The problem can be formulated in terms of the variables x, y, and z. The objective function is <C, X> = trace(C*X) = -x - 5y. The constraints are: 1) <A_1, X> = -3x + y + 2z = 0. 2) trace(X) = x + z = 16. 3) X is positive semidefinite, which for a 2x2 matrix means x >= 0, z >= 0, and the determinant xz - y^2 >= 0. From constraint (2), we can express z as z = 16 - x. The non-negativity of x and z implies 0 <= x <= 16. Substituting z = 16 - x into constraint (1) gives -3x + y + 2(16 - x) = 0, which simplifies to y = 5x - 32. Now, we can express the objective function solely in terms of x: -x - 5(5x - 32) = -x - 25x + 160 = -26x + 160. The problem is to minimize -26x + 160. To do this, we must maximize x. The feasible range for x is determined by the semidefinite constraint xz - y^2 >= 0. Substituting the expressions for y and z in terms of x, we get: x(16 - x) >= (5x - 32)^2. Expanding and rearranging this inequality gives 16x - x^2 >= 25x^2 - 320x + 1024, which simplifies to 26x^2 - 336x + 1024 <= 0. Dividing by 2, we get 13x^2 - 168x + 512 <= 0. The roots of the quadratic equation 13x^2 - 168x + 512 = 0 are found using the quadratic formula, x = [168 \u00b1 sqrt(168^2 - 4*13*512)] / (2*13). The discriminant is 28224 - 26624 = 1600, and its square root is 40. The roots are x = (168 \u00b1 40) / 26, which are x1 = 128/26 = 64/13 and x2 = 208/26 = 8. Since the quadratic is a parabola opening upwards, the inequality holds for x between the roots, i.e., 64/13 <= x <= 8. To minimize the objective function -26x + 160, we need to choose the largest possible value for x, which is x = 8. Substituting x = 8 into the objective function gives the minimum value: -26 * 8 + 160 = -208 + 160 = -48.\",\n  \"answer\": -48.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 179,
+      "output_tokens": 720
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 6.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[3, 2], [2, -3]]\nA_1 = [[-1, 3.5], [3.5, 3]]\nb_1 = 28.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -7.6137351707367,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 174,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 9.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-2, 2], [2, -4]]\nA_1 = [[2, 1], [1, -4]]\nb_1 = 8.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -29.91271205077994,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 169,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 3.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[2, -2], [-2, -2]]\nA_1 = [[1, -1], [-1, 0]]\nb_1 = 3.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 1.2000000003796965,
+      "model_answer": 1.2,
+      "raw_response": "{\n  \"reasoning\": \"Let the symmetric 2x2 matrix X be [[x, y], [y, z]]. The problem can be formulated as minimizing an objective function subject to several constraints.\\n1.  The objective function is the inner product <C, X> = trace(C*X) = 2*x - 2*y - 2*y - 2*z = 2x - 4y - 2z.\\n2.  The first constraint is <A_1, X> = b_1, which translates to trace(A_1*X) = 1*x - 1*y - 1*y + 0*z = x - 2y = 3.0.\\n3.  The second constraint is trace(X) = x + z = 3.0.\\n4.  The third constraint is that X is positive semidefinite (X \u2ab0 0). For a 2x2 matrix, this means x \u2265 0, z \u2265 0, and the determinant x*z - y^2 \u2265 0.\\n\\nFrom the linear constraints, we can express x and z in terms of y:\\n- From constraint 2: x = 3 + 2y.\\n- Substitute this into constraint 3: (3 + 2y) + z = 3, which simplifies to z = -2y.\\n\\nNow, substitute these expressions for x and z into the objective function:\\nObjective = 2*(3 + 2y) - 4y - 2*(-2y) = 6 + 4y - 4y + 4y = 6 + 4y.\\n\\nThe problem is now to minimize 6 + 4y, subject to the semidefinite constraints on y.\\n- x \u2265 0  =>  3 + 2y \u2265 0  =>  y \u2265 -1.5.\\n- z \u2265 0  =>  -2y \u2265 0  =>  y \u2264 0.\\n- x*z - y^2 \u2265 0  =>  (3 + 2y)*(-2y) - y^2 \u2265 0  =>  -6y - 4y^2 - y^2 \u2265 0  =>  -5y^2 - 6y \u2265 0.\\nMultiplying by -1, we get 5y^2 + 6y \u2264 0, or y*(5y + 6) \u2264 0. The roots are y=0 and y=-6/5=-1.2. The inequality holds between the roots, so -1.2 \u2264 y \u2264 0.\\n\\nCombining all constraints on y (y \u2265 -1.5, y \u2264 0, and -1.2 \u2264 y \u2264 0), the feasible range for y is [-1.2, 0].\\n\\nTo minimize the objective function 6 + 4y, which is a linearly increasing function of y, we must choose the smallest possible value for y in its feasible range. The minimum value of y is -1.2.\\n\\nSubstituting y = -1.2 into the objective function gives the minimum value:\\nMinimum value = 6 + 4*(-1.2) = 6 - 4.8 = 1.2.\",\n  \"answer\": 1.2\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 168,
+      "output_tokens": 736
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 12.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[2, 0], [0, 3]]\nA_1 = [[-4, 3.5], [3.5, 1]]\nb_1 = -36.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 24.20790776478711,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 175,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 5.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[2, -3.5], [-3.5, 3]]\nA_1 = [[0, -1], [-1, -4]]\nb_1 = 0.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 9.999999999697977,
+      "model_answer": 10.0,
+      "raw_response": "{\n  \"reasoning\": \"Let the 2x2 symmetric matrix X be [[x, y], [y, z]]. The problem is to minimize the objective function <C, X> subject to the given constraints. The objective function is <C, X> = trace(C*X) = 2*x - 7*y + 3*z. The constraints are: 1. <A_1, X> = trace(A_1*X) = -2*y - 4*z = 0. This simplifies to y = -2*z. 2. trace(X) = x + z = 5.0. This gives x = 5 - z. 3. X is positive semidefinite (X \u2ab0 0). This implies that the principal minors are non-negative: x \u2265 0, z \u2265 0, and x*z - y^2 \u2265 0. By substituting the expressions for x and y from the equality constraints into the objective function, we can express it in terms of a single variable, z: Objective = 2*(5 - z) - 7*(-2*z) + 3*z = 10 - 2*z + 14*z + 3*z = 10 + 15*z. Now, we use the positive semidefinite constraint to find the feasible range for z. The constraints on z are: 1. x \u2265 0  =>  5 - z \u2265 0  =>  z \u2264 5. 2. z \u2265 0. 3. x*z - y^2 \u2265 0  =>  (5 - z)*z - (-2*z)^2 \u2265 0  =>  5*z - z^2 - 4*z^2 \u2265 0  =>  5*z - 5*z^2 \u2265 0  =>  5*z*(1 - z) \u2265 0. Since we already know z \u2265 0, the inequality 5*z*(1 - z) \u2265 0 implies that 1 - z \u2265 0, which means z \u2264 1. Combining all constraints on z (z \u2264 5, z \u2265 0, z \u2264 1), we find the feasible range for z is [0, 1]. The problem is now reduced to minimizing the function f(z) = 10 + 15*z over the interval [0, 1]. Since f(z) is a linearly increasing function of z, its minimum value is attained at the smallest possible value of z, which is z = 0. Substituting z = 0 into the objective function gives the minimum value: 10 + 15 * 0 = 10.\",\n  \"answer\": 10.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 172,
+      "output_tokens": 603
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 7.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[1, -4], [-4, 4]]\nA_1 = [[4, 1], [1, -4]]\nb_1 = -14.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 4.20803209261301,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 169,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 13.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[1, -3.5], [-3.5, -2]]\nA_1 = [[-3, -0.5], [-0.5, -3]]\nb_1 = -33.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 27.99999999584823,
+      "model_answer": 28.0,
+      "raw_response": "{\n  \"reasoning\": \"The user wants me to solve a semidefinite program (SDP) over a 2x2 symmetric matrix X. I must solve this using only mental mathematical reasoning.\\n\\nLet the symmetric matrix X be `[[x, y], [y, z]]`.\\n\\nThe problem is to minimize `<C, X>` subject to several constraints.\\n\\n1.  **Deconstruct the problem:**\\n    *   Objective function: `<C, X>` is the Frobenius inner product, which is `trace(C^T * X)`. Since C is symmetric, this is `trace(C * X)`.\\n        `<C, X> = 1*x - 3.5*y - 3.5*y - 2*z = x - 7y - 2z`.\\n    *   First constraint: `<A_1, X> = b_1`.\\n        `<A_1, X> = -3*x - 0.5*y - 0.5*y - 3*z = -3x - y - 3z`.\\n        So, `-3x - y - 3z = -33.0`, which simplifies to `3x + y + 3z = 33`.\\n    *   Second constraint: `trace(X) = 13.0`.\\n        `x + z = 13`.\\n    *   Third constraint: `X` is positive semidefinite (`X \u2ab0 0`). For a 2x2 matrix, this means `x \u2265 0`, `z \u2265 0`, and the determinant `xz - y^2 \u2265 0`.\\n\\n2.  **Solve the linear equations:**\\n    I have a system of two linear equations with three variables:\\n    (a) `3x + y + 3z = 33`\\n    (b) `x + z = 13`\\n    I can rewrite equation (a) as `3(x + z) + y = 33`.\\n    Substitute the value of `(x + z)` from equation (b) into this new form:\\n    `3(13) + y = 33`\\n    `39 + y = 33`\\n    This gives a fixed value for `y`: `y = 33 - 39 = -6`.\\n\\n3.  **Reduce the problem to a single variable:**\\n    Now that `y` is fixed at -6, I can simplify the objective function and the semidefinite constraint.\\n    *   From `x + z = 13`, I can express `z` as `z = 13 - x`.\\n    *   Substitute `y = -6` and `z = 13 - x` into the objective function:\\n        Minimize: `x - 7(-6) - 2(13 - x) = x + 42 - 26 + 2x = 3x + 16`.\\n    *   Substitute `y = -6` and `z = 13 - x` into the determinant constraint `xz - y^2 \u2265 0`:\\n        `x(13 - x) - (-6)^2 \u2265 0`\\n        `13x - x^2 - 36 \u2265 0`\\n        Multiplying by -1 and rearranging gives: `x^2 - 13x + 36 \u2264 0`.\\n\\n4.  **Solve the single-variable optimization problem:**\\n    The problem is now to minimize the linear function `f(x) = 3x + 16` subject to the quadratic inequality `x^2 - 13x + 36 \u2264 0`.\\n    *   First, find the roots of `x^2 - 13x + 36 = 0`. The numbers that multiply to 36 and add to 13 are 4 and 9. So, the equation factors as `(x - 4)(x - 9) = 0`. The roots are `x = 4` and `x = 9`.\\n    *   Since the parabola `x^2 - 13x + 36` opens upwards, the inequality `(x - 4)(x - 9) \u2264 0` is satisfied for `x` between the roots. The feasible region for `x` is `[4, 9]`.\\n    *   The other constraints `x \u2265 0` and `z = 13 - x \u2265 0` (which means `x \u2264 13`) are also satisfied within this interval.\\n    *   The objective function `f(x) = 3x + 16` is a line with a positive slope (3). To minimize it over the interval `[4, 9]`, I must choose the smallest possible value for `x`, which is `x = 4`.\\n\\n5.  **Calculate the minimum value:**\\n    Substitute the optimal value `x = 4` into the simplified objective function:\\n    Minimum value = `3(4) + 16 = 12 + 16 = 28`.\\n\\n    Alternatively, find the full optimal matrix X and compute `<C, X>`:\\n    If `x = 4`, then `y = -6` and `z = 13 - 4 = 9`.\\n    So, `X = [[4, -6], [-6, 9]]`.\\n    The objective value is `<C, X> = x - 7y - 2z = 4 - 7(-6) - 2(9) = 4 + 42 - 18 = 46 - 18 = 28`.\\n\\nThe minimum value is 28.0.\",\n  \"answer\": 28.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 179,
+      "output_tokens": 1327
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 5.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-1, -2.5], [-2.5, -4]]\nA_1 = [[-3, 0], [0, 1]]\nb_1 = -11.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -17.99999999311044,
+      "model_answer": -18.0,
+      "raw_response": "{\n  \"reasoning\": \"Let the symmetric 2x2 matrix X be [[x, y], [y, z]]. The objective function is <C, X> = trace(C*X) = -x - 5y - 4z. The constraints are: 1) <A_1, X> = trace(A_1*X) = -3x + z = -11. 2) trace(X) = x + z = 5. 3) X is positive semidefinite, which for a 2x2 matrix means x >= 0, z >= 0, and the determinant xz - y^2 >= 0. First, we solve the system of two linear equations for x and z. Subtracting the first equation from the second gives (x+z) - (-3x+z) = 5 - (-11), which simplifies to 4x = 16, so x = 4. Substituting x=4 into the second equation gives 4 + z = 5, so z = 1. These values satisfy the non-negativity constraints x >= 0 and z >= 0. Now, we substitute x=4 and z=1 into the objective function and the determinant constraint. The objective becomes: Minimize -4 - 5y - 4(1) = -8 - 5y. The determinant constraint becomes: (4)(1) - y^2 >= 0, which simplifies to y^2 <= 4, or -2 <= y <= 2. To minimize the expression -8 - 5y, we need to maximize the term 5y, which means we must choose the largest possible value for y. From the constraint -2 <= y <= 2, the maximum value for y is 2. Therefore, the optimal values are x=4, z=1, and y=2. The minimum value of the objective function is -x - 5y - 4z = -4 - 5(2) - 4(1) = -4 - 10 - 4 = -18.\",\n  \"answer\": -18.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 175,
+      "output_tokens": 462
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 6.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-3, 2], [2, -2]]\nA_1 = [[4, 0.5], [0.5, -2]]\nb_1 = 16.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -25.854281986457224,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 174,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 10.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[3, 0], [0, -2]]\nA_1 = [[-3, 0.5], [0.5, 0]]\nb_1 = -19.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 3.3514707308256124,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 175,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 6.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[3, -2.5], [-2.5, 2]]\nA_1 = [[4, -2.5], [-2.5, 0]]\nb_1 = 15.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 10.180366112930342,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 177,
+      "output_tokens": null
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 5.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-4, 4], [4, 4]]\nA_1 = [[-1, 0.5], [0.5, 1]]\nb_1 = -5.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -28.000000025961647,
+      "model_answer": -28.0,
+      "raw_response": "{\n  \"reasoning\": \"Let the symmetric 2x2 matrix X be [[x, y], [y, z]]. The problem is to minimize the objective function <C, X> subject to the given constraints. The objective function is <C, X> = -4x + 4y + 4y + 4z = -4x + 8y + 4z. The constraints are: 1) <A_1, X> = -x + 0.5y + 0.5y + z = -x + y + z = -5.0. 2) trace(X) = x + z = 5.0. 3) X is positive semidefinite (X \u2ab0 0), which for a 2x2 matrix means x \u2265 0, z \u2265 0, and the determinant xz - y^2 \u2265 0. From the second constraint, we can express z as z = 5 - x. Substituting this into the first constraint gives -x + y + (5 - x) = -5, which simplifies to -2x + y + 5 = -5, or y = 2x - 10. Now we can express the objective function solely in terms of x: -4x + 8(2x - 10) + 4(5 - x) = -4x + 16x - 80 + 20 - 4x = 8x - 60. The problem is now to minimize 8x - 60 subject to the positive semidefiniteness constraints on x. The constraints become: 1) x \u2265 0. 2) z = 5 - x \u2265 0, which implies x \u2264 5. 3) xz - y^2 \u2265 0. Substituting the expressions for y and z gives x(5 - x) - (2x - 10)^2 \u2265 0. Expanding this inequality gives 5x - x^2 - (4x^2 - 40x + 100) \u2265 0, which simplifies to -5x^2 + 45x - 100 \u2265 0. Dividing by -5 and reversing the inequality sign yields x^2 - 9x + 20 \u2264 0. The roots of the quadratic x^2 - 9x + 20 = 0 are x=4 and x=5. Since the parabola opens upwards, the inequality holds for 4 \u2264 x \u2264 5. Combining all constraints on x (x \u2265 0, x \u2264 5, and 4 \u2264 x \u2264 5), the feasible region for x is the interval [4, 5]. We want to minimize the linear function 8x - 60 over this interval. Since the function has a positive slope (8), its minimum value will occur at the smallest possible value of x, which is x = 4. Substituting x = 4 into the objective function gives the minimum value: 8(4) - 60 = 32 - 60 = -28.0.\",\n  \"answer\": -28.0\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 174,
+      "output_tokens": 684
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 3.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[-1, -1.5], [-1.5, 0]]\nA_1 = [[4, 0.5], [0.5, 2]]\nb_1 = 11.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -6.1925823792419274,
+      "model_answer": -6.1925,
+      "raw_response": "{\n  \"reasoning\": \"Let the 2x2 symmetric matrix X be [[x, y], [y, z]]. The problem is to minimize the objective function <C, X> = -x - 3y, subject to the constraints. The linear constraints are <A_1, X> = 4x + y + 2z = 11.0 and trace(X) = x + z = 3.0. From the trace constraint, we get z = 3 - x. Substituting this into the first constraint gives 4x + y + 2(3 - x) = 11, which simplifies to 2x + y = 5, or y = 5 - 2x. Now, we can express the objective function solely in terms of x: -x - 3(5 - 2x) = -x - 15 + 6x = 5x - 15. The problem reduces to minimizing 5x - 15. To do this, we must find the feasible range for x. The positive semidefinite constraint X \u2ab0 0 implies x \u2265 0, z \u2265 0, and the determinant xz - y^2 \u2265 0. The condition z = 3 - x \u2265 0 implies x \u2264 3. The determinant constraint becomes x(3 - x) - (5 - 2x)^2 \u2265 0. Expanding this gives 3x - x^2 - (25 - 20x + 4x^2) \u2265 0, which simplifies to -5x^2 + 23x - 25 \u2265 0, or 5x^2 - 23x + 25 \u2264 0. The roots of the quadratic equation 5x^2 - 23x + 25 = 0 are given by the quadratic formula: x = [23 \u00b1 sqrt(23^2 - 4*5*25)] / 10 = [23 \u00b1 sqrt(529 - 500)] / 10 = (23 \u00b1 sqrt(29)) / 10. Since the parabola opens upwards, the inequality 5x^2 - 23x + 25 \u2264 0 holds for x between these two roots. The objective function 5x - 15 is minimized when x is minimized. The minimum feasible value for x is the smaller root, x_min = (23 - sqrt(29)) / 10. The minimum value of the objective function is 5*x_min - 15 = 5 * (23 - sqrt(29)) / 10 - 15 = (23 - sqrt(29)) / 2 - 30 / 2 = (-7 - sqrt(29)) / 2. To find the numerical value, we approximate sqrt(29) \u2248 5.385. The minimum value is approximately (-7 - 5.385) / 2 = -12.385 / 2 = -6.1925.\",\n  \"answer\": -6.1925\n}",
+      "finish_reason": "FinishReason.STOP",
+      "correct": true,
+      "input_tokens": 178,
+      "output_tokens": 688
+    },
+    {
+      "question": "Consider the semidefinite program over a symmetric 2x2 matrix X:\nMinimize <C, X> subject to <A_i, X> = b_i for i=1..1, trace(X) = 13.0, and X is positive semidefinite (X \u2ab0 0).\nC = [[0, -3.5], [-3.5, 0]]\nA_1 = [[-4, 1.5], [1.5, 4]]\nb_1 = -6.0\n\nWhat is the minimum value of <C, X>?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -40.62758498639575,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "FinishReason.MAX_TOKENS",
+      "correct": null,
+      "input_tokens": 178,
+      "output_tokens": null
+    }
+  ]
+}
