@@ -346,7 +346,9 @@ Potential future directions include:
 # Authors
 
 UCSB Early Research Scholars Program
+
 Undergraduate Researchers: Lauren Cho, Derek Flippo, Safwan Rahman, Pratima Nallapareddy
+
 Advisors: Professor Yuheng Bu, Yepeng Liu
 
 Undergraduate Research Project on LLM Reasoning and Optimization Benchmarks
