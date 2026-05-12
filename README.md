@@ -125,6 +125,49 @@ Metrics currently tracked include:
 * latency,
 * and structured output reliability.
 
+# Evaluation Output Format
+
+Each benchmark run stores aggregate statistics alongside per-question evaluation metadata.
+
+Example output structure:
+
+```json
+{
+  "model": "claude-sonnet-4-6",
+  "total": 20,
+  "evaluated": 20,
+  "answered": 20,
+  "correct": 19,
+  "accuracy": 0.95,
+  "avg_input_tokens": 360.75,
+  "avg_output_tokens": 1313.25,
+  "tolerance": 0.01,
+  "results": [
+    {
+      "question": "...",
+      "expected_answer": 8.528028192441546,
+      "model_answer": 8.528,
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 370,
+      "output_tokens": 3477
+    }
+  ]
+}
+```
+
+Stored metadata includes:
+
+* model accuracy,
+* token usage statistics,
+* numerical tolerance thresholds,
+* raw reasoning traces,
+* structured outputs,
+* finish reasons,
+* and per-question correctness results.
+
+This format enables downstream analysis of reasoning quality, token efficiency, truncation behavior, and optimization-specific failure modes.
+
 ---
 
 # Preliminary Results
