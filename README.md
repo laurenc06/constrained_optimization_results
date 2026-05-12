@@ -125,7 +125,7 @@ Metrics currently tracked include:
 * latency,
 * and structured output reliability.
 
-# Evaluation Output Format
+## Evaluation Output Format
 
 Each benchmark run stores aggregate statistics alongside per-question evaluation metadata.
 
