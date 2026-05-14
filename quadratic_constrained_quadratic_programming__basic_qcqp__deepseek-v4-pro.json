@@ -1,0 +1,213 @@
+{
+  "model": "deepseek-v4-pro",
+  "total": 20,
+  "evaluated": 20,
+  "answered": 19,
+  "correct": 19,
+  "accuracy": 1.0,
+  "avg_input_tokens": 290.0,
+  "avg_output_tokens": 4226.6,
+  "tolerance": 0.01,
+  "results": [
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 16.0.\n\nQ_0 = [[6, 5], [5, 6]]\nc_0 = [-4, -4]\nQ_1 = [[5.5, 0], [0, 5.5]], c_1 = [3, -3], d_1 = 10.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -1.4545454545454541,
+      "model_answer": -1.4545,
+      "raw_response": "{\n  \"reasoning\": \"The problem is a convex QCQP. The unconstrained minimizer of the objective is found by solving Q_0 x = -c_0, giving x = (4/11, 4/11). This point satisfies both constraints: x1^2 + x2^2 = 32/121 \u2248 0.264 <= 16, and 5.5*(32/121) + 3*(4/11) - 3*(4/11) = 176/121 \u2248 1.4545 <= 10.5. Since the objective is convex and the unconstrained minimizer is feasible, it is the global constrained minimizer. The objective value is 0.5 x^T Q_0 x + c_0^T x = (3*(16/121) + 5*(16/121) + 3*(16/121)) - 8*(4/11) = 176/121 - 32/11 = -176/121 \u2248 -1.4545.\",\n  \"answer\": -1.4545\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1705
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[6, -2], [-2, 5]]\nc_0 = [-3, -2]\nQ_1 = [[5.5, 0], [0, 5.5]], c_1 = [-2, 4], d_1 = 31.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -1.7884615384615383,
+      "model_answer": -1.79,
+      "raw_response": "{\"reasoning\": \"The unconstrained minimizer of the objective satisfies both constraints. Solve Q0 x = -c0 gives x = (19/26, 18/26). Objective value = 0.5 * c0^T x = -93/52 \u2248 -1.78846.\", \"answer\": -1.79}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 2545
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[6, 4], [4, 6]]\nc_0 = [-3, -2]\nQ_1 = [[8.5, -2], [-2, 1.5]], c_1 = [1, -3], d_1 = 31.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.75,
+      "model_answer": -0.75,
+      "raw_response": "{\n  \"reasoning\": \"The problem is a convex QCQP. The objective is (1/2)x^T Q_0 x + c_0^T x with Q_0 = [[6,4],[4,6]], c_0 = [-3,-2]. The unconstrained minimum occurs where the gradient is zero: Q_0 x + c_0 = 0, giving x = (0.5, 0). Checking constraints: x^T Q_1 x + c_1^T x - d_1 = 8.5(0.25) + 0.5 - 31.5 = -28.875 \u2264 0, and ||x||^2 = 0.25 \u2264 27.416, so the unconstrained minimum is feasible. Thus it is the global optimum. The objective value at (0.5,0) is 0.5*(6*0.25 + 4*0 + 4*0 + 6*0) + (-3*0.5 - 2*0) = 0.75 - 1.5 = -0.75.\",\n  \"answer\": -0.75\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 2123
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[3, -1], [-1, 2]]\nc_0 = [-1, -2]\nQ_1 = [[4.5, -2], [-2, 1.5]], c_1 = [-1, -3], d_1 = 25.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -1.7999999999999998,
+      "model_answer": -1.8,
+      "raw_response": "{\"reasoning\": \"The problem is a convex QCQP. The unconstrained minimizer of the objective is found by solving \\\\(\\\\nabla f = 0\\\\), yielding \\\\(x = (0.8, 1.4)\\\\). Checking constraints: the first quadratic constraint evaluates to \\\\(-29.16 \\\\leq 0\\\\), and the norm squared is \\\\(2.6 \\\\leq 27.416\\\\), so both constraints are satisfied. The objective value at this point is \\\\(-1.8\\\\). Since the unconstrained optimum is feasible, it is the global constrained minimum.\", \"answer\": -1.8}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 2117
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 19.485.\n\nQ_0 = [[9, -2], [-2, 6]]\nc_0 = [-3, 1]\nQ_1 = [[2.5, 2], [2, 4.5]], c_1 = [-1, 3], d_1 = 14.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.5100000000000001,
+      "model_answer": -0.51,
+      "raw_response": "{\"reasoning\": \"The unconstrained minimizer of the objective is found by solving Q_0 x = -c_0, yielding x \u2248 (0.32, -0.06). The objective value at this point is (1/2) c_0^T x = -0.51. Checking constraints: x^T Q_1 x + c_1^T x \u2248 -0.3046 \u2264 14 and ||x||\u00b2 \u2248 0.106 \u2264 19.485, both satisfied. Hence the unconstrained minimum is feasible and optimal.\", \"answer\": -0.51}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1362
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[3, 1], [1, 6]]\nc_0 = [3, 0]\nQ_1 = [[5.5, 2], [2, 1.5]], c_1 = [-1, 0], d_1 = 5.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -1.5762359920953852,
+      "model_answer": -1.58,
+      "raw_response": "{\n  \"reasoning\": \"We minimize (1/2) x^T Q_0 x + c_0^T x subject to x^T Q_1 x + c_1^T x \u2264 5.5 and ||x||^2 \u2264 27.416. The unconstrained minimum is at x \u2248 (-1.0588, 0.1765) with f \u2248 -1.5889, but it violates the first constraint (left side \u2248 6.5242 > 5.5). Thus constraint 1 is active at optimum. Solving the equality-constrained problem with Lagrange multiplier \u03bb yields x = [ (\u03bb-3)(6+3\u03bb)/D, -(1+4\u03bb)(\u03bb-3)/D ] where D = 17+67\u03bb+17\u03bb^2. Plugging into the constraint gives equation in \u03bb; numerical searching finds \u03bb \u2248 0.0245 gives constraint left \u2248 5.4991 (very close to 5.5). The corresponding x \u2248 (-0.9689, 0.17515) and objective f \u2248 -1.5762. The sphere constraint is satisfied (norm \u2248 0.97). By KKT, \u03bb>0 is valid. So the minimum is approximately -1.58.\",\n  \"answer\": -1.58\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 8161
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 16.0.\n\nQ_0 = [[6, -3], [-3, 6]]\nc_0 = [4, 3]\nQ_1 = [[8.5, -4], [-4, 4.5]], c_1 = [4, -1], d_1 = 5.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -4.111111111111111,
+      "model_answer": -4.11,
+      "raw_response": "{\"reasoning\": \"The problem is a convex QCQP: minimize f(x) = 0.5 * x^T Q0 x + c0^T x, with Q0=[[6,-3],[-3,6]], c0=[4,3], so f(x) = 3x1^2 + 3x2^2 - 3x1x2 + 4x1 + 3x2. Constraint 1: x^T Q1 x + c1^T x <= 5.5 with Q1=[[8.5,-4],[-4,4.5]], c1=[4,-1], giving 8.5x1^2 + 4.5x2^2 - 8x1x2 + 4x1 - x2 <= 5.5. Constraint 2: x1^2 + x2^2 <= 16. The unconstrained minimum of f is found by setting gradient to zero: 6x1 - 3x2 + 4 = 0, -3x1 + 6x2 + 3 = 0. Solving yields x1 = -11/9 \u2248 -1.2222, x2 = -10/9 \u2248 -1.1111. At this point, the first constraint evaluates to 3.6111 < 5.5 and the second to 2.728 < 16, so the unconstrained minimum is feasible. The objective value is f(-11/9, -10/9) = -37/9 \u2248 -4.1111. Thus the minimum value is -4.11 (accurate within 0.01).\", \"answer\": -4.11}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 2500
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[1, 0], [0, 9]]\nc_0 = [0, -4]\nQ_1 = [[5.5, 0], [0, 5.5]], c_1 = [2, 4], d_1 = 41.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.8888888888888888,
+      "model_answer": -0.8889,
+      "raw_response": "{\n  \"reasoning\": \"The objective function is f(x1, x2) = 0.5*x1^2 + 4.5*x2^2 - 4*x2. Its unconstrained minimum is found by setting gradients to zero: x1 = 0, 9*x2 - 4 = 0 => x2 = 4/9 \u2248 0.4444. The minimum value is f(0, 4/9) = -8/9 \u2248 -0.8889. Checking constraints: norm squared = (4/9)^2 \u2248 0.1975 \u2264 27.416, and the quadratic constraint: 5.5*(0.1975) + 2*0 + 4*(4/9) \u2248 1.086 + 1.778 = 2.864 \u2264 41.5. Both constraints are satisfied, so the unconstrained minimum is feasible and therefore is the global optimum of the convex problem.\",\n  \"answer\": -0.8889\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1507
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[1, 0], [0, 6]]\nc_0 = [-4, 1]\nQ_1 = [[4.5, -2], [-2, 1.5]], c_1 = [-1, 2], d_1 = 27.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -7.017605483423269,
+      "model_answer": -7.01,
+      "raw_response": "{\"reasoning\": \"We solve the convex QCQP with one quadratic constraint and a norm bound. The unconstrained minimum is at x = [4, -1/6] with objective -6.9583, but it violates the first constraint (value 70.375 > 27.5). The norm bound is satisfied at this point, so the first constraint is active. Using KKT conditions with active constraint, we set up a linear system in terms of the Lagrange multiplier \u03bb and solve for x. The constraint value f1(\u03bb) is decreasing in \u03bb. Trying \u03bb = 0.065 gives x \u2248 [2.5523, -0.0753], f1 \u2248 27.387 \u2264 27.5 (feasible) and objective \u2248 -7.010. Trying \u03bb = 0.0645 gives f1 \u2248 27.556 (infeasible). The true optimal \u03bb lies between, giving objective around -7.018. The value -7.01 is accurate to within 0.01. The norm bound is not active (||x||^2 \u2248 6.52 \u2264 27.416).\", \"answer\": -7.01}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 8258
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[6, -2], [-2, 5]]\nc_0 = [-4, 4]\nQ_1 = [[5.5, -6], [-6, 8.5]], c_1 = [-1, -2], d_1 = 14.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -2.1538461538461537,
+      "model_answer": -2.15,
+      "raw_response": "{\"reasoning\": \"The unconstrained minimizer of the objective is found by solving Q0 x + c0 = 0, yielding x* = (6/13, -8/13). This point satisfies both constraints: ||x*||^2 \u2248 0.5917 \u2264 27.416, and x*T Q1 x* + c1T x* \u2248 8.568 \u2264 14.5. Therefore the unconstrained optimum is feasible, and the optimal value is f0(x*) = (1/2) c0T x* = -28/13 \u2248 -2.1538.\", \"answer\": -2.15}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1930
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[3, -2], [-2, 5]]\nc_0 = [-1, -3]\nQ_1 = [[4.5, 4], [4, 8.5]], c_1 = [4, 3], d_1 = 9.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -1.5736059050732338,
+      "model_answer": -1.57,
+      "raw_response": "{\n  \"reasoning\": \"Used KKT conditions for the convex QCQP. The unconstrained minimizer (1,1) violates the first constraint, so \u03bb>0. The ball constraint is inactive since norm at candidate solutions is small. Set \u03bc=0 and solved stationarity for x(\u03bb) from (Q0 + 2\u03bb Q1)x = -c0 - \u03bb c1. Evaluated g1(\u03bb) for various \u03bb. At \u03bb=0.06, g1\u22480.211; at \u03bb=0.07, g1\u2248-1.053. Refined to \u03bb\u22480.06156, where g1\u22480. Computed objective f0 \u2248 -1.5736. Final answer rounded to -1.57.\",\n  \"answer\": -1.57\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 12257
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 19.485.\n\nQ_0 = [[1, 0], [0, 9]]\nc_0 = [0, -3]\nQ_1 = [[5.5, 1], [1, 1.5]], c_1 = [-1, 4], d_1 = 14.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.5,
+      "model_answer": -0.5,
+      "raw_response": "{\"reasoning\": \"Unconstrained minimizer x = (0, 1/3) gives objective -0.5 and satisfies both constraints, so it is optimal.\", \"answer\": -0.5}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1022
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[2, -1], [-1, 3]]\nc_0 = [1, -2]\nQ_1 = [[5.5, 2], [2, 4.5]], c_1 = [0, -2], d_1 = 30.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.7,
+      "model_answer": -0.7,
+      "raw_response": "{\"reasoning\": \"First check if the unconstrained minimizer of the objective is feasible. The objective is (1/2)x^T Q_0 x + c_0^T x with Q_0 = [[2,-1],[-1,3]], c_0 = [1,-2]. The unconstrained minimizer is x* = -Q_0^{-1} c_0. Compute Q_0^{-1} = (1/5)[[3,1],[1,2]] = [[0.6,0.2],[0.2,0.4]]. Then x* = -[[0.6,0.2],[0.2,0.4]] [1,-2]^T = -[0.2, -0.6]^T = [-0.2, 0.6]. Check constraints: For the Q_1 constraint, evaluate x^T Q_1 x + c_1^T x with Q_1 = [[5.5,2],[2,4.5]], c_1 = [0,-2]. At x=[-0.2,0.6], x^T Q_1 x = 5.5(0.04) + 4(-0.12) + 4.5(0.36) = 0.22 - 0.48 + 1.62 = 1.36, c_1^T x = -1.2, sum = 0.16 \u2264 30.5. Norm squared = 0.04+0.36=0.4 \u2264 27.416. Thus the unconstrained minimizer is feasible. Since the problem is convex, this point is the global minimum. Evaluate objective: (1/2)x^T Q_0 x = 0.5*(2(0.04) -2(-0.12) + 3(0.36)) = 0.5*(0.08+0.24+1.08)=0.5*1.4=0.7, c_0^T x = -0.2 -1.2 = -1.4, objective = 0.7 - 1.4 = -0.7.\", \"answer\": -0.7}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1656
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 19.485.\n\nQ_0 = [[1, 0], [0, 3]]\nc_0 = [0, -4]\nQ_1 = [[5.5, -4], [-4, 4.5]], c_1 = [-3, -1], d_1 = -1.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -2.377997243105339,
+      "model_answer": -2.38,
+      "raw_response": "{\"reasoning\": \"The problem is a convex QCQP with one quadratic constraint and a ball constraint. The ball constraint is inactive at the optimum because the first constraint defines an ellipsoid contained well inside the ball. Setting \u03bc=0 and solving the KKT conditions gives a single equation in \u03bb for the active constraint. Numerically solving for \u03bb yields \u03bb\u22480.14866, giving x\u2248(0.68564, 1.14432). The objective value at this point is approximately -2.3780. To within 0.01 accuracy, the minimum is -2.38.\", \"answer\": -2.38}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 10840
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 19.485.\n\nQ_0 = [[9, 0], [0, 9]]\nc_0 = [3, 0]\nQ_1 = [[5.5, 3], [3, 2.5]], c_1 = [3, -2], d_1 = 9.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.49999999999999994,
+      "model_answer": -0.5,
+      "raw_response": "{\n  \"reasoning\": \"The objective is f(x) = (9/2)(x1^2 + x2^2) + 3x1. The unconstrained minimum is found by setting gradient to zero: \u2207f = 9x + [3,0] = 0 \u2192 x* = [-1/3, 0]. The minimum value is f(x*) = (9/2)(1/9) - 1 = 0.5 - 1 = -0.5. Checking constraints: For x*, the first constraint evaluates to 5.5*(1/9) + 3*(-1/3) = 0.611 - 1 = -0.389 \u2264 9, and the norm squared is 1/9 \u2248 0.111 \u2264 19.485. Both constraints are satisfied, so x* is feasible. Therefore the global minimum of the convex problem is -0.5.\",\n  \"answer\": -0.5\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1218
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 9.0.\n\nQ_0 = [[9, 4], [4, 5]]\nc_0 = [3, -1]\nQ_1 = [[1.5, 1], [1, 2.5]], c_1 = [-3, 0], d_1 = 3.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -1.3448275862068697,
+      "model_answer": -1.34,
+      "raw_response": "{\n  \"reasoning\": \"The problem is a convex QCQP with constraints x^T Q_1 x + c_1^T x <= 3 and ||x||^2 <= 9. Since Q_0 is positive definite, the unconstrained minimum is found by solving Q_0 x + c_0 = 0, giving x = -Q_0^{-1} c_0 = [-19/29, 21/29]^T. Checking constraints: ||x||^2 = 802/841 < 9, and the quadratic constraint evaluates to -0.0285 <= 3, so the point is strictly feasible. Hence the constraints are inactive, and the optimal value is the unconstrained minimum: f* = -1/2 c_0^T Q_0^{-1} c_0 = -39/29 \u2248 -1.3448.\",\n  \"answer\": -1.34\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 2561
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 25.0.\n\nQ_0 = [[6, -3], [-3, 3]]\nc_0 = [2, 0]\nQ_1 = [[5.5, 2], [2, 1.5]], c_1 = [1, 4], d_1 = 2.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.6666666666666666,
+      "model_answer": -0.6667,
+      "raw_response": "{\n  \"reasoning\": \"The problem is to minimize f(x) = 0.5 * x^T Q_0 x + c_0^T x, with Q_0 = [[6,-3],[-3,3]], c_0=[2,0], subject to x^T Q_1 x + c_1^T x <= 2 and ||x||_2^2 <= 25. Unconstrained minimum of the convex quadratic objective is found by setting gradient to zero: Q_0 x + c_0 = 0, giving x* = -Q_0^{-1} c_0 = [-2/3, -2/3]. Checking constraints: first constraint gives 14/9 \u2248 1.556 <= 2; second gives 8/9 \u2248 0.889 <= 25. Thus x* is feasible, and since the problem is convex, this is the global minimum. Evaluating f(x*) yields -2/3 \u2248 -0.6667.\",\n  \"answer\": -0.6667\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 2462
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 9.0.\n\nQ_0 = [[9, 8], [8, 9]]\nc_0 = [-1, -1]\nQ_1 = [[8.5, -2], [-2, 1.5]], c_1 = [2, 1], d_1 = 3.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.058823529411764705,
+      "model_answer": -0.0588,
+      "raw_response": "{\n  \"reasoning\": \"The unconstrained minimum of the convex quadratic objective is found by setting gradient to zero: Q0 x + c0 = 0 -> x = -Q0^{-1} c0 = [1/17, 1/17]. Check constraints: the point satisfies both constraints (norm^2 = 2/289 \u2248 0.0069 < 9, and the quadratic constraint gives value \u2248 0.197 < 3). Thus the unconstrained minimizer is feasible and is the global optimal. The minimum objective value is 0.5*x'Q0x + c0'x = -1/17 \u2248 -0.0588.\",\n  \"answer\": -0.0588\n}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 2768
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 9.0.\n\nQ_0 = [[3, 2], [2, 5]]\nc_0 = [1, 0]\nQ_1 = [[1.5, -2], [-2, 8.5]], c_1 = [2, 2], d_1 = 4.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.2272727272727273,
+      "model_answer": -0.22727,
+      "raw_response": "{\"reasoning\": \"The unconstrained minimum of the convex quadratic objective is found by setting the gradient to zero: Q_0 x + c_0 = 0. Solving gives x1 = -5/11 \u2248 -0.4545, x2 = 2/11 \u2248 0.1818. Checking the constraints: ||x||^2 = (25+4)/121 = 29/121 \u2248 0.24 \u2264 9, and the quadratic constraint evaluates to (1.5*(25/121) - 4*(-10/121) + 8.5*(4/121)) + 2*(-5/11) + 2*(2/11) = (37.5/121 + 40/121 + 34/121) - 10/11 + 4/11 = (111.5/121) - 6/11 \u2248 0.92 - 0.545 = 0.375 \u2264 4. Both constraints are satisfied, so the unconstrained minimum is feasible and thus the global minimum. The objective value at this point is 0.5*(3*(25/121) + 4*(-10/121) + 5*(4/121)) - 5/11 = (55/242) - (110/242) = -55/242 \u2248 -0.22727.\", \"answer\": -0.22727}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 290,
+      "output_tokens": 1540
+    },
+    {
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..1,\nand ||x||_2^2 <= 9.0.\n\nQ_0 = [[2, 0], [0, 5]]\nc_0 = [4, 0]\nQ_1 = [[5.5, 5], [5, 5.5]], c_1 = [-3, 4], d_1 = 1.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.9168610289970114,
+      "model_answer": null,
+      "raw_response": "",
+      "finish_reason": "length",
+      "correct": null,
+      "input_tokens": 290,
+      "output_tokens": 16000
+    }
+  ]
+}
