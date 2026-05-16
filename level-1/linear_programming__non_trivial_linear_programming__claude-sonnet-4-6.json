@@ -1,0 +1,263 @@
+{
+  "model": "claude-sonnet-4-6",
+  "total": 25,
+  "evaluated": 25,
+  "answered": 25,
+  "correct": 25,
+  "accuracy": 1.0,
+  "avg_input_tokens": 384.56,
+  "avg_output_tokens": 660.92,
+  "tolerance": 0.01,
+  "results": [
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-6.  1.], subject to the constraints \nA * x <= b, where \nA = [[ 4. -1.]\n [ 1.  0.]] and \nb = [6. 2.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -10.0,
+      "model_answer": -10,
+      "raw_response": "{\"reasoning\":\"We want to minimize -6x1 + x2 subject to:\\n4x1 - x2 <= 6\\nx1 <= 2\\n\\nSince the objective has coefficient -6 on x1, we want x1 as large as possible. x1 <= 2, so x1 = 2.\\n\\nWith x1 = 2: 4(2) - x2 <= 6 => 8 - x2 <= 6 => x2 >= 2.\\n\\nThe coefficient on x2 is +1, so we want x2 as small as possible. The constraint gives x2 >= 2, so x2 = 2.\\n\\nObjective = -6(2) + 1(2) = -12 + 2 = -10.\\n\\nBut wait - are there lower bounds on variables? The problem doesn't specify, but typically LP assumes x >= 0. Let me check if x2 can go to -infinity without bounds.\\n\\nIf x2 is unbounded below, then with x1 = 2, x2 can go to -infinity (since 4(2) - x2 <= 6 means x2 >= 2, so x2 >= 2 anyway). So x2 = 2 is the minimum.\\n\\nOptimal value = -10.\",\"answer\":-10}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 385,
+      "output_tokens": 333
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-10.   4.], subject to the constraints \nA * x <= b, where \nA = [[ 4. -4.]\n [ 2.  4.]] and \nb = [-4. 16.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -8.0,
+      "model_answer": -8,
+      "raw_response": "{\"reasoning\":\"We want to minimize -10x1 + 4x2 subject to:\\n4x1 - 4x2 <= -4  \u2192  x1 - x2 <= -1  \u2192  x2 >= x1 + 1\\n2x1 + 4x2 <= 16  \u2192  x1 + 2x2 <= 8\\n\\nSince we're minimizing -10x1 + 4x2, we want x1 as large as possible and x2 as small as possible.\\n\\nFrom constraint 1: x2 >= x1 + 1\\nFrom constraint 2: x1 + 2x2 <= 8\\n\\nSubstitute x2 = x1 + 1 (minimum x2) into constraint 2:\\nx1 + 2(x1 + 1) <= 8\\n3x1 + 2 <= 8\\n3x1 <= 6\\nx1 <= 2\\n\\nSo maximum x1 = 2, x2 = 3.\\n\\nObjective = -10(2) + 4(3) = -20 + 12 = -8.\\n\\nBut wait - is the feasible region bounded? Let me check if x1 can go to -infinity. If x1 \u2192 -\u221e, then -10x1 \u2192 +\u221e, so that's not helpful for minimization.\\n\\nWhat about x1 \u2192 +\u221e? We need x2 >= x1+1 and x1+2x2 <= 8. From x2 >= x1+1: x1 + 2(x1+1) <= 8 \u2192 3x1 <= 6 \u2192 x1 <= 2. So x1 is bounded above by 2.\\n\\nThe minimum of the objective occurs at the vertex where both constraints are active: x1=2, x2=3, giving -8.\",\"answer\":-8}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 385,
+      "output_tokens": 479
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-16.   4.], subject to the constraints \nA * x <= b, where \nA = [[ 4. -1.]\n [ 1. -2.]] and \nb = [2. 0.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -8.0,
+      "model_answer": -8,
+      "raw_response": "{\"reasoning\":\"We want to minimize c^T x = -16x1 + 4x2 subject to:\\n1) 4x1 - x2 <= 2\\n2) x1 - 2x2 <= 0\\n\\nNote there are no non-negativity constraints, so the feasible region is unbounded in some directions.\\n\\nLet me check if the problem is unbounded. The objective is -16x1 + 4x2. We want to minimize this, so we want x1 large and x2 small (or negative).\\n\\nLet's try to go in direction d = (t, 0) for large t:\\n- Constraint 1: 4t <= 2, so t <= 0.5. Can't go to infinity in x1 direction alone.\\n\\nLet's try direction d = (t, 2t) (satisfying constraint 2 with equality: x1 = 2x2):\\n- Constraint 1: 4t - 2t = 2t <= 2, so t <= 1.\\n- Constraint 2: t - 2(2t) = t - 4t = -3t <= 0, satisfied for t >= 0.\\n\\nLet's try direction d = (t, 4t-2) from constraint 1 with equality:\\n- Constraint 1: 4t - (4t-2) = 2 <= 2. OK.\\n- Constraint 2: t - 2(4t-2) = t - 8t + 4 = -7t + 4 <= 0, so t >= 4/7.\\n\\nObjective along this: -16t + 4(4t-2) = -16t + 16t - 8 = -8. Constant!\\n\\nLet me try direction where both constraints are active:\\nFrom constraint 1: 4x1 - x2 = 2\\nFrom constraint 2: x1 - 2x2 = 0 => x1 = 2x2\\n\\nSubstitute: 4(2x2) - x2 = 2 => 8x2 - x2 = 2 => 7x2 = 2 => x2 = 2/7, x1 = 4/7.\\n\\nObjective: -16(4/7) + 4(2/7) = -64/7 + 8/7 = -56/7 = -8.\\n\\nNow let me check if we can do better. Let me try moving away from this vertex.\\n\\nLet me check directions from the vertex (4/7, 2/7):\\n- Along constraint 1 boundary (4x1 - x2 = 2): direction (1, 4). Objective change: -16(1) + 4(4) = -16 + 16 = 0. Neutral.\\n- Along constraint 2 boundary (x1 = 2x2): direction (2, 1). Objective change: -16(2) + 4(1) = -32 + 4 = -28 < 0. This decreases the objective!\\n\\nBut wait, moving along constraint 2 (x1 = 2x2) in direction (2,1): check constraint 1:\\n4(4/7 + 2t) - (2/7 + t) = 16/7 + 8t - 2/7 - t = 14/7 + 7t = 2 + 7t <= 2 requires t <= 0.\\n\\nSo we can only move in direction (-2, -1) along constraint 2 from the vertex.\\nObjective change: -16(-2) + 4(-1) = 32 - 4 = 28 > 0. That increases the objective.\\n\\nSo moving along constraint 1 in direction (1, 4): check constraint 2:\\nx1 - 2x2 = (4/7 + t) - 2(2/7 + 4t) = 4/7 + t - 4/7 - 8t = -7t <= 0 requires t >= 0.\\n\\nObjective change along (1,4): 0. So the objective stays at -8 along this ray.\\n\\nLet me check if we can go in a direction that decreases the objective while satisfying both constraints.\\n\\nFor a direction d = (d1, d2) to be feasible from the vertex:\\n- 4d1 - d2 <= 0 (constraint 1 active)\\n- d1 - 2d2 <= 0 (constraint 2 active)\\n\\nObjective change: -16d1 + 4d2 < 0.\\n\\nFrom constraint 2: d1 <= 2d2.\\nFrom constraint 1: d2 >= 4d1.\\n\\nIf d1 > 0: d2 >= 4d1 > 0, and objective = -16d1 + 4d2 >= -16d1 + 16d1 = 0. Not negative.\\nIf d1 < 0: d2 >= 4d1 (could be negative), d1 <= 2d2.\\n  - If d2 < 0: d1 <= 2d2 < 0. Objective = -16d1 + 4d2. With d1 < 0, -16d1 > 0. With d2 < 0, 4d2 < 0. Need -16d1 + 4d2 < 0, i.e., 4d2 < 16d1, i.e., d2 < 4d1. But constraint 1 says d2 >= 4d1. Contradiction.\\n  - If d2 >= 0: d1 <= 2d2 >= 0, but d1 < 0. Objective = -16d1 + 4d2 > 0. Not negative.\\nIf d1 = 0: d2 >= 0, objective = 4d2 >= 0.\\n\\nSo no feasible direction decreases the objective. The optimal value is -8.\",\"answer\":-8}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 385,
+      "output_tokens": 1528
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-2. -1.], subject to the constraints \nA * x <= b, where \nA = [[-1. -1.]\n [ 3.  2.]] and \nb = [-5. 11.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -6.0,
+      "model_answer": -6,
+      "raw_response": "{\"reasoning\":\"We need to minimize c^T x = -2x1 - x2 subject to:\\n-x1 - x2 <= -5 \u2192 x1 + x2 >= 5\\n3x1 + 2x2 <= 11\\n\\nThe feasible region is defined by x1 + x2 >= 5 and 3x1 + 2x2 <= 11.\\n\\nWe want to minimize -2x1 - x2, which means maximize 2x1 + x2.\\n\\nThe corner points of the feasible region:\\nIntersection of x1 + x2 = 5 and 3x1 + 2x2 = 11:\\nFrom first: x2 = 5 - x1\\nSubstitute: 3x1 + 2(5-x1) = 11 \u2192 3x1 + 10 - 2x1 = 11 \u2192 x1 = 1, x2 = 4\\n\\nAt (1, 4): objective = -2(1) - 4 = -6\\n\\nBut the feasible region might be unbounded. Let's check: as x1 increases and x2 decreases (keeping x1+x2=5), we get x2 = 5-x1, and 3x1 + 2(5-x1) = x1 + 10 <= 11 \u2192 x1 <= 1. So along x1+x2=5, x1 can be at most 1.\\n\\nWhat if we move away from the boundary x1+x2=5? We need x1+x2 >= 5. If x1+x2 > 5, we need 3x1+2x2 <= 11.\\n\\nTo minimize -2x1-x2, we want large x1 and x2. But 3x1+2x2 <= 11 bounds this. The minimum of -2x1-x2 subject to 3x1+2x2 <= 11 and x1+x2 >= 5.\\n\\nThe feasible region vertices: only one vertex at (1,4) since the two constraints intersect there. The region extends... let me think about the unbounded directions.\\n\\nDirection d must satisfy: -d1-d2 <= 0 (i.e., d1+d2 >= 0) and 3d1+2d2 <= 0.\\n\\nFor the objective to be unbounded below, we need -2d1-d2 < 0, i.e., 2d1+d2 > 0.\\n\\nCan we have d1+d2 >= 0, 3d1+2d2 <= 0, and 2d1+d2 > 0?\\n\\nFrom 3d1+2d2 <= 0: d2 <= -3d1/2\\nFrom 2d1+d2 > 0: d2 > -2d1\\nSo -2d1 < d2 <= -3d1/2\\n\\nFor this to have solutions, we need -2d1 < -3d1/2 \u2192 -2d1 + 3d1/2 < 0 \u2192 -d1/2 < 0 \u2192 d1 > 0.\\n\\nWith d1 > 0: d2 in (-2d1, -3d1/2]. Also d1+d2 >= 0: d2 >= -d1. But d2 <= -3d1/2 < -d1 (since 3/2 > 1). So d1+d2 <= d1 - 3d1/2 = -d1/2 < 0. This violates d1+d2 >= 0.\\n\\nSo the problem is bounded! The only vertex is (1,4) and the optimal value is -2(1)-4 = -6.\",\"answer\":-6}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 977
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-6.  0.], subject to the constraints \nA * x <= b, where \nA = [[-1.  4.]\n [ 3.  0.]] and \nb = [14.  9.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -18.0,
+      "model_answer": -18,
+      "raw_response": "{\"reasoning\":\"We want to minimize -6x1 + 0*x2 = -6x1, so we want to maximize x1.\\n\\nConstraints:\\n1) -x1 + 4x2 <= 14\\n2) 3x1 <= 9 \u2192 x1 <= 3\\n\\nFrom constraint 2: x1 <= 3. To maximize x1, set x1 = 3.\\n\\nCheck constraint 1: -3 + 4x2 <= 14 \u2192 4x2 <= 17 \u2192 x2 <= 4.25. This is satisfiable (x2 can be anything \u2264 4.25, no lower bound constraint on x2 explicitly, but we need feasibility).\\n\\nSo x1 = 3 is feasible. Objective = -6*3 = -18.\",\"answer\":-18}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 220
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-13.   4.], subject to the constraints \nA * x <= b, where \nA = [[ 2.  4.]\n [ 3. -4.]] and \nb = [14. -9.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -1.0,
+      "model_answer": -1,
+      "raw_response": "{\"reasoning\":\"We need to minimize c^T x = -13x1 + 4x2 subject to:\\n2x1 + 4x2 <= 14\\n3x1 - 4x2 <= -9\\n\\nThe feasible region is defined by these two constraints. Since we're minimizing -13x1 + 4x2, we want to maximize x1 and minimize x2.\\n\\nLet me find the corner points. The two constraints as equalities:\\n2x1 + 4x2 = 14 \u2192 x1 + 2x2 = 7\\n3x1 - 4x2 = -9\\n\\nFrom first: x1 = 7 - 2x2\\nSubstitute: 3(7 - 2x2) - 4x2 = -9\\n21 - 6x2 - 4x2 = -9\\n21 - 10x2 = -9\\n10x2 = 30\\nx2 = 3, x1 = 7 - 6 = 1\\n\\nSo intersection point is (1, 3).\\n\\nObjective at (1, 3): -13(1) + 4(3) = -13 + 12 = -1.\\n\\nNow I need to check if the feasible region is bounded or if the objective can go to -infinity.\\n\\nThe feasible region requires:\\n2x1 + 4x2 <= 14\\n3x1 - 4x2 <= -9\\n\\nAdding these: 5x1 <= 5, so x1 <= 1.\\n\\nSince x1 <= 1, and we're minimizing -13x1 + 4x2 (which wants large x1), x1 is bounded above by 1.\\n\\nBut what about x2? From constraint 2: 3x1 - 4x2 <= -9 \u2192 4x2 >= 3x1 + 9 \u2192 x2 >= (3x1 + 9)/4.\\n\\nSo x2 has a lower bound but no upper bound from these constraints. As x2 \u2192 \u221e, the objective -13x1 + 4x2 \u2192 +\u221e (not helpful for minimization).\\n\\nFor minimization, we want x2 as small as possible. The minimum x2 is (3x1 + 9)/4 (from constraint 2 being tight).\\n\\nAlso from constraint 1: x2 <= (14 - 2x1)/4 = (7 - x1)/2.\\n\\nSo we need (3x1 + 9)/4 <= (7 - x1)/2\\n3x1 + 9 <= 14 - 2x1\\n5x1 <= 5\\nx1 <= 1. \u2713\\n\\nTo minimize -13x1 + 4x2, with x2 >= (3x1+9)/4, the minimum occurs when x2 = (3x1+9)/4 (constraint 2 tight).\\n\\nObjective becomes: -13x1 + 4*(3x1+9)/4 = -13x1 + 3x1 + 9 = -10x1 + 9.\\n\\nThis is minimized by maximizing x1. Maximum x1 = 1 (from x1 <= 1).\\n\\nAt x1 = 1: objective = -10 + 9 = -1.\\n\\nSo the optimal value is -1 at (1, 3).\",\"answer\":-1}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 385,
+      "output_tokens": 903
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-11.  -8.], subject to the constraints \nA * x <= b, where \nA = [[ 3. -4.]\n [ 2.  3.]] and \nb = [2. 7.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -30.0,
+      "model_answer": -30,
+      "raw_response": "{\"reasoning\":\"We want to minimize c^T x = -11x1 - 8x2 subject to:\\n3x1 - 4x2 <= 2\\n2x1 + 3x2 <= 7\\n\\nSince we're minimizing -11x1 - 8x2 (equivalently maximizing 11x1 + 8x2), and there are no non-negativity constraints, the feasible region is unbounded in some directions.\\n\\nLet me check if the problem is unbounded. Consider moving in direction d = (-1, 0): \\n- 3(-1) - 4(0) = -3 <= 2 \u2713\\n- 2(-1) + 3(0) = -2 <= 7 \u2713\\n\\nMoving in direction (-1, 0) keeps feasibility, and c^T * (-1, 0) = -11*(-1) = 11 > 0... wait, we're minimizing, so we want c^T * d < 0.\\n\\nc^T * d = -11*(-1) - 8*(0) = 11 > 0. That increases the objective.\\n\\nLet me try direction d = (1, 0):\\nc^T * d = -11 < 0, so moving in direction (1,0) decreases the objective.\\nCheck feasibility: 3(1) - 4(0) = 3 > 2. Not feasible for large t.\\n\\nTry direction d = (0, -1):\\nc^T * d = 8 > 0. Increases objective.\\n\\nTry direction d = (0, 1):\\nc^T * d = -8 < 0. Decreases objective.\\nCheck: 3(0) - 4(1) = -4 <= 2 \u2713, 2(0) + 3(1) = 3 <= 7 \u2713.\\nBut for large t: 2(0) + 3t <= 7 requires t <= 7/3. So not unbounded in this direction.\\n\\nTry direction d = (3, 2) (along constraint 1 boundary direction):\\nc^T * d = -11(3) - 8(2) = -33 - 16 = -49 < 0.\\nCheck constraint 1: 3(3) - 4(2) = 9 - 8 = 1 <= 2 \u2713 (but not tight)\\nCheck constraint 2: 2(3) + 3(2) = 6 + 6 = 12 > 7. Not feasible.\\n\\nLet me find the vertices of the feasible region. The constraints are:\\n1) 3x1 - 4x2 <= 2\\n2) 2x1 + 3x2 <= 7\\n\\nIntersection of the two lines:\\n3x1 - 4x2 = 2\\n2x1 + 3x2 = 7\\n\\nFrom first: x1 = (2 + 4x2)/3\\nSubstitute: 2(2 + 4x2)/3 + 3x2 = 7\\n(4 + 8x2)/3 + 3x2 = 7\\n4 + 8x2 + 9x2 = 21\\n17x2 = 17\\nx2 = 1, x1 = (2+4)/3 = 2\\n\\nVertex: (2, 1), objective = -11(2) - 8(1) = -22 - 8 = -30.\\n\\nNow check if the problem is unbounded. The feasible region is the intersection of two half-planes. Let me find directions that are feasible and decrease the objective.\\n\\nA feasible direction d must satisfy: A*d <= 0 for active constraints, and A*d can be anything for inactive constraints (as long as we stay feasible for large t).\\n\\nFor the problem to be bounded below, we need no feasible direction with c^T*d < 0.\\n\\nLet's check: is there a direction d such that 3d1 - 4d2 <= 0, 2d1 + 3d2 <= 0, and -11d1 - 8d2 < 0?\\n\\nFrom 2d1 + 3d2 <= 0: d1 <= -3d2/2.\\nFrom 3d1 - 4d2 <= 0: d1 <= 4d2/3.\\n\\nIf d2 > 0: d1 <= -3d2/2 < 0. Then -11d1 - 8d2 >= -11(-3d2/2) - 8d2 = 33d2/2 - 8d2 = 17d2/2 > 0. Not decreasing.\\n\\nIf d2 < 0: d1 <= 4d2/3 < 0. Then -11d1 - 8d2 >= -11(4d2/3) - 8d2 = -44d2/3 - 8d2 = -44d2/3 - 24d2/3 = -68d2/3 > 0 (since d2 < 0). Not decreasing.\\n\\nIf d2 = 0: d1 <= 0. Then -11d1 >= 0. Not decreasing.\\n\\nSo there's no feasible direction that decreases the objective! The problem is bounded, and the minimum is at the vertex (2, 1) with value -30.\",\"answer\":-30}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 386,
+      "output_tokens": 1406
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-3. 12.], subject to the constraints \nA * x <= b, where \nA = [[ 1. -4.]\n [-2. -3.]] and \nb = [ -4. -11.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 12.0,
+      "model_answer": 12,
+      "raw_response": "{\"reasoning\":\"We need to minimize c^T x = -3x1 + 12x2 subject to:\\n1) x1 - 4x2 <= -4\\n2) -2x1 - 3x2 <= -11\\n\\nRewrite constraints:\\n1) x1 - 4x2 <= -4  \u2192  x1 <= 4x2 - 4\\n2) -2x1 - 3x2 <= -11  \u2192  2x1 + 3x2 >= 11\\n\\nSince we're minimizing -3x1 + 12x2, we want x1 large and x2 small.\\n\\nLet me find the feasible region. The constraints are:\\n1) x1 - 4x2 <= -4\\n2) -2x1 - 3x2 <= -11\\n\\nFind intersection of the two constraint boundaries:\\nx1 - 4x2 = -4  \u2192  x1 = 4x2 - 4\\n-2x1 - 3x2 = -11  \u2192  2x1 + 3x2 = 11\\n\\nSubstitute: 2(4x2 - 4) + 3x2 = 11\\n8x2 - 8 + 3x2 = 11\\n11x2 = 19\\nx2 = 19/11\\nx1 = 4(19/11) - 4 = 76/11 - 44/11 = 32/11\\n\\nObjective at this point: -3(32/11) + 12(19/11) = -96/11 + 228/11 = 132/11 = 12\\n\\nNow check if the feasible region is bounded or unbounded in the direction of decreasing objective.\\n\\nThe objective direction is c = [-3, 12]. We want to minimize, so we move in direction -c = [3, -12].\\n\\nCheck if moving in direction [3, -12] keeps us feasible:\\n1) 3 - 4(-12) = 3 + 48 = 51 > 0, so constraint 1 becomes more violated as we move in this direction... wait, let me check properly.\\n\\nConstraint 1: x1 - 4x2 <= -4. Moving in direction [3, -12]: change = 3 - 4(-12) = 3 + 48 = 51 > 0. So this constraint becomes more violated. So we can't move freely in direction [3, -12].\\n\\nConstraint 2: -2x1 - 3x2 <= -11. Moving in direction [3, -12]: change = -2(3) - 3(-12) = -6 + 36 = 30 > 0. So this constraint also becomes more violated.\\n\\nSo the feasible region is bounded in the direction of decreasing objective. The minimum must occur at the vertex.\\n\\nActually wait - the feasible region might be unbounded in other directions. Let me think about what the feasible region looks like.\\n\\nConstraint 1: x1 - 4x2 <= -4 (below/left of line x1 = 4x2 - 4)\\nConstraint 2: -2x1 - 3x2 <= -11, i.e., 2x1 + 3x2 >= 11 (above line 2x1 + 3x2 = 11)\\n\\nThe vertex is at (32/11, 19/11).\\n\\nSince both constraints become more violated when moving in direction [3, -12] (decreasing objective direction), the minimum is at the vertex.\\n\\nOptimal value = 12.\",\"answer\":12}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 385,
+      "output_tokens": 930
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ -6. -12.], subject to the constraints \nA * x <= b, where \nA = [[3. 4.]\n [2. 4.]] and \nb = [19. 14.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -42.0,
+      "model_answer": -42,
+      "raw_response": "{\"reasoning\":\"We want to minimize -6x1 - 12x2 subject to 3x1 + 4x2 <= 19 and 2x1 + 4x2 <= 14, x1,x2 >= 0.\\n\\nSince we're minimizing -6x1 - 12x2, we want to maximize 6x1 + 12x2.\\n\\nCorner points:\\n1. (0,0): objective = 0\\n2. x1=0: from constraint 2: 4x2<=14, x2<=3.5; from constraint 1: 4x2<=19, x2<=4.75. So x2=3.5, point (0, 3.5): obj = -6(0)-12(3.5) = -42\\n3. x2=0: from constraint 1: x1<=19/3\u22486.33; from constraint 2: x1<=7. So x1=19/3, point (19/3, 0): obj = -6(19/3) = -38\\n4. Intersection of 3x1+4x2=19 and 2x1+4x2=14: subtract: x1=5, then 2(5)+4x2=14, 4x2=4, x2=1. Point (5,1): obj = -6(5)-12(1) = -30-12 = -42\\n\\nSo minimum is -42 at (0, 3.5) or (5,1).\\n\\nWait, let me check (0, 3.5): 3(0)+4(3.5)=14<=19 \u2713, 2(0)+4(3.5)=14<=14 \u2713. obj = -42.\\nAt (5,1): obj = -42.\\n\\nSo optimal value is -42.\",\"answer\":-42}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 383,
+      "output_tokens": 468
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [3. 0.], subject to the constraints \nA * x <= b, where \nA = [[-4.  2.]\n [ 3. -2.]] and \nb = [-8.  4.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 12.0,
+      "model_answer": 12,
+      "raw_response": "{\"reasoning\":\"We need to minimize 3x1 + 0*x2 = 3x1 subject to:\\n-4x1 + 2x2 <= -8\\n3x1 - 2x2 <= 4\\n\\nFrom constraint 1: -4x1 + 2x2 <= -8 \u2192 2x2 <= 4x1 - 8 \u2192 x2 <= 2x1 - 4\\nFrom constraint 2: 3x1 - 2x2 <= 4 \u2192 -2x2 <= 4 - 3x1 \u2192 x2 >= (3x1 - 4)/2\\n\\nSo we need (3x1-4)/2 <= x2 <= 2x1-4\\n\\nFor feasibility: (3x1-4)/2 <= 2x1-4\\n3x1-4 <= 4x1-8\\n-4+8 <= 4x1-3x1\\n4 <= x1\\n\\nSo x1 >= 4. To minimize 3x1, we want x1 as small as possible, so x1 = 4.\\n\\nAt x1=4: x2 >= (12-4)/2 = 4, x2 <= 8-4 = 4. So x2=4.\\n\\nOptimal value = 3*4 = 12.\",\"answer\":12}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 359
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-8. -2.], subject to the constraints \nA * x <= b, where \nA = [[-3.  1.]\n [ 4.  1.]] and \nb = [-5. 20.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -40.0,
+      "model_answer": -40,
+      "raw_response": "{\"reasoning\":\"We need to minimize c^T x = -8x1 - 2x2 subject to:\\n-3x1 + x2 <= -5\\n4x1 + x2 <= 20\\n\\nSince we're minimizing -8x1 - 2x2, we want to maximize 8x1 + 2x2.\\n\\nThe feasible region is defined by:\\n1) -3x1 + x2 <= -5, i.e., x2 <= 3x1 - 5\\n2) 4x1 + x2 <= 20, i.e., x2 <= 20 - 4x1\\n\\nNote there are no non-negativity constraints, so x can be any real values satisfying these.\\n\\nTo minimize -8x1 - 2x2, we want x1 as large as possible and x2 as large as possible.\\n\\nFrom constraint 1: x2 <= 3x1 - 5\\nFrom constraint 2: x2 <= 20 - 4x1\\n\\nAt the intersection of the two constraints (active):\\n3x1 - 5 = 20 - 4x1\\n7x1 = 25\\nx1 = 25/7\\nx2 = 3(25/7) - 5 = 75/7 - 35/7 = 40/7\\n\\nObjective at this point: -8(25/7) - 2(40/7) = -200/7 - 80/7 = -280/7 = -40\\n\\nBut wait, is the problem unbounded? Let me check if we can make x1 very large.\\n\\nIf x1 \u2192 \u221e, constraint 1 requires x2 <= 3x1 - 5 (grows), constraint 2 requires x2 <= 20 - 4x1 (goes to -\u221e). So x2 must be <= 20 - 4x1 which goes to -\u221e.\\n\\nObjective = -8x1 - 2x2. With x2 = 20 - 4x1 (active constraint 2):\\nObjective = -8x1 - 2(20 - 4x1) = -8x1 - 40 + 8x1 = -40.\\n\\nSo along constraint 2, the objective is always -40 regardless of x1 (when x2 = 20 - 4x1).\\n\\nWhat if x2 < 20 - 4x1? Then -2x2 > -2(20-4x1), so objective > -40. So the minimum along constraint 2 is -40.\\n\\nWhat about making x1 very negative? Then from constraint 1: x2 <= 3x1 - 5 \u2192 very negative. Objective = -8x1 - 2x2. With x1 \u2192 -\u221e, -8x1 \u2192 +\u221e, so objective \u2192 +\u221e.\\n\\nSo the minimum value is -40, achieved along the ray where constraint 2 is active and constraint 1 is satisfied.\\n\\nLet me verify constraint 1 is satisfied at the intersection point: x1=25/7, x2=40/7.\\n-3(25/7) + 40/7 = -75/7 + 40/7 = -35/7 = -5 <= -5 \u2713\\n\\nFor x1 > 25/7 along constraint 2: x2 = 20 - 4x1 < 40/7.\\nCheck constraint 1: -3x1 + (20-4x1) = 20 - 7x1 <= -5 when x1 >= 25/7. \u2713\\n\\nSo the optimal value is -40.\",\"answer\":-40}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 957
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-2.  6.], subject to the constraints \nA * x <= b, where \nA = [[ 3.  0.]\n [ 1. -3.]] and \nb = [ 10. -10.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 20.0,
+      "model_answer": 20,
+      "raw_response": "{\"reasoning\":\"We want to minimize c^T x = -2x1 + 6x2 subject to:\\n1) 3x1 <= 10, so x1 <= 10/3\\n2) x1 - 3x2 <= -10, so x1 - 3x2 <= -10, meaning 3x2 >= x1 + 10\\n\\nFrom constraint 2: x2 >= (x1 + 10)/3\\n\\nObjective: minimize -2x1 + 6x2\\n\\nSince we want to minimize, we want x1 large (coefficient -2) and x2 small (coefficient +6).\\n\\nFrom constraint 2: x2 >= (x1 + 10)/3. To minimize 6x2, set x2 = (x1+10)/3.\\n\\nSubstituting: objective = -2x1 + 6*(x1+10)/3 = -2x1 + 2(x1+10) = -2x1 + 2x1 + 20 = 20.\\n\\nSo the objective value is 20 regardless of x1 (as long as constraints are satisfied).\\n\\nWait, but we need to check if the feasible region is bounded. Let me check if x1 can go to -infinity.\\n\\nIf x1 -> -infinity, x2 >= (x1+10)/3 -> -infinity. The objective = 20 (constant along the line x2 = (x1+10)/3). But x2 could be larger than (x1+10)/3, which would increase the objective.\\n\\nActually, can x2 be less than (x1+10)/3? No, constraint 2 requires x2 >= (x1+10)/3.\\n\\nSo the minimum of -2x1 + 6x2 subject to x2 >= (x1+10)/3 and x1 <= 10/3:\\n\\nObjective = -2x1 + 6x2 >= -2x1 + 6*(x1+10)/3 = -2x1 + 2x1 + 20 = 20.\\n\\nSo the minimum value is 20, achieved when x2 = (x1+10)/3 for any feasible x1.\\n\\nBut wait - is the feasible region unbounded below? Let me check: if x1 -> -infinity with x2 = (x1+10)/3, the objective stays at 20. So the infimum is 20 and it's achieved.\\n\\nThe optimal value is 20.\",\"answer\":20}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 386,
+      "output_tokens": 646
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 0. -9.], subject to the constraints \nA * x <= b, where \nA = [[0. 3.]\n [1. 4.]] and \nb = [ 9. 13.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -27.0,
+      "model_answer": -27,
+      "raw_response": "{\"reasoning\":\"We want to minimize c^T x = -9*x2, subject to:\\n3*x2 <= 9 \u2192 x2 <= 3\\nx1 + 4*x2 <= 13\\n\\nTo minimize -9*x2, we maximize x2. The constraint 3*x2 <= 9 gives x2 <= 3. At x2 = 3: x1 + 12 <= 13 \u2192 x1 <= 1. We need x1 >= 0 (assuming non-negativity, though not stated). With x2 = 3, objective = -9*3 = -27. But wait, are there non-negativity constraints? The problem doesn't state them explicitly. If x2 can be unbounded... but constraint 3*x2 <= 9 bounds x2 <= 3. So maximum x2 = 3, giving minimum objective = -27.\",\"answer\":-27}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 228
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-4. -5.], subject to the constraints \nA * x <= b, where \nA = [[ 4.  1.]\n [-4.  3.]] and \nb = [ 9. -5.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -13.0,
+      "model_answer": -13,
+      "raw_response": "{\"reasoning\":\"We need to minimize c^T x = -4x1 - 5x2 subject to:\\n4x1 + x2 <= 9\\n-4x1 + 3x2 <= -5\\n\\nSince we're minimizing -4x1 - 5x2, we want to maximize 4x1 + 5x2.\\n\\nLet me find the feasible region. The constraints are:\\n1) 4x1 + x2 <= 9\\n2) -4x1 + 3x2 <= -5, i.e., 4x1 - 3x2 >= 5\\n\\nThe problem is unbounded unless there are implicit bounds. Let me check: as x1 \u2192 \u221e with x2 fixed, constraint 1 becomes violated. As x1 \u2192 -\u221e, constraint 2 becomes violated. So the feasible region might be bounded in some directions.\\n\\nLet me find the vertex by solving the two constraints as equalities:\\n4x1 + x2 = 9\\n-4x1 + 3x2 = -5\\n\\nAdding: 4x2 = 4, so x2 = 1\\nThen 4x1 + 1 = 9, so x1 = 2\\n\\nVertex: (2, 1)\\n\\nNow check if the problem is bounded. The objective is -4x1 - 5x2. Let's see if we can decrease this (make it more negative) while staying feasible.\\n\\nFrom constraint 1: x2 <= 9 - 4x1\\nFrom constraint 2: x2 >= (4x1 - 5)/3\\n\\nFor feasibility: (4x1 - 5)/3 <= 9 - 4x1\\n4x1 - 5 <= 27 - 12x1\\n16x1 <= 32\\nx1 <= 2\\n\\nSo x1 <= 2! The feasible region requires x1 <= 2.\\n\\nAlso, x2 >= (4x1 - 5)/3. As x1 decreases, x2 lower bound decreases (can go to -\u221e). So x2 can go to -\u221e as x1 decreases.\\n\\nObjective = -4x1 - 5x2. If x2 \u2192 -\u221e, objective \u2192 +\u221e (not helpful for minimization... wait, minimizing means we want it as negative as possible).\\n\\nIf x2 \u2192 -\u221e, -5x2 \u2192 +\u221e, so objective \u2192 +\u221e. That's bad for minimization.\\n\\nIf x1 \u2192 -\u221e, -4x1 \u2192 +\u221e, also bad.\\n\\nSo we want x1 large (but x1 <= 2) and x2 large.\\n\\nWith x1 <= 2, and x2 <= 9 - 4x1, at x1 = 2: x2 <= 1. Also x2 >= (8-5)/3 = 1. So x2 = 1.\\n\\nFor x1 < 2: x2 can range from (4x1-5)/3 to 9-4x1. To minimize -4x1 - 5x2, we want x2 as large as possible, so x2 = 9 - 4x1.\\n\\nObjective = -4x1 - 5(9 - 4x1) = -4x1 - 45 + 20x1 = 16x1 - 45.\\n\\nThis is increasing in x1, so maximized at x1 = 2 (most negative... wait, we're minimizing, so we want 16x1 - 45 minimized, which means x1 as small as possible \u2192 -\u221e).\\n\\nBut wait, as x1 \u2192 -\u221e with x2 = 9 - 4x1 \u2192 +\u221e, we need to check constraint 2: -4x1 + 3x2 <= -5.\\n3x2 = 3(9-4x1) = 27 - 12x1\\n-4x1 + 27 - 12x1 = 27 - 16x1. For x1 \u2192 -\u221e, this \u2192 +\u221e, violating constraint 2.\\n\\nSo x2 = 9 - 4x1 doesn't satisfy constraint 2 for x1 < 2.\\n\\nSo the only feasible point is x1 = 2, x2 = 1 (the vertex).\\n\\nWait, let me reconsider. For x1 < 2, x2 must satisfy (4x1-5)/3 <= x2 <= 9-4x1.\\n\\nObjective = -4x1 - 5x2. To minimize, maximize x2 (since coefficient is -5 < 0). So x2 = 9 - 4x1.\\n\\nBut we showed this violates constraint 2 for x1 < 2. So we must use x2 = (4x1-5)/3 (lower bound from constraint 2 as equality).\\n\\nWith x2 = (4x1-5)/3:\\nObjective = -4x1 - 5(4x1-5)/3 = -4x1 - (20x1-25)/3 = (-12x1 - 20x1 + 25)/3 = (-32x1 + 25)/3.\\n\\nThis is decreasing in x1, so minimized as x1 \u2192 ... but x1 <= 2 and we need x2 <= 9-4x1:\\n(4x1-5)/3 <= 9-4x1 \u2192 x1 <= 2. \u2713\\n\\nAlso need x2 to be... any lower bound on x1? No explicit one. As x1 \u2192 -\u221e, objective = (-32x1+25)/3 \u2192 +\u221e. So objective increases as x1 decreases.\\n\\nSo minimum is at x1 = 2: (-64+25)/3 = -39/3 = -13.\\n\\nAt vertex (2,1): objective = -4(2) - 5(1) = -8 - 5 = -13. \u2713\\n\\nSo the optimal value is -13.\",\"answer\":-13}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 385,
+      "output_tokens": 1600
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 4. 16.], subject to the constraints \nA * x <= b, where \nA = [[ 0.  0.]\n [-1. -4.]] and \nb = [  0. -14.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 56.0,
+      "model_answer": 56,
+      "raw_response": "{\"reasoning\":\"We need to minimize 4x1 + 16x2 subject to:\\n1) 0*x1 + 0*x2 <= 0 (always satisfied, trivially true)\\n2) -x1 - 4x2 <= -14, i.e., x1 + 4x2 >= 14\\n\\nThe feasible region is x1 + 4x2 >= 14 with no other constraints (x1, x2 can be any real numbers).\\n\\nThe objective is 4x1 + 16x2 = 4(x1 + 4x2) >= 4*14 = 56.\\n\\nThe minimum is achieved when x1 + 4x2 = 14, giving objective value 56.\",\"answer\":56}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 386,
+      "output_tokens": 197
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-12.   9.], subject to the constraints \nA * x <= b, where \nA = [[-2.  4.]\n [ 4. -3.]] and \nb = [6. 3.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -9.0,
+      "model_answer": -9,
+      "raw_response": "{\"reasoning\":\"We want to minimize -12x1 + 9x2 subject to:\\n-2x1 + 4x2 <= 6\\n4x1 - 3x2 <= 3\\n\\nSince we're minimizing -12x1 + 9x2, we want x1 large and x2 small.\\n\\nThe feasible region: let me find the vertices.\\n\\nConstraint 1: -2x1 + 4x2 <= 6, i.e., x2 <= (6 + 2x1)/4 = (3 + x1)/2\\nConstraint 2: 4x1 - 3x2 <= 3, i.e., x2 >= (4x1 - 3)/3\\n\\nThe problem is unbounded unless there are implicit non-negativity constraints. Let me check if the problem is unbounded.\\n\\nIf we increase x1 and decrease x2:\\n- Constraint 1: -2x1 + 4x2 <= 6. If x2 decreases and x1 increases, this becomes more negative, so it's satisfied.\\n- Constraint 2: 4x1 - 3x2 <= 3. If x1 increases and x2 decreases, this becomes larger, so it may be violated.\\n\\nSo constraint 2 limits how much we can increase x1 while decreasing x2.\\n\\nLet me try to minimize along constraint 2 boundary: 4x1 - 3x2 = 3, so x2 = (4x1 - 3)/3.\\n\\nObjective: -12x1 + 9*(4x1-3)/3 = -12x1 + 3(4x1-3) = -12x1 + 12x1 - 9 = -9.\\n\\nInteresting! Along constraint 2, the objective is constant = -9.\\n\\nNow check constraint 1: -2x1 + 4*(4x1-3)/3 <= 6\\n-2x1 + (16x1-12)/3 <= 6\\n(-6x1 + 16x1 - 12)/3 <= 6\\n(10x1 - 12)/3 <= 6\\n10x1 - 12 <= 18\\n10x1 <= 30\\nx1 <= 3\\n\\nSo along constraint 2, x1 can go up to 3 (where constraint 1 is also active).\\n\\nWhat if we go below constraint 2 boundary (x2 < (4x1-3)/3)? That would violate constraint 2.\\n\\nWhat if we're in the interior? The gradient of the objective is (-12, 9). Moving in direction (1, -4/3) keeps us on constraint 2 and gives zero change. Moving to decrease the objective, we need to go in direction that decreases -12x1 + 9x2, i.e., increase x1 or decrease x2.\\n\\nSince the objective is constant along constraint 2, and we can't go beyond constraint 2 (it would be infeasible), the minimum is -9.\\n\\nBut wait, can we go to x1 very negative? If x1 \u2192 -\u221e and x2 is free:\\n- Constraint 1: -2x1 + 4x2 <= 6. With x1 very negative, -2x1 is very positive, so we need 4x2 to be very negative, x2 \u2192 -\u221e.\\n- Constraint 2: 4x1 - 3x2 <= 3. With x1 very negative and x2 very negative, 4x1 is very negative and -3x2 is very positive. Need to check balance.\\n\\nObjective with x1 \u2192 -\u221e: -12x1 \u2192 +\u221e, so that increases the objective. We want to minimize, so going to x1 \u2192 -\u221e is bad.\\n\\nSo the minimum value is -9.\",\"answer\":-9}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 998
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 0. -8.], subject to the constraints \nA * x <= b, where \nA = [[ 0.  4.]\n [ 2. -1.]] and \nb = [16.  4.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -32.0,
+      "model_answer": -32,
+      "raw_response": "{\"reasoning\":\"We want to minimize c^T x = -8*x2, subject to:\\n1) 4*x2 <= 16 \u2192 x2 <= 4\\n2) 2*x1 - x2 <= 4\\n\\nTo minimize -8*x2, we want to maximize x2. The constraint x2 <= 4 gives x2 = 4 at most. We need x1 to satisfy 2*x1 - 4 <= 4 \u2192 x1 <= 4. Also x1 is free (no lower bound constraint explicitly), but we need feasibility. With x2 = 4, x1 can be anything <= 4. The objective doesn't depend on x1, so x2 = 4 is achievable.\\n\\nOptimal value = -8 * 4 = -32.\",\"answer\":-32}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 386,
+      "output_tokens": 211
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-12.   0.], subject to the constraints \nA * x <= b, where \nA = [[ 4.  0.]\n [-4.  1.]] and \nb = [12. -5.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -36.0,
+      "model_answer": -36,
+      "raw_response": "{\"reasoning\":\"We want to minimize -12x1 + 0*x2 = -12x1, so we want to maximize x1.\\n\\nConstraints:\\n1) 4x1 <= 12 \u2192 x1 <= 3\\n2) -4x1 + x2 <= -5 \u2192 x2 <= 4x1 - 5\\n\\nNo lower bound on x2 explicitly, but we need x2 to be feasible. Since x2 can go to -infinity, constraint 2 is always satisfiable for any x1.\\n\\nSo x1 can be at most 3. Set x1 = 3.\\n\\nObjective = -12 * 3 = -36.\",\"answer\":-36}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 185
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-2. -4.], subject to the constraints \nA * x <= b, where \nA = [[ 2.  3.]\n [-1. -1.]] and \nb = [11. -5.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -12.0,
+      "model_answer": -12,
+      "raw_response": "{\"reasoning\":\"We want to minimize -2x1 - 4x2 subject to:\\n2x1 + 3x2 <= 11\\n-x1 - x2 <= -5, i.e., x1 + x2 >= 5\\n\\nThe feasible region is defined by:\\n2x1 + 3x2 <= 11\\nx1 + x2 >= 5\\n\\nSince we're minimizing -2x1 - 4x2 (equivalently maximizing 2x1 + 4x2), we want x2 as large as possible.\\n\\nFrom x1 + x2 >= 5: x1 >= 5 - x2\\nFrom 2x1 + 3x2 <= 11: x1 <= (11 - 3x2)/2\\n\\nFor feasibility: 5 - x2 <= (11 - 3x2)/2\\n10 - 2x2 <= 11 - 3x2\\nx2 <= 1\\n\\nSo x2 <= 1. To maximize 2x1 + 4x2, we want x2 = 1 and x1 as large as possible.\\n\\nWith x2 = 1: x1 <= (11 - 3)/2 = 4\\nSo x1 = 4, x2 = 1.\\n\\nObjective value: -2(4) - 4(1) = -8 - 4 = -12.\\n\\nBut wait, the problem is unbounded? Let me check. If x1 increases with x2 fixed... actually x1 is bounded above by (11-3x2)/2. And x1 can go to -infinity? Let's check: if x1 -> -infinity, then -2x1 -> +infinity, so the objective increases (worse for minimization). So we want x1 large.\\n\\nActually, can x2 be negative? If x2 is very negative, then x1 >= 5 - x2 which is very large, and 2x1 + 3x2 <= 11 means x1 <= (11-3x2)/2 which is also very large. The objective -2x1 - 4x2 = -2x1 - 4x2. With x1 = (11-3x2)/2 (on the boundary), objective = -2*(11-3x2)/2 - 4x2 = -(11-3x2) - 4x2 = -11 + 3x2 - 4x2 = -11 - x2. As x2 -> -infinity, this -> +infinity. So that's worse.\\n\\nWith x1 = 5 - x2 (on the other boundary), objective = -2(5-x2) - 4x2 = -10 + 2x2 - 4x2 = -10 - 2x2. As x2 -> -infinity, this -> +infinity too.\\n\\nSo the minimum is at the intersection of the two constraints:\\n2x1 + 3x2 = 11\\nx1 + x2 = 5 => x1 = 5 - x2\\n2(5-x2) + 3x2 = 11 => 10 + x2 = 11 => x2 = 1, x1 = 4.\\n\\nOptimal value = -12.\",\"answer\":-12}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 859
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 2. -2.], subject to the constraints \nA * x <= b, where \nA = [[-3.  1.]\n [-2.  2.]] and \nb = [-8. -4.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 4.0,
+      "model_answer": 4,
+      "raw_response": "{\"reasoning\":\"We need to minimize 2x1 - 2x2 subject to:\\n-3x1 + x2 <= -8  \u2192  x2 <= 3x1 - 8\\n-2x1 + 2x2 <= -4  \u2192  x2 <= x1 - 2\\n\\nSince we're minimizing 2x1 - 2x2, we want x1 small and x2 large.\\n\\nThe feasible region is defined by x2 <= 3x1 - 8 and x2 <= x1 - 2.\\n\\nFind intersection: 3x1 - 8 = x1 - 2 \u2192 2x1 = 6 \u2192 x1 = 3, x2 = 1.\\n\\nAt this vertex: objective = 2(3) - 2(1) = 6 - 2 = 4.\\n\\nNow check if the objective is unbounded. As x1 \u2192 \u221e with x2 = x1 - 2, objective = 2x1 - 2(x1-2) = 4. Constant!\\n\\nAs x1 \u2192 \u221e with x2 = 3x1 - 8, objective = 2x1 - 2(3x1-8) = 2x1 - 6x1 + 16 = -4x1 + 16 \u2192 -\u221e.\\n\\nWait, but we need x2 <= both constraints. So x2 = min(3x1-8, x1-2).\\n\\nFor x1 > 3: x1-2 < 3x1-8 (since 3x1-8 > x1-2 when x1>3), so x2 <= x1-2 is the binding constraint.\\n\\nFor x1 < 3: 3x1-8 < x1-2 (when x1<3), so x2 <= 3x1-8 is binding.\\n\\nTo maximize x2 (minimize objective), we take x2 at its maximum allowed value.\\n\\nFor x1 > 3: max x2 = x1-2, objective = 2x1 - 2(x1-2) = 4.\\nFor x1 < 3: max x2 = 3x1-8, objective = 2x1 - 2(3x1-8) = 2x1 - 6x1 + 16 = -4x1 + 16. As x1 decreases, this increases. But we need x2 to be feasible - no lower bound on x2 mentioned, so x2 can be anything <= the constraints.\\n\\nActually wait - to minimize 2x1 - 2x2, we want x2 as large as possible. For x1 < 3, max x2 = 3x1-8. But for x1 < 8/3, 3x1-8 < 0, and for x1 < 3, the objective with max x2 = -4x1+16, which increases as x1 decreases.\\n\\nBut can x1 go to -\u221e? Let's check: at x1 = 0, x2 <= -8 and x2 <= -2, so x2 <= -8. Objective = 0 - 2(-8) = 16. At x1 = -10, x2 <= -38, objective = -20 - 2(-38) = -20+76 = 56. Hmm that's increasing.\\n\\nWait, I want to MINIMIZE. So I want the objective to be as small as possible.\\n\\nFor x1 > 3 with x2 = x1-2: objective = 4 (constant).\\nFor x1 < 3 with x2 = 3x1-8: objective = -4x1+16, which decreases as x1 increases toward 3.\\n\\nAt x1=3: -4(3)+16=4. \u2713\\n\\nFor x1 > 3, objective stays at 4. So the minimum is 4, achieved along the ray x1 >= 3, x2 = x1-2.\\n\\nThe optimal value is 4.\",\"answer\":4}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 1061
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [16. -8.], subject to the constraints \nA * x <= b, where \nA = [[-4.  2.]\n [ 1.  0.]] and \nb = [-2.  3.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 8.0,
+      "model_answer": 8,
+      "raw_response": "{\"reasoning\":\"We want to minimize 16x1 - 8x2 subject to:\\n1) -4x1 + 2x2 <= -2  \u2192  2x2 - 4x1 <= -2  \u2192  x2 - 2x1 <= -1  \u2192  x2 <= 2x1 - 1\\n2) x1 <= 3\\n\\nThe objective is 16x1 - 8x2. To minimize, we want x1 small and x2 large.\\n\\nFrom constraint 1: x2 <= 2x1 - 1. To maximize x2 (minimize objective), set x2 = 2x1 - 1.\\n\\nSubstituting: 16x1 - 8(2x1 - 1) = 16x1 - 16x1 + 8 = 8.\\n\\nSo along the line x2 = 2x1 - 1, the objective is always 8, regardless of x1.\\n\\nBut we need x2 = 2x1 - 1 to be feasible. We also need x1 <= 3. There's no lower bound on x1 explicitly, but we need x2 to be defined. Actually, x1 can go to -infinity along this line, and the objective stays at 8.\\n\\nWait, but can we do better? If x2 < 2x1 - 1 (strictly less), then the objective 16x1 - 8x2 > 8 (since we're subtracting less). So the minimum along the feasible region is achieved when x2 = 2x1 - 1, giving objective = 8.\\n\\nBut wait - can x1 go to -infinity? If x1 \u2192 -\u221e and x2 = 2x1 - 1, then x2 \u2192 -\u221e too. The objective = 8 stays constant. So the infimum is 8, achieved everywhere on the line x2 = 2x1 - 1 with x1 <= 3.\\n\\nActually, can we get below 8? We need x2 > 2x1 - 1 to get objective < 8, but constraint 1 says x2 <= 2x1 - 1. So no, we cannot get below 8.\\n\\nThe optimal value is 8.\",\"answer\":8}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 589
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [0. 8.], subject to the constraints \nA * x <= b, where \nA = [[ 0. -2.]\n [-2.  3.]] and \nb = [-2. -1.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 8.0,
+      "model_answer": 8,
+      "raw_response": "{\"reasoning\":\"We need to minimize c^T x = 8*x2 subject to:\\n1) -2*x2 <= -2, i.e., x2 >= 1\\n2) -2*x1 + 3*x2 <= -1, i.e., 2*x1 - 3*x2 >= 1, i.e., x1 >= (1 + 3*x2)/2\\n\\nTo minimize 8*x2, we want x2 as small as possible. The minimum x2 = 1 (from constraint 1).\\n\\nWith x2 = 1: x1 >= (1 + 3)/2 = 2. So x1 = 2 is feasible.\\n\\nOptimal value = 8*1 = 8.\",\"answer\":8}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 207
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [3. 0.], subject to the constraints \nA * x <= b, where \nA = [[-1.  1.]\n [-3.  0.]] and \nb = [  1. -12.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 12.0,
+      "model_answer": 12,
+      "raw_response": "{\"reasoning\":\"We need to minimize 3x1 + 0*x2 = 3x1 subject to:\\n1) -x1 + x2 <= 1\\n2) -3x1 <= -12, i.e., x1 >= 4\\n\\nTo minimize 3x1, we want x1 as small as possible. The constraint x1 >= 4 gives minimum x1 = 4.\\n\\nOptimal value = 3*4 = 12.\",\"answer\":12}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 128
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [9. 6.], subject to the constraints \nA * x <= b, where \nA = [[-4.  3.]\n [-3. -2.]] and \nb = [ -2. -15.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 45.0,
+      "model_answer": 45,
+      "raw_response": "{\"reasoning\":\"We need to minimize 9x1 + 6x2 subject to:\\n-4x1 + 3x2 <= -2  \u2192  4x1 - 3x2 >= 2\\n-3x1 - 2x2 <= -15  \u2192  3x1 + 2x2 >= 15\\n\\nFind the intersection of the two binding constraints:\\n4x1 - 3x2 = 2\\n3x1 + 2x2 = 15\\n\\nFrom first: x1 = (2 + 3x2)/4\\nSubstitute: 3(2 + 3x2)/4 + 2x2 = 15\\n(6 + 9x2)/4 + 2x2 = 15\\n6 + 9x2 + 8x2 = 60\\n17x2 = 54\\nx2 = 54/17\\nx1 = (2 + 3*54/17)/4 = (2 + 162/17)/4 = (34/17 + 162/17)/4 = (196/17)/4 = 49/17\\n\\nObjective: 9*(49/17) + 6*(54/17) = 441/17 + 324/17 = 765/17 = 45\\n\\nSince we're minimizing and the feasible region is defined by two >= constraints, the vertex at the intersection gives the minimum (the objective increases as we move away from this vertex in the feasible direction).\\n\\nOptimal value = 45\",\"answer\":45}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 384,
+      "output_tokens": 399
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 6. -3.], subject to the constraints \nA * x <= b, where \nA = [[-1.  1.]\n [-2.  1.]] and \nb = [ 4. -3.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 9.0,
+      "model_answer": 9,
+      "raw_response": "{\"reasoning\":\"We need to minimize 6x1 - 3x2 subject to:\\n-x1 + x2 <= 4\\n-2x1 + x2 <= -3\\n\\nFrom constraint 2: x2 <= 2x1 - 3\\n\\nThe objective is 6x1 - 3x2. To minimize, we want x2 as large as possible and x1 as small as possible.\\n\\nFrom constraint 1: x2 <= x1 + 4\\nFrom constraint 2: x2 <= 2x1 - 3\\n\\nThe objective 6x1 - 3x2. Let's substitute x2 = 2x1 - 3 (binding constraint 2) to get:\\n6x1 - 3(2x1 - 3) = 6x1 - 6x1 + 9 = 9\\n\\nIf constraint 1 is also binding: x2 = x1 + 4 and x2 = 2x1 - 3\\nx1 + 4 = 2x1 - 3 => x1 = 7, x2 = 11\\nObjective: 6(7) - 3(11) = 42 - 33 = 9\\n\\nNow check if we can do better. The feasible region: both constraints must hold.\\n\\nLet me think about unboundedness. As x1 \u2192 -\u221e, constraint 2 requires x2 <= 2x1 - 3 \u2192 -\u221e, so x2 \u2192 -\u221e too. The objective 6x1 - 3x2 = 6x1 - 3x2. If x2 = 2x1 - 3 (tight), objective = 9 always. If x2 < 2x1 - 3, objective > 9.\\n\\nWhat if x1 \u2192 +\u221e with x2 = x1 + 4 (tight constraint 1)? Objective = 6x1 - 3(x1+4) = 3x1 - 12 \u2192 +\u221e.\\n\\nWhat if x1 \u2192 +\u221e with x2 = 2x1 - 3? Objective = 9.\\n\\nWhat if x1 \u2192 -\u221e? Constraint 2: x2 <= 2x1 - 3. Objective = 6x1 - 3x2 >= 6x1 - 3(2x1-3) = 9. So objective >= 9 always.\\n\\nThus the minimum value is 9.\",\"answer\":9}",
+      "finish_reason": "end_turn",
+      "correct": true,
+      "input_tokens": 385,
+      "output_tokens": 655
+    }
+  ]
+}
