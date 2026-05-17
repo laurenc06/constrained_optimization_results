@@ -1,0 +1,263 @@
+{
+  "model": "gpt-5.5",
+  "total": 25,
+  "evaluated": 25,
+  "answered": 25,
+  "correct": 25,
+  "accuracy": 1.0,
+  "avg_input_tokens": 245.76,
+  "avg_output_tokens": 415.96,
+  "tolerance": 0.01,
+  "results": [
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-6.  1.], subject to the constraints \nA * x <= b, where \nA = [[ 4. -1.]\n [ 1.  0.]] and \nb = [6. 2.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -10.0,
+      "model_answer": -10,
+      "raw_response": "{\"answer\":-10,\"reasoning\":\"The constraints are 4x1 - x2 <= 6, so x2 >= 4x1 - 6, and x1 <= 2. For any fixed x1, the objective -6x1 + x2 is minimized by taking the smallest allowed x2, namely x2 = 4x1 - 6. Then the objective becomes -6x1 + (4x1 - 6) = -2x1 - 6. Since x1 <= 2, this is minimized at x1 = 2, giving x2 = 2 and objective value -6(2)+2 = -10.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 381
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-10.   4.], subject to the constraints \nA * x <= b, where \nA = [[ 4. -4.]\n [ 2.  4.]] and \nb = [-4. 16.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -8.0,
+      "model_answer": -8,
+      "raw_response": "{\"answer\":-8,\"reasoning\":\"Rewrite the constraints: 4x1 - 4x2 <= -4 gives x2 >= x1 + 1, and 2x1 + 4x2 <= 16 gives x1 + 2x2 <= 8. Since the objective is -10x1 + 4x2, for a fixed x1 we choose the smallest feasible x2, namely x2 = x1 + 1. Then the second constraint gives x1 + 2(x1 + 1) <= 8, so 3x1 <= 6 and x1 <= 2. The objective becomes -10x1 + 4(x1 + 1) = -6x1 + 4, minimized by the largest feasible x1, x1 = 2. Then x2 = 3, and the optimal value is -10(2) + 4(3) = -8.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 499
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-16.   4.], subject to the constraints \nA * x <= b, where \nA = [[ 4. -1.]\n [ 1. -2.]] and \nb = [2. 0.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -8.0,
+      "model_answer": -8,
+      "raw_response": "{\"answer\":-8,\"reasoning\":\"The constraints are 4x1 - x2 <= 2, so x2 >= 4x1 - 2, and x1 - 2x2 <= 0, so x2 >= x1/2. The objective is -16x1 + 4x2 = 4(x2 - 4x1). Since x2 >= 4x1 - 2, we have x2 - 4x1 >= -2, so the objective is at least 4(-2) = -8. This value is achieved whenever x2 = 4x1 - 2 and the second constraint holds, e.g. for x1 >= 4/7. Therefore the optimal value is -8.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 245,
+      "output_tokens": 425
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-2. -1.], subject to the constraints \nA * x <= b, where \nA = [[-1. -1.]\n [ 3.  2.]] and \nb = [-5. 11.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -6.0,
+      "model_answer": -6,
+      "raw_response": "{\"answer\":-6,\"reasoning\":\"The constraints are x1 + x2 >= 5 and 3x1 + 2x2 <= 11. At the intersection of the two boundary lines, x1 + x2 = 5 and 3x1 + 2x2 = 11. Solving gives x1 = 1, x2 = 4. The objective is -2(1) - 4 = -6, which is the minimum over the feasible region.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 245,
+      "output_tokens": 558
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-6.  0.], subject to the constraints \nA * x <= b, where \nA = [[-1.  4.]\n [ 3.  0.]] and \nb = [14.  9.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -18.0,
+      "model_answer": -18,
+      "raw_response": "{\"answer\":-18,\"reasoning\":\"The objective is c^T x = -6x1, so minimizing it means maximizing x1. The constraint 3x1 <= 9 gives x1 <= 3. This maximum value x1 = 3 is feasible, since the other constraint becomes -3 + 4x2 <= 14, i.e. x2 <= 4.25, which has feasible choices such as x2 = 0. Therefore the optimal objective value is -6(3) = -18.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 248,
+      "output_tokens": 265
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-13.   4.], subject to the constraints \nA * x <= b, where \nA = [[ 2.  4.]\n [ 3. -4.]] and \nb = [14. -9.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -1.0,
+      "model_answer": -1,
+      "raw_response": "{\"answer\":-1,\"reasoning\":\"The feasible region is defined by x1 + 2x2 <= 7 and 3x1 - 4x2 <= -9. The optimal point occurs at the intersection of the two active constraints: x1 + 2x2 = 7 and 3x1 - 4x2 = -9. Solving gives x2 = 3 and x1 = 1. The objective value is -13(1) + 4(3) = -1.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 785
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-11.  -8.], subject to the constraints \nA * x <= b, where \nA = [[ 3. -4.]\n [ 2.  3.]] and \nb = [2. 7.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -30.0,
+      "model_answer": -30,
+      "raw_response": "{\"answer\":-30,\"reasoning\":\"The optimum occurs at the intersection of the two active constraints. Solve 3x1 - 4x2 = 2 and 2x1 + 3x2 = 7. This gives x1 = 2 and x2 = 1. The objective value is c^T x = -11(2) - 8(1) = -30.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 524
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-3. 12.], subject to the constraints \nA * x <= b, where \nA = [[ 1. -4.]\n [-2. -3.]] and \nb = [ -4. -11.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 12.0,
+      "model_answer": 12,
+      "raw_response": "{\"answer\":12,\"reasoning\":\"The first constraint is x1 - 4x2 <= -4. The objective is -3x1 + 12x2 = -3(x1 - 4x2). Since x1 - 4x2 <= -4, multiplying by -3 gives -3(x1 - 4x2) >= 12. Thus the objective is at least 12. This bound is attainable on the line x1 - 4x2 = -4; for example, choosing x2 = 19/11 gives x1 = 32/11, satisfying the second constraint as equality. Therefore the optimal value is 12.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 244,
+      "output_tokens": 623
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ -6. -12.], subject to the constraints \nA * x <= b, where \nA = [[3. 4.]\n [2. 4.]] and \nb = [19. 14.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -42.0,
+      "model_answer": -42,
+      "raw_response": "{\"answer\":-42,\"reasoning\":\"Minimizing c^T x = -6x1 - 12x2 is equivalent to maximizing 6x1 + 12x2. The second constraint is 2x1 + 4x2 <= 14. Multiplying it by 3 gives 6x1 + 12x2 <= 42, so the objective satisfies -6x1 - 12x2 >= -42. This bound is attainable, for example at x1 = 0, x2 = 3.5, which satisfies both constraints: 3(0)+4(3.5)=14 <= 19 and 2(0)+4(3.5)=14. Therefore the optimal value is -42.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 243,
+      "output_tokens": 550
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [3. 0.], subject to the constraints \nA * x <= b, where \nA = [[-4.  2.]\n [ 3. -2.]] and \nb = [-8.  4.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 12.0,
+      "model_answer": 12,
+      "raw_response": "{\"answer\":12,\"reasoning\":\"The constraints are x2 <= 2x1 - 4 and x2 >= 1.5x1 - 2. For feasibility, 1.5x1 - 2 <= 2x1 - 4, which gives x1 >= 4. The objective is 3x1, so it is minimized by the smallest feasible x1, namely x1 = 4. Thus the optimal value is 3*4 = 12.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 303
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-8. -2.], subject to the constraints \nA * x <= b, where \nA = [[-3.  1.]\n [ 4.  1.]] and \nb = [-5. 20.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -40.0,
+      "model_answer": -40,
+      "raw_response": "{\"answer\":-40,\"reasoning\":\"The objective is c^T x = -8x1 - 2x2 = -2(4x1 + x2). One constraint is 4x1 + x2 <= 20, so -2(4x1 + x2) >= -40. Thus the objective cannot be less than -40. This bound is attainable on the line 4x1 + x2 = 20, provided the other constraint holds: -3x1 + x2 <= -5. Substituting x2 = 20 - 4x1 gives 20 - 7x1 <= -5, so x1 >= 25/7. Therefore feasible points attain the value -40, so the optimal value is -40.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 396
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-2.  6.], subject to the constraints \nA * x <= b, where \nA = [[ 3.  0.]\n [ 1. -3.]] and \nb = [ 10. -10.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 20.0,
+      "model_answer": 20,
+      "raw_response": "{\"answer\":20,\"reasoning\":\"The constraints are x1 <= 10/3 and x1 - 3x2 <= -10, which gives x2 >= (10 + x1)/3. Since the objective is -2x1 + 6x2 and the coefficient of x2 is positive, choose the smallest feasible x2: x2 = (10 + x1)/3. Then the objective becomes -2x1 + 6(10 + x1)/3 = -2x1 + 20 + 2x1 = 20. Thus the optimal value is 20.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 247,
+      "output_tokens": 319
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 0. -9.], subject to the constraints \nA * x <= b, where \nA = [[0. 3.]\n [1. 4.]] and \nb = [ 9. 13.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -27.0,
+      "model_answer": -27,
+      "raw_response": "{\"answer\":-27,\"reasoning\":\"The objective is c^T x = -9x_2, so minimizing it means maximizing x_2. The constraints are 3x_2 <= 9, hence x_2 <= 3, and x_1 + 4x_2 <= 13. Taking x_2 = 3 is feasible if x_1 + 12 <= 13, e.g. x_1 = 1. Thus the maximum feasible x_2 is 3, giving optimal objective value -9(3) = -27.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 244,
+      "output_tokens": 255
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-4. -5.], subject to the constraints \nA * x <= b, where \nA = [[ 4.  1.]\n [-4.  3.]] and \nb = [ 9. -5.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -13.0,
+      "model_answer": -13,
+      "raw_response": "{\"answer\":-13,\"reasoning\":\"The optimum occurs where the two constraint boundaries intersect: 4x1 + x2 = 9 and -4x1 + 3x2 = -5. Adding appropriately gives x2 = 1, then x1 = 2. The objective value is c^T x = -4(2) - 5(1) = -13. Thus the optimal value is -13.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 517
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 4. 16.], subject to the constraints \nA * x <= b, where \nA = [[ 0.  0.]\n [-1. -4.]] and \nb = [  0. -14.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 56.0,
+      "model_answer": 56,
+      "raw_response": "{\"answer\":56,\"reasoning\":\"The only nontrivial constraint is -x1 - 4x2 <= -14, which is equivalent to x1 + 4x2 >= 14. The objective is 4x1 + 16x2 = 4(x1 + 4x2). Therefore minimizing the objective means minimizing x1 + 4x2 subject to x1 + 4x2 >= 14, so the minimum is attained at x1 + 4x2 = 14. The optimal value is 4 * 14 = 56.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 247,
+      "output_tokens": 218
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-12.   9.], subject to the constraints \nA * x <= b, where \nA = [[-2.  4.]\n [ 4. -3.]] and \nb = [6. 3.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -9.0,
+      "model_answer": -9,
+      "raw_response": "{\"answer\":-9,\"reasoning\":\"The constraints are -2x1 + 4x2 <= 6 and 4x1 - 3x2 <= 3. The second constraint gives x2 >= (4x1 - 3)/3. Since the objective -12x1 + 9x2 has positive coefficient on x2, for any fixed x1 we minimize by taking x2 as small as allowed: x2 = (4x1 - 3)/3. Substituting gives -12x1 + 9((4x1 - 3)/3) = -12x1 + 12x1 - 9 = -9. This is feasible for x1 <= 3, so the optimal value is -9.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 685
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 0. -8.], subject to the constraints \nA * x <= b, where \nA = [[ 0.  4.]\n [ 2. -1.]] and \nb = [16.  4.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -32.0,
+      "model_answer": -32,
+      "raw_response": "{\"answer\":-32,\"reasoning\":\"The objective is c^T x = -8x_2, so minimizing it means maximizing x_2. The first constraint gives 4x_2 <= 16, hence x_2 <= 4. This maximum is feasible: with x_2=4, the second constraint is 2x_1-4 <= 4, i.e. x_1 <= 4, so for example x_1=0 works. Therefore the optimal value is -8(4) = -32.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 247,
+      "output_tokens": 239
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-12.   0.], subject to the constraints \nA * x <= b, where \nA = [[ 4.  0.]\n [-4.  1.]] and \nb = [12. -5.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -36.0,
+      "model_answer": -36,
+      "raw_response": "{\"answer\":-36,\"reasoning\":\"The objective is c^T x = -12x_1, so minimizing it means making x_1 as large as possible. The first constraint gives 4x_1 <= 12, hence x_1 <= 3. The second constraint is x_2 <= 4x_1 - 5, which does not further restrict the maximum possible x_1 because we can choose a suitable x_2. Taking x_1 = 3 and, for example, x_2 = 7 satisfies both constraints. The optimal value is therefore -12(3) = -36.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 263
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [-2. -4.], subject to the constraints \nA * x <= b, where \nA = [[ 2.  3.]\n [-1. -1.]] and \nb = [11. -5.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -12.0,
+      "model_answer": -12,
+      "raw_response": "{\"answer\":-12,\"reasoning\":\"The constraints are 2x1 + 3x2 <= 11 and x1 + x2 >= 5. At the intersection of the two boundary lines, x1 + x2 = 5 and 2x1 + 3x2 = 11. Subtracting 2(x1 + x2)=10 from the second equation gives x2 = 1, so x1 = 4. The objective value is c^T x = -2(4) - 4(1) = -12. This is the minimum value.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 244,
+      "output_tokens": 467
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 2. -2.], subject to the constraints \nA * x <= b, where \nA = [[-3.  1.]\n [-2.  2.]] and \nb = [-8. -4.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 4.0,
+      "model_answer": 4,
+      "raw_response": "{\"answer\":4,\"reasoning\":\"The second constraint is -2x1 + 2x2 <= -4, which simplifies to x2 <= x1 - 2. Therefore x1 - x2 >= 2, so the objective 2x1 - 2x2 = 2(x1 - x2) is at least 4. This lower bound is attainable, for example at x = (3, 1), where both constraints are satisfied and the objective is 2(3) - 2(1) = 4. Hence the optimal value is 4.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 246,
+      "output_tokens": 496
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [16. -8.], subject to the constraints \nA * x <= b, where \nA = [[-4.  2.]\n [ 1.  0.]] and \nb = [-2.  3.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 8.0,
+      "model_answer": 8,
+      "raw_response": "{\"answer\":8,\"reasoning\":\"The first constraint is -4x1 + 2x2 <= -2, i.e. x2 - 2x1 <= -1. The objective is 16x1 - 8x2 = -8(x2 - 2x1). Since x2 - 2x1 <= -1, we have -8(x2 - 2x1) >= 8. This lower bound is achievable when x2 - 2x1 = -1, with x1 <= 3, so the optimal value is 8.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 247,
+      "output_tokens": 352
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [0. 8.], subject to the constraints \nA * x <= b, where \nA = [[ 0. -2.]\n [-2.  3.]] and \nb = [-2. -1.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 8.0,
+      "model_answer": 8,
+      "raw_response": "{\"answer\":8,\"reasoning\":\"The objective is c^T x = 8x2. The first constraint is -2x2 <= -2, so x2 >= 1. Since the objective increases with x2, the minimum occurs at the smallest feasible x2, namely x2 = 1. The second constraint becomes -2x1 + 3 <= -1, so -2x1 <= -4, hence x1 >= 2, which is feasible. Therefore the optimal objective value is 8.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 244,
+      "output_tokens": 284
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [3. 0.], subject to the constraints \nA * x <= b, where \nA = [[-1.  1.]\n [-3.  0.]] and \nb = [  1. -12.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 12.0,
+      "model_answer": 12,
+      "raw_response": "{\"answer\":12,\"reasoning\":\"The objective is 3x1. The constraints are -x1 + x2 <= 1, so x2 <= x1 + 1, and -3x1 <= -12, so x1 >= 4. To minimize 3x1, choose the smallest feasible x1, which is x1 = 4. This is feasible with any x2 <= 5. Thus the optimal objective value is 3*4 = 12.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 247,
+      "output_tokens": 226
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [9. 6.], subject to the constraints \nA * x <= b, where \nA = [[-4.  3.]\n [-3. -2.]] and \nb = [ -2. -15.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 45.0,
+      "model_answer": 45,
+      "raw_response": "{\"answer\":45,\"reasoning\":\"Let x=(x1,x2). The second constraint is -3x1-2x2 <= -15, equivalently 3x1+2x2 >= 15. The objective is 9x1+6x2 = 3(3x1+2x2), so every feasible point has objective at least 3*15 = 45. This lower bound is attainable when 3x1+2x2=15, provided the first constraint also holds. For example, solving both constraints at equality gives x1=49/17 and x2=54/17, which is feasible and has objective 45. Therefore the optimal value is 45.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 245,
+      "output_tokens": 453
+    },
+    {
+      "question": "Minimize the objective function c^T * x where \nc = [ 6. -3.], subject to the constraints \nA * x <= b, where \nA = [[-1.  1.]\n [-2.  1.]] and \nb = [ 4. -3.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 9.0,
+      "model_answer": 9,
+      "raw_response": "{\"answer\":9,\"reasoning\":\"The objective is 6x1 - 3x2 = -3(x2 - 2x1). The second constraint is -2x1 + x2 <= -3, i.e. x2 - 2x1 <= -3. Therefore -3(x2 - 2x1) >= 9, so the objective is at least 9. This bound is attainable when x2 - 2x1 = -3, for example at x1 = 0, x2 = -3, which also satisfies the first constraint. Hence the optimal value is 9.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 247,
+      "output_tokens": 316
+    }
+  ]
+}

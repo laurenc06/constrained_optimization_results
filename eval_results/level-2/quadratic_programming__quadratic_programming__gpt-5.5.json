@@ -1,0 +1,263 @@
+{
+  "model": "gpt-5.5",
+  "total": 25,
+  "evaluated": 25,
+  "answered": 25,
+  "correct": 22,
+  "accuracy": 0.88,
+  "avg_input_tokens": 299.76,
+  "avg_output_tokens": 645.88,
+  "tolerance": 0.01,
+  "results": [
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 4.  6.]\n [ 6. 25.]] and q = [-4. -1.],\nsubject to G x <= h and A x = b, where\nG = [[ 4.  1.]\n [ 0.  1.]\n [-1.  1.]], h = [9. 7. 6.],\nA = [[ 3. -3.]], b = [-6.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 8.378048780487813,
+      "model_answer": 8.38,
+      "raw_response": "{\"answer\":8.38,\"reasoning\":\"Use the equality constraint: 3x1 - 3x2 = -6, so x1 = x2 - 2. Let t = x2, hence x = (t-2, t). The inequalities give t <= 3.4, t <= 7, and the third is always satisfied, so the unconstrained minimum along the equality line is feasible if t <= 3.4. The objective becomes f(t) = 0.5[4(t-2)^2 + 12(t-2)t + 25t^2] - 4(t-2) - t = 20.5t^2 - 25t + 16. Minimizing: f'(t)=41t-25=0, so t=25/41, feasible. The optimal value is f(25/41)=687/82 \u2248 8.38.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 300,
+      "output_tokens": 692
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[13. -1.]\n [-1.  2.]] and q = [-3. -4.],\nsubject to G x <= h and A x = b, where\nG = [[-2.  0.]\n [-1. -2.]\n [ 4.  4.]], h = [ -5. -10.  32.],\nA = [[ 2. -1.]], b = [2.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 31.03999999864849,
+      "model_answer": 31.04,
+      "raw_response": "{\"answer\":31.04,\"reasoning\":\"Using the equality constraint, x2 = 2x1 - 2. The inequalities reduce to x1 >= 2.5, x1 >= 2.8, and x1 <= 10/3, so x1 is in [2.8, 3.333...]. Substituting x2 = 2x1 - 2 into the objective gives f(x1) = 8.5 x1^2 - 17 x1 + 12, whose unconstrained minimizer is x1 = 1. Since the feasible interval lies to the right of 1 and the quadratic is increasing there, the minimum occurs at x1 = 2.8. Then x2 = 3.6 and the optimal value is f(2.8) = 31.04.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 299,
+      "output_tokens": 703
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 20. -20.]\n [-20.  20.]] and q = [3. 1.],\nsubject to G x <= h and A x = b, where\nG = [[-4.  3.]\n [ 1.  2.]\n [-1. -1.]], h = [ 8. 10. -2.],\nA = [[ 3. -3.]], b = [-6.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 42.00000000022205,
+      "model_answer": 42,
+      "raw_response": "{\"answer\":42,\"reasoning\":\"Using the equality constraint 3x1 - 3x2 = -6 gives x1 - x2 = -2, so x2 = x1 + 2. The objective becomes 10(x1-x2)^2 + 3x1 + x2 = 10(4) + 3x1 + (x1+2) = 42 + 4x1. The inequalities become x1 >= -2, x1 <= 2, and x1 >= 0, so x1 is in [0,2]. Since 42 + 4x1 is minimized at x1 = 0, the optimum is x = (0,2), with objective value 42.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 299,
+      "output_tokens": 518
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[20. 10.]\n [10. 25.]] and q = [-4. -3.],\nsubject to G x <= h and A x = b, where\nG = [[ 2.  3.]\n [-4. -1.]\n [ 4.  4.]], h = [ 11. -11.  19.],\nA = [[2. 1.]], b = [7.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 108.47499999999994,
+      "model_answer": 108.475,
+      "raw_response": "{\"answer\":108.475,\"reasoning\":\"Using the equality constraint, let x1 = t and x2 = 7 - 2t. The inequalities reduce to t >= 2.5, so the feasible set is t >= 2.5. Substituting into the objective gives f(t) = 40t^2 - 278t + 591.5. Its unconstrained minimizer is t = 278/80 = 3.475, which is feasible. The optimal value is 591.5 - 278^2/160 = 108.475.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 297,
+      "output_tokens": 649
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[9. 3.]\n [3. 2.]] and q = [ 0. -2.],\nsubject to G x <= h and A x = b, where\nG = [[ 2.  0.]\n [ 2.  3.]\n [ 1. -1.]], h = [ 9. 13.  5.],\nA = [[ 0. -1.]], b = [-2.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -2.0,
+      "model_answer": -2.0,
+      "raw_response": "{\"answer\":-2.0,\"reasoning\":\"The equality constraint gives x2 = 2. Let x1 = t. The inequalities reduce to t <= 4.5, t <= 3.5, and t <= 7, so t <= 3.5. The objective becomes (1/2)x^T P x + q^T x = 4.5t^2 + 6t. This convex quadratic is minimized at t = -6/9 = -2/3, which is feasible. The optimal value is 4.5(4/9) + 6(-2/3) = 2 - 4 = -2.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 300,
+      "output_tokens": 486
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[17. 10.]\n [10. 13.]] and q = [ 1. -3.],\nsubject to G x <= h and A x = b, where\nG = [[ 1.  3.]\n [-4. -3.]\n [ 0. -3.]], h = [ 12. -12.  -7.],\nA = [[1. 4.]], b = [13.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 78.3757399500557,
+      "model_answer": 78.38,
+      "raw_response": "{\"answer\":78.38,\"reasoning\":\"Using the equality constraint x1 + 4x2 = 13, set x1 = 13 - 4t where t = x2. The inequalities reduce to t >= 1, t <= 40/13, and t >= 7/3, so t is in [7/3, 40/13]. The objective becomes f(t) = 1449.5 - 761t + 102.5t^2, whose unconstrained minimizer is t = 761/205 \u2248 3.71, outside the feasible interval. Since the quadratic is decreasing over the feasible interval, the optimum is at t = 40/13. Thus x = (9/13, 40/13), giving objective value 26491/338 \u2248 78.38.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 297,
+      "output_tokens": 1028
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[20. -2.]\n [-2. 10.]] and q = [ 0. -3.],\nsubject to G x <= h and A x = b, where\nG = [[ 1.  2.]\n [-1. -3.]\n [-3. -4.]], h = [  8.  -8. -13.],\nA = [[ 0. -1.]], b = [-2.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 46.000000000712426,
+      "model_answer": 46,
+      "raw_response": "{\"answer\":46,\"reasoning\":\"From the equality constraint, -x2 = -2, so x2 = 2. The inequalities become x1 <= 4, x1 >= 2, and x1 >= 5/3, hence the feasible interval is x1 in [2,4]. Substituting x2 = 2 into the objective gives f(x1)=10x1^2 - 4x1 + 14, a convex quadratic minimized unconstrained at x1=0.2, outside the feasible interval. Therefore the minimum over [2,4] occurs at x1=2. The objective value is 10(2)^2 - 4(2) + 14 = 46.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 298,
+      "output_tokens": 561
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 5.  5.]\n [ 5. 25.]] and q = [2. 4.],\nsubject to G x <= h and A x = b, where\nG = [[-3.  4.]\n [ 2. -4.]\n [ 4.  0.]], h = [ 2.  0. 16.],\nA = [[4. 2.]], b = [16.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 96.00000000103965,
+      "model_answer": 96.0,
+      "raw_response": "{\"answer\":96.0,\"reasoning\":\"Using the equality constraint 4x1+2x2=16 gives x2=8-2x1. The inequalities reduce to x1 >= 30/11, x1 <= 16/5, and x1 <= 4, so x1 is feasible on [30/11, 16/5]. Substituting into the objective gives f(x1)=42.5 x1^2 - 366 x1 + 832, whose unconstrained minimizer is x1=366/85\u22484.31, outside the feasible interval. Since the quadratic is decreasing over the feasible interval, the optimum is at x1=16/5=3.2, with x2=1.6. The objective value is 96.0.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 301,
+      "output_tokens": 694
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[  9. -12.]\n [-12.  25.]] and q = [-4. -2.],\nsubject to G x <= h and A x = b, where\nG = [[ 2.  4.]\n [-4.  4.]\n [ 0.  2.]], h = [18.  9.  8.],\nA = [[1. 1.]], b = [4.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -1.9655172413793078,
+      "model_answer": -1.97,
+      "raw_response": "{\"answer\":-1.97,\"reasoning\":\"Using the equality constraint x1 + x2 = 4, set x2 = 4 - x1. The inequalities reduce to x1 >= -1, x1 >= 0.875, and x1 >= 0, so the feasible condition is x1 >= 0.875. Substituting into the objective gives f(x1) = 29 x1^2 - 150 x1 + 192. Its unconstrained minimizer is x1 = 150/(2*29) = 75/29 \u2248 2.59, which is feasible. The optimal value is therefore 192 - 150^2/(4*29) = -1.9655, approximately -1.97.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 301,
+      "output_tokens": 687
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[13.  8.]\n [ 8.  5.]] and q = [-3.  4.],\nsubject to G x <= h and A x = b, where\nG = [[ 2. -1.]\n [-4.  0.]\n [ 2.  1.]], h = [  4. -11.  13.],\nA = [[ 1. -4.]], b = [-13.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 182.04101551962736,
+      "model_answer": 210.4296875,
+      "raw_response": "{\"answer\":210.4296875,\"reasoning\":\"Using the equality constraint x1 - 4x2 = -13, write x1 = 4t - 13 with t = x2. The inequalities reduce to t >= 63/16, t <= 30/7, and t <= 13/3, so feasible t is [63/16, 30/7]. Substituting into the objective gives f(t) = (277/2)t^2 - 788t + 1137.5, whose unconstrained minimizer is t = 788/277 \u2248 2.84, below the feasible interval. Since the quadratic is convex, the minimum occurs at t = 63/16. Evaluating gives optimal value 210.4296875.\"}",
+      "finish_reason": "stop",
+      "correct": false,
+      "input_tokens": 303,
+      "output_tokens": 691
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[10. 11.]\n [11. 17.]] and q = [3. 4.],\nsubject to G x <= h and A x = b, where\nG = [[-1.  0.]\n [-4. -4.]\n [-3.  2.]], h = [  1. -12.  -5.],\nA = [[-2.  0.]], b = [-6.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 54.000000047831634,
+      "model_answer": 54,
+      "raw_response": "{\"answer\":54,\"reasoning\":\"The equality constraint -2x1 = -6 gives x1 = 3. The inequalities then become x2 >= 0 from x1 + x2 >= 3, and x2 <= 2 from -3x1 + 2x2 <= -5, so x2 \u2208 [0,2]. Substituting x = (3,t), the objective is (1/2)(90 + 66t + 17t^2) + 9 + 4t = 54 + 37t + 8.5t^2. This convex quadratic has unconstrained minimizer t = -37/17, outside the feasible interval, so the minimum on [0,2] occurs at t = 0. The optimal value is 54.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 299,
+      "output_tokens": 574
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[16. -8.]\n [-8.  4.]] and q = [0. 4.],\nsubject to G x <= h and A x = b, where\nG = [[-1.  3.]\n [-1.  0.]\n [ 1.  2.]], h = [7. 0. 7.],\nA = [[-3.  1.]], b = [-1.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -1.9999999996984865,
+      "model_answer": -2,
+      "raw_response": "{\"answer\":-2,\"reasoning\":\"Use the equality constraint -3x1 + x2 = -1, so x2 = 3x1 - 1. The inequalities become x1 >= 0, x1 <= 1.25, and x1 <= 9/7, so the feasible interval is 0 <= x1 <= 1.25. Since P = [4,-2]^T[4,-2], the objective is (1/2)(4x1 - 2x2)^2 + 4x2. Substituting x2 = 3x1 - 1 gives f(x1) = 2(1 - x1)^2 + 12x1 - 4 = 2x1^2 + 8x1 - 2. This is increasing on the feasible interval because f'(x1)=4x1+8 > 0, so the minimum occurs at x1=0, x2=-1. The optimal value is -2.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 299,
+      "output_tokens": 729
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[17.  3.]\n [ 3.  2.]] and q = [3. 4.],\nsubject to G x <= h and A x = b, where\nG = [[-4.  2.]\n [-1.  3.]\n [ 1.  2.]], h = [-1.  9. 12.],\nA = [[-1.  2.]], b = [4.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 62.13888889729991,
+      "model_answer": 62.14,
+      "raw_response": "{\"answer\":62.14,\"reasoning\":\"Using the equality constraint -x1 + 2x2 = 4 gives x1 = 2x2 - 4. Let x2 = t. The inequalities imply t >= 17/6, t <= 5, and t <= 4, so t in [17/6, 4]. Substituting into the objective gives f(t) = 41t^2 - 138t + 124. Its unconstrained minimizer is t = 69/41, which is below the feasible interval, so the optimum occurs at t = 17/6. The optimal value is f(17/6) = 2237/36 \u2248 62.14.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 302,
+      "output_tokens": 680
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[25.  5.]\n [ 5. 10.]] and q = [2. 2.],\nsubject to G x <= h and A x = b, where\nG = [[ 4.  4.]\n [ 0.  1.]\n [ 4. -2.]], h = [28.  3. 15.],\nA = [[-4.  2.]], b = [-12.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 46.02352941176489,
+      "model_answer": 46.02,
+      "raw_response": "{\"answer\":46.02,\"reasoning\":\"Use the equality constraint: -4x1 + 2x2 = -12, so x2 = 2x1 - 6. Let t = x1. The inequalities reduce to t <= 13/3, t <= 4.5, and one always-satisfied constraint, so the unconstrained minimizer along the equality line is feasible if t <= 13/3. Substituting x = (t, 2t-6) into the objective gives f(t) = 42.5t^2 - 144t + 168. This is minimized at t = 144/85 \u2248 1.694, which is feasible. The optimal value is 168 - 144^2/(4*42.5) \u2248 46.0235.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 301,
+      "output_tokens": 701
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 2. -1.]\n [-1.  1.]] and q = [1. 0.],\nsubject to G x <= h and A x = b, where\nG = [[ 2. -2.]\n [ 1. -2.]\n [ 3.  4.]], h = [ 3. -1. 27.],\nA = [[-2. -4.]], b = [-20.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 6.000000000000001,
+      "model_answer": 6,
+      "raw_response": "{\"answer\":6,\"reasoning\":\"Using the equality constraint: -2x1 - 4x2 = -20 gives x1 + 2x2 = 10, so x1 = 10 - 2x2. Let t = x2. The inequalities reduce to t >= 17/6, t >= 11/4, and t >= 3/2, so the feasible condition is t >= 17/6. Substituting x1 = 10 - 2t into the objective gives f(t) = 6.5t^2 - 52t + 110. This convex quadratic is minimized at t = 52/13 = 4, which is feasible. Then x2 = 4 and x1 = 2. The objective value is (1/2)x^T P x + q^T x = 6.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 299,
+      "output_tokens": 709
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[17.  5.]\n [ 5.  2.]] and q = [4. 4.],\nsubject to G x <= h and A x = b, where\nG = [[ 1.  2.]\n [ 2.  1.]\n [ 0. -1.]], h = [12. 12.  1.],\nA = [[ 4. -1.]], b = [9.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 29.000000011405557,
+      "model_answer": 29,
+      "raw_response": "{\"answer\":29,\"reasoning\":\"Using the equality constraint 4x1 - x2 = 9, write x2 = 4x1 - 9. The inequalities imply x1 <= 10/3, x1 <= 3.5, and x2 >= -1, so x1 >= 2. Thus x1 is in [2, 10/3]. Substituting x = (t, 4t - 9) into the objective gives f(t) = 44.5t^2 - 97t + 45. Its unconstrained minimizer is t = 97/89, which is below the feasible interval, so the minimum over the feasible interval occurs at t = 2. Then x = (2, -1), and the objective value is f(2) = 29.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 301,
+      "output_tokens": 658
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 16. -12.]\n [-12.  13.]] and q = [-3.  4.],\nsubject to G x <= h and A x = b, where\nG = [[-4.  3.]\n [-4. -1.]\n [-1. -3.]], h = [ -8. -15.  -9.],\nA = [[0. 2.]], b = [4.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 37.500000006158245,
+      "model_answer": 37.5,
+      "raw_response": "{\"answer\":37.5,\"reasoning\":\"From the equality constraint, 2x_2=4, so x_2=2. Let x_1=t. The inequalities become t>=3.5, t>=3.25, and t>=3, so the feasible set is t>=3.5. The objective is (1/2)x^TPx+q^Tx = 8t^2-27t+34. Its unconstrained minimizer is t=27/16=1.6875, which is infeasible, so the constrained minimum occurs at t=3.5. The objective value is 8(3.5)^2-27(3.5)+34=37.5.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 298,
+      "output_tokens": 511
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 25. -22.]\n [-22.  20.]] and q = [-2.  4.],\nsubject to G x <= h and A x = b, where\nG = [[-1. -1.]\n [ 0.  2.]\n [ 3.  2.]], h = [ 0.  6. 12.],\nA = [[ 2. -4.]], b = [2.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 2.944444445638918,
+      "model_answer": 2.9444444444,
+      "raw_response": "{\"answer\":2.9444444444,\"reasoning\":\"Using the equality constraint, x1 - 2x2 = 1, so let x2 = t and x1 = 1 + 2t. The inequalities give t >= -1/3, t <= 3, and t <= 9/8, so t \u2208 [-1/3, 9/8]. Substituting into the objective gives f(t) = 10.5 + 28t + 16t^2. The unconstrained minimizer is t = -7/8, which is outside the feasible interval, so the minimum occurs at t = -1/3. Then f(-1/3) = 10.5 - 28/3 + 16/9 = 53/18 \u2248 2.944444.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 302,
+      "output_tokens": 702
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[10.  6.]\n [ 6. 18.]] and q = [-2.  0.],\nsubject to G x <= h and A x = b, where\nG = [[ 0.  0.]\n [ 1.  0.]\n [-4. -4.]], h = [  2.   5. -30.],\nA = [[0. 1.]], b = [4.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 282.2500000131683,
+      "model_answer": 282.25,
+      "raw_response": "{\"answer\":282.25,\"reasoning\":\"The equality constraint gives x2 = 4. The inequalities reduce to x1 <= 5 and -4x1 - 16 <= -30, so x1 >= 3.5. Thus x1 \u2208 [3.5, 5]. Substituting x2 = 4 into the objective gives f(x1) = 5x1^2 + 22x1 + 144. Since f'(x1) = 10x1 + 22 > 0 on [3.5, 5], the minimum occurs at x1 = 3.5. The optimal value is 5(3.5)^2 + 22(3.5) + 144 = 282.25.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 301,
+      "output_tokens": 470
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[13.  6.]\n [ 6. 25.]] and q = [3. 0.],\nsubject to G x <= h and A x = b, where\nG = [[-2.  4.]\n [-2.  0.]\n [ 0. -1.]], h = [11. -5. -3.],\nA = [[-2. -3.]], b = [-20.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 411.5827586206872,
+      "model_answer": 411.58,
+      "raw_response": "{\"answer\":411.58,\"reasoning\":\"Use the equality constraint: 2x1 + 3x2 = 20, so x1 = 10 - 1.5x2. The inequalities imply x2 >= 3, x1 >= 2.5 gives x2 <= 5, and -2x1 + 4x2 <= 11 gives x2 <= 31/7, so x2 is in [3, 31/7]. Substituting into the objective gives f(x2) = 18.125 x2^2 - 139.5 x2 + 680. Its unconstrained minimizer is x2 = 139.5 / 36.25 \u2248 3.85, which is feasible. The optimal value is 680 - 139.5^2 / 72.5 \u2248 411.58.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 298,
+      "output_tokens": 883
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[13. -6.]\n [-6.  9.]] and q = [-2.  4.],\nsubject to G x <= h and A x = b, where\nG = [[-4. -1.]\n [ 3.  2.]\n [-2.  1.]], h = [-8. 14.  0.],\nA = [[-1.  0.]], b = [-2.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 18.444444444444237,
+      "model_answer": 18.44,
+      "raw_response": "{\"answer\":18.44,\"reasoning\":\"The equality constraint gives x1 = 2. The inequalities then become x2 >= 0, x2 <= 4, and x2 <= 4, so x2 is in [0,4]. Substituting x = (2,y), the objective is f(y) = 22 - 8y + 4.5y^2. This convex quadratic has derivative -8 + 9y, so the minimizer is y = 8/9, which is feasible. The optimal value is f(8/9) = 166/9 \u2248 18.44.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 300,
+      "output_tokens": 572
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 17. -12.]\n [-12.   9.]] and q = [-3.  1.],\nsubject to G x <= h and A x = b, where\nG = [[-4. -3.]\n [-3.  2.]\n [ 1.  0.]], h = [-15.  -9.   6.],\nA = [[ 2. -4.]], b = [4.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 65.40625000045968,
+      "model_answer": 37.40625,
+      "raw_response": "{\"answer\":37.40625,\"reasoning\":\"Using the equality constraint, x1 - 2x2 = 2, so let x2 = t and x1 = 2 + 2t. The inequalities give t >= 7/11, t >= 3/4, and t <= 2, so t \u2208 [3/4, 2]. Substituting into the objective gives f(t) = 28 + 39t + 14.5t^2, which is increasing on this interval since f'(t)=39+29t>0. Thus the minimum occurs at t=3/4. The optimal value is f(3/4)=28+39(0.75)+14.5(0.75)^2=37.40625.\"}",
+      "finish_reason": "stop",
+      "correct": false,
+      "input_tokens": 301,
+      "output_tokens": 693
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[18. 24.]\n [24. 32.]] and q = [ 0. -1.],\nsubject to G x <= h and A x = b, where\nG = [[-2. -2.]\n [ 2. -3.]\n [ 2.  3.]], h = [-10.  -4.  21.],\nA = [[-1. -4.]], b = [-19.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 382.1111111218892,
+      "model_answer": 386.7777777778,
+      "raw_response": "{\"answer\":386.7777777778,\"reasoning\":\"Using the equality constraint, x1 + 4x2 = 19, so let x2 = t and x1 = 19 - 4t. The objective becomes (3x1 + 4x2)^2 - x2 = (57 - 8t)^2 - t. The inequalities give t <= 14/3, t >= 42/11, and t >= 17/5, so t is in [42/11, 14/3]. The unconstrained minimizer is outside this interval, and the objective is decreasing throughout the feasible interval, so the minimum occurs at t = 14/3. Then the value is (57 - 8(14/3))^2 - 14/3 = (59/3)^2 - 14/3 = 3481/9 - 42/9 = 3439/9 = 382.1111111111.\"}",
+      "finish_reason": "stop",
+      "correct": false,
+      "input_tokens": 299,
+      "output_tokens": 731
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[ 16. -16.]\n [-16.  20.]] and q = [4. 4.],\nsubject to G x <= h and A x = b, where\nG = [[ 1.  2.]\n [-4. -3.]\n [ 0. -3.]], h = [  8. -14.  -3.],\nA = [[-2.  0.]], b = [-6.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 35.60000000000002,
+      "model_answer": 35.6,
+      "raw_response": "{\"answer\":35.6,\"reasoning\":\"From the equality constraint -2x1 = -6, we get x1 = 3. Let x2 = y. The inequalities give y <= 2.5, y >= 2/3, and y >= 1, so y in [1, 2.5]. The objective becomes (1/2)x^T P x + q^T x = 84 - 44y + 10y^2. This convex quadratic is minimized at y = 44/(2*10) = 2.2, which is feasible. The optimal value is 84 - 44(2.2) + 10(2.2)^2 = 35.6.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 301,
+      "output_tokens": 458
+    },
+    {
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[13. -1.]\n [-1. 25.]] and q = [3. 2.],\nsubject to G x <= h and A x = b, where\nG = [[ 2.  0.]\n [ 3. -4.]\n [-1.  1.]], h = [ 9. -1.  4.],\nA = [[ 1. -1.]], b = [0.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 22.99999999988581,
+      "model_answer": 23,
+      "raw_response": "{\"answer\":23,\"reasoning\":\"Using the equality constraint x1 - x2 = 0, set x1 = x2 = t. The inequalities become 2t <= 9, -t <= -1, and 0 <= 4, so t is feasible for 1 <= t <= 4.5. The objective is (1/2)[t,t]P[t,t]^T + [3,2][t,t]^T = 18t^2 + 5t. This is increasing on t >= 1, so the minimum occurs at t = 1. The optimal value is 18 + 5 = 23.\"}",
+      "finish_reason": "stop",
+      "correct": true,
+      "input_tokens": 298,
+      "output_tokens": 367
+    }
+  ]
+}
