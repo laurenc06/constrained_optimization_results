@@ -1,0 +1,28 @@
+{
+  "source_file": "Claude Results Levels 1-4/level-1/linear_programming__non_trivial_linear_programming__claude-sonnet-4-6.json",
+  "judge_model": "gpt-4.1",
+  "judge": "all",
+  "include_correct": false,
+  "max_examples": null,
+  "summary": {
+    "num_judged_examples": 0,
+    "reasoning_judged_count": 0,
+    "arithmetic_judged_count": 0,
+    "final_judged_count": 0,
+    "judgment_error_count": 0,
+    "average_formulation_score": null,
+    "average_approach_score": null,
+    "average_constraint_score": null,
+    "hallucination_count": 0,
+    "arithmetic_error_found_count": 0,
+    "cascaded_count": 0,
+    "correct_value_in_reasoning_count": 0,
+    "reason_not_recognized_counts": {},
+    "primary_error_type_counts": {},
+    "secondary_error_type_counts": {},
+    "counts_by_problem_type": {},
+    "counts_by_level": {},
+    "finish_reason_counts": {}
+  },
+  "judged_examples": []
+}
