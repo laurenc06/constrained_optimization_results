@@ -1,0 +1,81 @@
+{
+  "source_file": "eval_results_qwen_plus/level-1/quadratic_programming__quadratic_programming__qwen-plus.json",
+  "judge_model": "gpt-4.1",
+  "judge": "all",
+  "include_correct": false,
+  "max_examples": null,
+  "summary": {
+    "num_judged_examples": 1,
+    "reasoning_judged_count": 1,
+    "arithmetic_judged_count": 1,
+    "final_judged_count": 1,
+    "judgment_error_count": 0,
+    "average_formulation_score": 2.0,
+    "average_approach_score": 1.0,
+    "average_constraint_score": 2.0,
+    "hallucination_count": 0,
+    "arithmetic_error_found_count": 0,
+    "cascaded_count": 0,
+    "correct_value_in_reasoning_count": 0,
+    "reason_not_recognized_counts": {},
+    "primary_error_type_counts": {
+      "partial_reasoning_failure": 1
+    },
+    "secondary_error_type_counts": {},
+    "counts_by_problem_type": {
+      "quadratic_programming": 1
+    },
+    "counts_by_level": {
+      "level-1": 1
+    },
+    "finish_reason_counts": {
+      "stop": 1
+    }
+  },
+  "judged_examples": [
+    {
+      "index": 0,
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[16. -4.]\n [-4. 17.]] and q = [-3.  0.],\nsubject to G x <= h and A x = b, where\nG = [[-3. -2.]\n [-4.  3.]], h = [-6. -1.],\nA = [[0. 0.]], b = [0.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 13.313207548937555,
+      "model_answer": 14.7,
+      "correct": false,
+      "problem_type": "quadratic_programming",
+      "level": "level-1",
+      "finish_reason": "stop",
+      "input_tokens": 295,
+      "output_tokens": 1335,
+      "reasoning_judgment": {
+        "explanation": "The model accurately formulated the quadratic problem with the correct objective and constraints, handling the zero equality constraint properly. It correctly found the unconstrained minimizer, checked its infeasibility, and then solved the active-set system where both inequalities are binding, computing their intersection. The vertex computation is correct in algebra and constraint handling. However, when interpreting the feasible region, the model asserts (without explicit proof) that no unbounded edge can yield a lower value, relying on convexity and the two-constraint structure, which is mostly\u2014but not fully\u2014rigorous. The optimal value calculation is internally consistent. There is no hallucination; the answer follows the shown work, even though there\u2019s a slight gap versus the expected answer likely due to a solution verification gap, not an unsupported value.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Approach does not fully prove no lower value is possible along any edge or on the unbounded region; a more thorough boundary analysis or explicit global optimality argument is needed for approach_score=2."
+      },
+      "arithmetic_judgment": {
+        "explanation": "After evaluating the objective (1/2)x^T P x + q^T x at x = [20/17, 21/17] both analytically and using Python code, the computed value matches the model's result (\u224814.70), not the expected_answer (13.3132). There is no arithmetic error: all matrix products, powers, and arithmetic steps in the model's calculation are correct. The discrepancy is not due to a numerical mistake but possibly due to a difference in problem formulation, a constraint misinterpretation, or an error in expected_answer. Thus, arithmetic_error_found=false.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=The model carefully computes the objective at the vertex [20/17, 21/17], evaluating the quadratic form and finding approximately 14.6996, which it rounds to 14.70. This value (14.70) is within tolerance (0.01) of the expected answer of 13.313, so it is not actually within tolerance\u2014the correct value does not appear in the reasoning, as all calculations are for about 14.70. Thus, correct_value_in_reasoning=false, and reason_not_recognized is null..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "partial_reasoning_failure",
+      "secondary_error_types": []
+    }
+  ]
+}

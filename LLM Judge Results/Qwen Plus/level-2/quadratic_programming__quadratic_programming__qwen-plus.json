@@ -1,0 +1,85 @@
+{
+  "source_file": "eval_results_qwen_plus/level-2/quadratic_programming__quadratic_programming__qwen-plus.json",
+  "judge_model": "gpt-4.1",
+  "judge": "all",
+  "include_correct": false,
+  "max_examples": null,
+  "summary": {
+    "num_judged_examples": 1,
+    "reasoning_judged_count": 1,
+    "arithmetic_judged_count": 1,
+    "final_judged_count": 1,
+    "judgment_error_count": 0,
+    "average_formulation_score": 2.0,
+    "average_approach_score": 1.0,
+    "average_constraint_score": 2.0,
+    "hallucination_count": 0,
+    "arithmetic_error_found_count": 1,
+    "cascaded_count": 1,
+    "correct_value_in_reasoning_count": 0,
+    "reason_not_recognized_counts": {},
+    "primary_error_type_counts": {
+      "partial_reasoning_failure": 1
+    },
+    "secondary_error_type_counts": {
+      "arithmetic_failure": 1
+    },
+    "counts_by_problem_type": {
+      "quadratic_programming": 1
+    },
+    "counts_by_level": {
+      "level-2": 1
+    },
+    "finish_reason_counts": {
+      "stop": 1
+    }
+  },
+  "judged_examples": [
+    {
+      "index": 0,
+      "question": "Minimize the quadratic objective (1/2) x^T P x + q^T x where\nP = [[13.  6.]\n [ 6. 25.]] and q = [3. 0.],\nsubject to G x <= h and A x = b, where\nG = [[-2.  4.]\n [-2.  0.]\n [ 0. -1.]], h = [11. -5. -3.],\nA = [[-2. -3.]], b = [-20.].\nWhat is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 411.5827586206872,
+      "model_answer": 417.67,
+      "correct": false,
+      "problem_type": "quadratic_programming",
+      "level": "level-2",
+      "finish_reason": "stop",
+      "input_tokens": 311,
+      "output_tokens": 1466,
+      "reasoning_judgment": {
+        "explanation": "The model correctly wrote out the quadratic objective, constraint forms, and all data (G, h, A, b), so formulation is correct. It recognized when the unconstrained minimizer is infeasible and switched to checking active constraints. It considered active constraint cases (first inequality + equality), solved for x, and checked the other constraints for feasibility. The model identified all relevant constraints and verified that its final candidate satisfied them. However, the approach is not fully complete: it only checked one active inequality + equality, not all possible combinations (e.g., equality with each of the other two inequalities being active), nor did it explicitly rule out all other possible active sets or check dual feasibility/complementary slackness as in a full KKT analysis. The solution is plausible and likely correct but does not fully prove global optimality. No hallucination: all numbers were derived and the candidate is feasible.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Incomplete optimality proof: did not systematically consider all possible active constraint sets or fully verify KKT conditions."
+      },
+      "arithmetic_judgment": {
+        "explanation": "After coding the precise computation of x^T P x for x* = [47/14, 31/7] \u2248 [3.3571, 4.4286], the correct value is about 661.54, not ~815.2 as the model claimed. This error in calculating the quadratic term directly led to an overstated objective value (417.67 instead of approximately 341.84). The error is in the dot products and affects all subsequent objective calculations\u2014a large, cascade error due solely to arithmetic, not rounding.",
+        "arithmetic_error_found": true,
+        "first_error_step": "Model's computation of x^T P x",
+        "computed_value": "815.2",
+        "correct_value": "661.54",
+        "error_magnitude": "large (> 20%)",
+        "cascaded": true,
+        "cascade_description": "Erroneous x^T P x led to inaccurate objective sum, invalidating the final result.",
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=The model computes an objective value of ~407.6 + 10.071 = 417.67 at x \u2248 (3.357, 4.429), but this computation contains a miscalculation in the quadratic term. If properly calculating (1/2) x^T P x + q^T x at the found feasible point, the value should be very close to 411.58, not 417.67. There is no point in the reasoning where the correct value appears within tolerance (0.01) of the expected answer. The model commits to the only value it finds, and there is no evidence it dismissed or ignored a correct value..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "partial_reasoning_failure",
+      "secondary_error_types": [
+        "arithmetic_failure"
+      ]
+    }
+  ]
+}
