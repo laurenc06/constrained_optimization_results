@@ -1,0 +1,81 @@
+{
+  "source_file": "eval_results_qwen_plus/level-3/linear_programming__non_trivial_linear_programming__qwen-plus.json",
+  "judge_model": "gpt-4.1",
+  "judge": "all",
+  "include_correct": false,
+  "max_examples": null,
+  "summary": {
+    "num_judged_examples": 1,
+    "reasoning_judged_count": 1,
+    "arithmetic_judged_count": 1,
+    "final_judged_count": 1,
+    "judgment_error_count": 0,
+    "average_formulation_score": 2.0,
+    "average_approach_score": 1.0,
+    "average_constraint_score": 2.0,
+    "hallucination_count": 0,
+    "arithmetic_error_found_count": 0,
+    "cascaded_count": 0,
+    "correct_value_in_reasoning_count": 0,
+    "reason_not_recognized_counts": {},
+    "primary_error_type_counts": {
+      "partial_reasoning_failure": 1
+    },
+    "secondary_error_type_counts": {},
+    "counts_by_problem_type": {
+      "linear_programming": 1
+    },
+    "counts_by_level": {
+      "level-3": 1
+    },
+    "finish_reason_counts": {
+      "stop": 1
+    }
+  },
+  "judged_examples": [
+    {
+      "index": 0,
+      "question": "Minimize the objective function c^T * x where \nc = [-3. -7. 14.], subject to the constraints \nA * x <= b, where \nA = [[-1.  1. -3.]\n [ 4.  1. -3.]\n [-3.  3. -2.]] and \nb = [-7. -2.  0.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 18.0,
+      "model_answer": 39.0,
+      "correct": false,
+      "problem_type": "linear_programming",
+      "level": "level-3",
+      "finish_reason": "stop",
+      "input_tokens": 278,
+      "output_tokens": 1736,
+      "reasoning_judgment": {
+        "explanation": "The model correctly formulated the objective and constraints (all expressions are accurate and converted correctly). Its solution approach was to set x3 = 0 and analyze the resulting problem, finding a feasible vertex at [1, -6, 0], and checking all constraints at that point. It then attempted to decrease x3 and found that doing so made the objective worse. The model also identified this point as a candidate optimum based on the intersection of two active constraints, which is correct for a linear program. However, the model did not finish the global optimality argument: it failed to consider all possible adjacent vertices or fully enumerate all basic feasible solutions (LP vertices). Although the reasoning is fairly robust, it implicitly assumes [1, -6, 0] is optimal without exhaustive LP vertex checking or basis pivoting. Constraints were handled correctly at the tested points, and all feasibility checks are logical. There is no hallucination, as all proposed points are feasible and all calculations are supported.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Failed to enumerate or test all basic feasible vertices/boundaries, so did not fully prove global optimality."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model's critical arithmetic steps, including evaluating constraints and the objective at x = [1, -6, 0], are correct. Constraints (1) and (2) both evaluate exactly to their upper bounds, constraint (3) is satisfied, and the objective evaluates to 39. The discrepancy with expected_answer = 18 is not due to arithmetic error in the model's computation, but likely due to problem interpretation, formulation, or expected-answer error.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=The correct optimal value 18.0 does not appear anywhere in the model's reasoning or calculations. The model computes only objective values of 39, 56, 63, etc. It never computes or discusses the correct objective value nor reaches any point close to 18.0. Thus, correct_value_in_reasoning is false..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "partial_reasoning_failure",
+      "secondary_error_types": []
+    }
+  ]
+}
