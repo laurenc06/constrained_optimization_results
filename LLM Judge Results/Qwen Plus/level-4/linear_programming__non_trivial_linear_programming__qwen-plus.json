@@ -1,0 +1,126 @@
+{
+  "source_file": "eval_results_qwen_plus/level-4/linear_programming__non_trivial_linear_programming__qwen-plus.json",
+  "judge_model": "gpt-4.1",
+  "judge": "all",
+  "include_correct": false,
+  "max_examples": null,
+  "summary": {
+    "num_judged_examples": 2,
+    "reasoning_judged_count": 2,
+    "arithmetic_judged_count": 2,
+    "final_judged_count": 2,
+    "judgment_error_count": 0,
+    "average_formulation_score": 2.0,
+    "average_approach_score": 1.5,
+    "average_constraint_score": 2.0,
+    "hallucination_count": 0,
+    "arithmetic_error_found_count": 0,
+    "cascaded_count": 0,
+    "correct_value_in_reasoning_count": 0,
+    "reason_not_recognized_counts": {},
+    "primary_error_type_counts": {
+      "no_correct_value_found": 1,
+      "partial_reasoning_failure": 1
+    },
+    "secondary_error_type_counts": {},
+    "counts_by_problem_type": {
+      "linear_programming": 2
+    },
+    "counts_by_level": {
+      "level-4": 2
+    },
+    "finish_reason_counts": {
+      "stop": 2
+    }
+  },
+  "judged_examples": [
+    {
+      "index": 0,
+      "question": "Minimize the objective function c^T * x where \nc = [ 0.  2. -8.], subject to the constraints \nA * x <= b, where \nA = [[-4. -3.  2.]\n [ 1. -2.  4.]\n [ 0. -1. -1.]\n [-2.  2.  0.]] and \nb = [-21.   8.  -6.   0.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": -16.0,
+      "model_answer": -14.55,
+      "correct": false,
+      "problem_type": "linear_programming",
+      "level": "level-4",
+      "finish_reason": "stop",
+      "input_tokens": 297,
+      "output_tokens": 2305,
+      "reasoning_judgment": {
+        "explanation": "The model's reasoning follows a systematic LP boundary/vertex analysis: it rewrites and interprets all constraints, identifies the incentive to maximize x3, expresses variables with tight constraints, and solves the system formed by three active constraints. It checks feasibility at the found point. The approach is legitimate, and the search covers possible active sets for the optimum. However, the model misses a better (more negative) objective value at another vertex (as implied by the expected answer), but this is an arithmetic or computational oversight rather than a reasoning error. The global optimality is mostly justified by analysis of boundaries and intersection points, and all constraints are handled correctly for the found solution. No hallucination: the final value is computed from the fully derived feasible point.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Arithmetic or completeness: missed exploring all candidate vertices; reasoning and constraint handling fully justified for the analyzed point."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model's calculations for x1, x2, x3, the constraints, and the objective value are all arithmetically accurate. Substitution into constraints C1, C2, and C3 at x1 = 118/29, x2 = 97/29, x3 = 77/29 produces exact equality with the claimed right-hand sides. The objective calculation also matches the model's claim of -422/29 \u2248 -14.55. There are no arithmetic mistakes; the difference from the expected answer is not due to arithmetic errors but likely a reasoning or formulation issue.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=The model arrived at the value -14.5517 (rounded to -14.55) as its optimal objective value and provided detailed justification why this was the minimum among feasible vertices, treating it as the final answer. The reasoning shows it repeatedly checks that this solution is feasible and asserts that all constraints are satisfied, explicitly stating 'Thus optimal value is -14.5517'. There is no sign the model had found the expected answer of -16.0 or even considered it as a candidate. Therefore, the expected correct value does not appear anywhere in the reasoning, and the requirements for correct_value_in_reasoning are not met..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "no_correct_value_found",
+      "secondary_error_types": []
+    },
+    {
+      "index": 1,
+      "question": "Minimize the objective function c^T * x where \nc = [11. -6.  6.], subject to the constraints \nA * x <= b, where \nA = [[ 3. -2. -1.]\n [-4. -3. -4.]\n [-2.  3.  3.]\n [ 3.  1. -2.]] and \nb = [  7. -32.   7.  14.]. What is the optimal value?\nYou must solve it using only mental mathematical reasoning. Do NOT write or execute any code. Do NOT use Python, MATLAB, Julia, or any programming language. Do NOT use CVXPY, scipy, numpy, or any solver library.",
+      "expected_answer": 26.0,
+      "model_answer": 42.0,
+      "correct": false,
+      "problem_type": "linear_programming",
+      "level": "level-4",
+      "finish_reason": "stop",
+      "input_tokens": 297,
+      "output_tokens": 1373,
+      "reasoning_judgment": {
+        "explanation": "The model correctly formulates the problem, converting all constraints and recasting inequalities where needed. It then seeks candidate optimal points by activating three constraints and solving the resulting system, carefully checking feasibility. However, it makes a critical reasoning error: it only checks one vertex (active set) and, after a brief and inconclusive attempt to test boundary cases (e.g., x1 = 0), concludes that the found point with objective 42 is optimal without exhaustively checking all relevant candidate vertices (feasible intersections of three constraints out of four), nor does it provide justification that no other vertex could give a lower value. Thus, global optimality is not proved. Nevertheless, the final answer is derived from a feasible point, not an infeasible one, so hallucination=false.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "failure to prove global optimality\u2014only one vertex is checked, and insufficient justification is provided that this yields the minimum."
+      },
+      "arithmetic_judgment": {
+        "explanation": "All critical arithmetic steps\u2014solving the system of equations, evaluating the constraints at the claimed solution, and evaluating the objective\u2014are correct up to negligible rounding error. There are no arithmetic errors in the model's calculations for this basic feasible solution. Any mismatch with the expected answer is likely due to a reasoning or formulation issue, not incorrect arithmetic.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=The model did not compute or mention the correct value 26.0 anywhere in its reasoning steps; only 42.0 is computed at candidate vertices and is discussed as the minimum. No value within 0.01 of 26.0 appears, so correct_value_in_reasoning is false and there is no distance to report..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "partial_reasoning_failure",
+      "secondary_error_types": []
+    }
+  ]
+}
