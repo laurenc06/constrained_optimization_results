@@ -2,7 +2,6 @@ judge_errors.py
 llm_judge_to_csv.py
 
 # Local analysis and data-collection artifacts
-*.csv
 *.png
 *.R
 *.sh
