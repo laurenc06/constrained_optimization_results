@@ -4,6 +4,7 @@ llm_judge_to_csv.py
 # Local analysis and data-collection artifacts
 *.png
 *.R
+*.Rmd
 *.sh
 .RData
 .Rhistory
