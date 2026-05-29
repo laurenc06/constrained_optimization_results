@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains our research framework for benchmarking large language models (LLMs) on programmatically generated constrained optimization problems. Our work focuses on evaluating not only final-answer correctness, but also reasoning quality, token efficiency, scaling behavior, and failure modes across both open-source and closed-source frontier models.
+This repository contains our research framework for benchmarking large language models (LLMs) on programmatically generated constrained optimization problems. Our work focuses on evaluating not only final-answer correctness, but also reasoning quality, token efficiency, scaling behavior, and failure modes across both open-source and closed-source frontier models. The repository also includes benchmark outputs and model comparison result files.
 
 The benchmark currently includes the following optimization domains:
 
@@ -170,9 +170,7 @@ This format enables downstream analysis of reasoning quality, token efficiency, 
 
 ---
 
-# Preliminary Results
-
-## Initial Observations
+# Results
 
 Preliminary experiments show several important trends:
 
@@ -190,9 +188,20 @@ We are currently analyzing whether failures are primarily caused by:
 * formatting issues,
 * or optimization-specific challenges.
 
+Benchmark runs have already been collected for several models, such as Claude, Gemini, GPT (including mini variants), DeepSeek, Qwen, and Haiku. Corresponding outputs are stored in the following folders and files:
+
+* `Claude Results with Thinking/`
+* `Gemini Results with Thinking/`
+* `Mini Model Results/`
+* `gpt54mini_results.csv`
+* `deepseek_results.csv`
+* `Gemini_results_25.csv`
+* `qwen_plus_results.csv`
+* `haiku_results.csv`
+
 ---
 
-# Planned Experiments
+# Experiments
 
 # Experiment 1: Open Source vs Closed Source Models
 
@@ -312,11 +321,11 @@ The objective is to study:
 
 ---
 
-# Planned LLM Judge Framework
+# LLM Judge Analysis
 
-We are currently developing a suite of LLM judges to analyze raw model outputs.
+We have developed a suite of LLM judges to analyze raw model outputs. The analysis workflow is used to move beyond final-answer accuracy and study why models fail, including reasoning breakdowns, arithmetic mistakes, trunctuation effects, and inconsistencies between intermediate reasoning steps and final answers.
 
-The planned system includes:
+The system includes:
 
 ## 1. Reasoning Judge
 
