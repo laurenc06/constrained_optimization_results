@@ -1,0 +1,584 @@
+{
+  "source_file": "eval_results_qwen3-235b/level-2/quadratic_constrained_quadratic_programming__basic_qcqp__qwen3-235b-a22b-thinking-2507.json",
+  "judge_model": "gpt-4.1",
+  "judge": "all",
+  "include_correct": false,
+  "max_examples": null,
+  "summary": {
+    "num_judged_examples": 12,
+    "reasoning_judged_count": 12,
+    "arithmetic_judged_count": 11,
+    "final_judged_count": 12,
+    "judgment_error_count": 1,
+    "average_formulation_score": 2.0,
+    "average_approach_score": 1.6666666666666667,
+    "average_constraint_score": 1.9166666666666667,
+    "hallucination_count": 2,
+    "arithmetic_error_found_count": 3,
+    "cascaded_count": 1,
+    "correct_value_in_reasoning_count": 8,
+    "reason_not_recognized_counts": {
+      "dismissed": 3,
+      "continued_refinement": 5
+    },
+    "primary_error_type_counts": {
+      "hallucination": 2,
+      "partial_reasoning_failure": 3,
+      "no_correct_value_found": 2,
+      "continued_refinement": 3,
+      "partial_constraint_handling_failure": 1,
+      "dismissed_correct_answer": 1
+    },
+    "secondary_error_type_counts": {
+      "dismissed_correct_answer": 2,
+      "arithmetic_failure": 3,
+      "continued_refinement": 2,
+      "partial_reasoning_failure": 1
+    },
+    "counts_by_problem_type": {
+      "qcqp": 12
+    },
+    "counts_by_level": {
+      "level-2": 12
+    },
+    "finish_reason_counts": {
+      "stop": 3,
+      "unknown": 9
+    }
+  },
+  "judged_examples": [
+    {
+      "index": 0,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[6, -4], [-4, 6]]\nc_0 = [2, 0]\nQ_1 = [[5.5, -2], [-2, 1.5]], c_1 = [0, -1], d_1 = 16.5\nQ_2 = [[5.5, -1], [-1, 2.5]], c_2 = [-2, 1], d_2 = 20.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.5999999999999999,
+      "model_answer": -1.6,
+      "correct": false,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": "stop",
+      "input_tokens": 316,
+      "output_tokens": 2741,
+      "reasoning_judgment": {
+        "explanation": "The model's formulation of the problem is perfect\u2014it correctly copies and expands the quadratic and linear terms of the objective and all constraints, carries out convexity analysis, and sets up the KKT conditions accurately. It then solves for the unconstrained minimum, checks all constraints at that point, and verifies feasibility and objective value correctly. However, in its final JSON answer, it reports -1.6 instead of the -0.6 value it repeatedly and correctly computed in its reasoning. This output is unsupported by its derivation and not explained anywhere in its logical work. This constitutes a hallucination under category A (unsupported final number), since the model provides a final value (-1.6) unrelated to its own valid calculation (-0.6). The root cause is the commitment to a final answer with no derivation, despite a detailed, correct derivation leading to another value.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": true,
+        "hallucination_description": "Model derives the correct minimum value of -0.6 in detailed calculations, but outputs -1.6 in its final answer with no supporting calculation, which is an unsupported hallucinated number.",
+        "failure_point": "Final answer does not follow from model's own reasoning (unsupported numerical value, hallucination category A)."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model's own step-by-step calculations produce (1/2)x^T Q0 x = 0.6 and c0^T x = -1.2, sum to -0.6 at x* = (-0.6, -0.4), but it finally outputs -1.6 as the minimum. This is a simple arithmetic error in the final addition. All prior steps are arithmetically correct, so this is an isolated mistake, not part of a cascade.",
+        "arithmetic_error_found": true,
+        "first_error_step": "Model claims the minimum value is -1.6 in the final answer, despite their calculations producing -0.6.",
+        "computed_value": "-1.6",
+        "correct_value": "-0.6",
+        "error_magnitude": "large (> 20%)",
+        "cascaded": false,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-0.6; distance_from_expected=0.0; model_recognized_it=false; reason_not_recognized=dismissed; context=The model derived and double-checked the correct objective value of -0.6 but reported -1.6 as its final answer without explanation.; normalized_note=The model correctly computed the minimum value as -0.6 multiple times in its reasoning, explicitly stating the calculation and re-confirming it. However, despite this, it ultimately wrote an incorrect answer of -1.6 in its JSON output at the end. There is no indication of continued refinement, token cutoff, or further recalculation after the appearance of the correct value: the model simply overwrote or replaced the accurate -0.6 with -1.6 without justification, likely due to an output error or unintentional replacement. This fits the 'dismissed' behavioral pattern..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-0.6",
+        "distance_from_expected": "0.0",
+        "model_recognized_it": false,
+        "reason_not_recognized": "dismissed",
+        "context": "The model derived and double-checked the correct objective value of -0.6 but reported -1.6 as its final answer without explanation."
+      },
+      "primary_error_type": "hallucination",
+      "secondary_error_types": [
+        "dismissed_correct_answer",
+        "arithmetic_failure"
+      ]
+    },
+    {
+      "index": 1,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[5, 2], [2, 6]]\nc_0 = [3, -4]\nQ_1 = [[5.5, -1], [-1, 1.5]], c_1 = [4, 0], d_1 = 29.5\nQ_2 = [[4.5, -4], [-4, 4.5]], c_2 = [1, -2], d_2 = 9.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -3.412834032881211,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 315,
+      "output_tokens": 18900,
+      "reasoning_judgment": {
+        "explanation": "The model correctly transcribed the objective and all constraints, including the quadratic and linear terms, constraint directions, and right-hand sides. It verified convexity, ensuring valid problem formulation. The approach proceeded through a full unconstrained minimizer calculation, recognized constraint violation, then performed an active-set/KKT analysis for constraint 2. It set up and partially solved the KKT stationarity and boundary equations and performed significant algebraic and numeric reasoning to pin down the optimizer. It tested feasibility for all constraints at candidate points. The model did not conclusively prove that the optimizer found is globally minimal (as it did not fully close the KKT system or rigorously examine all potential active sets, e.g., possible joint activity of constraints), but the depth makes the argument strong. There are no hallucinations\u2014the answer follows from internally consistent derivation, not unsupported guess or tool use.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Did not fully close the optimality argument (e.g., possible boundary with multiple active constraints or all KKT cases), so global optimality is incomplete."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The calculations for the objective value, the constraint 2 boundary, and the norm at the computed solution x \u2248 [-0.823, 0.86] are all correct. Substituting these values yields an objective of -3.4124375 (matching the expected -3.4128), constraint 2 at \u22489.50, and norm squared \u22481.42 (well within the upper bound). No arithmetic errors were found at any step.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-3.4129; distance_from_expected=0.00007; model_recognized_it=false; reason_not_recognized=continued_refinement; context=The model repeatedly refines objective values for various candidate points near the optimum, but does not commit to the lowest value found.; normalized_note=The raw response computes an objective value of f \u2248 -3.4129 at x2 \u2248 0.85 (with corresponding x1) for constraint 2 being active, which is within 0.01 of the expected answer (-3.41283). This value is clearly recognized as the minimum found (with attempts to check nearby points yielding slightly higher values). However, the model never commits to this value as a final answer; it keeps testing nearby values of x2 (e.g., 0.84, 0.86, 0.865, etc.), seeking a possibly lower value, but all such attempts lead to objective values that are slightly worse. The behavior shows continued refinement, as the model is hunting for a possibly better feasible value and never finalizes..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-3.4129",
+        "distance_from_expected": "0.00007",
+        "model_recognized_it": false,
+        "reason_not_recognized": "continued_refinement",
+        "context": "The model repeatedly refines objective values for various candidate points near the optimum, but does not commit to the lowest value found."
+      },
+      "primary_error_type": "partial_reasoning_failure",
+      "secondary_error_types": [
+        "continued_refinement"
+      ]
+    },
+    {
+      "index": 2,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 33.971.\n\nQ_0 = [[6, 0], [0, 1]]\nc_0 = [-1, -4]\nQ_1 = [[4.5, -4], [-4, 5.5]], c_1 = [-1, 3], d_1 = 14.0\nQ_2 = [[5.5, -3], [-3, 2.5]], c_2 = [4, 3], d_2 = 24.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -5.028944265427433,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 316,
+      "output_tokens": 19955,
+      "reasoning_judgment": {
+        "explanation": "The model formulates the problem nearly perfectly: it lists the objective and all three constraints accurately, with correct quadratic forms. For the solution, it attempts a KKT analysis, considers all possible active constraint combinations, checks constraint satisfaction, and computes candidate minimizers with detailed algebra. While it cannot fully solve the nonlinear system, it shows that the unconstrained minimizer is infeasible, identifies which constraints could be active, and demonstrates that the true minimum must occur with at least one quadratic constraint active. For constraint handling, it carefully verifies feasibility for proposed points and checks constraint activity. While the model lacks a closed-form solution for the final minimizer, it follows an expert-level approach and shows that global optimality would be achieved if the nonlinear system could be solved. No hallucination is present; all candidate points are shown to be feasible or infeasible, and no unsupported number is committed as final answer.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Does not produce a final explicit minimum value due to algebraic complexity, but logical reasoning is thorough and global optimality justification is attempted using rigorous KKT and feasibility analysis."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model's arithmetic is correct throughout its calculations: at x = (2.125, 2.2), the values for the constraints and the objective are computed accurately (Constraint 1 \u2248 14.015, Constraint 2 \u2248 23.986, objective \u2248 5.042). The reason for the discrepancy with the expected answer (which is negative) is not an arithmetic error, but likely a reasoning or formulation error\u2014possibly the model did not find the correct optimal point, or the expected answer refers to a different feasible/optimal point. All intermediate arithmetic is verified and consistent.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=The model computes an objective value of approximately -5.04 at the point (x1 \u2248 0.401, x2 \u2248 1.6) when constraint 1 is active, which is within 0.01 of the expected answer, but does not commit to this as its final answer. Instead, the model continues refining, tries activating both constraints (analyzing the KKT system for both multipliers positive), and discusses solution feasibility further. The answer was not finalized; the model kept iterating, interpolating, and checking additional cases, characteristic of continued_refinement. The response is extremely long, and the model never stops at the attained near-optimal value..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "no_correct_value_found",
+      "secondary_error_types": []
+    },
+    {
+      "index": 3,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 16.0.\n\nQ_0 = [[9, 6], [6, 6]]\nc_0 = [-1, -3]\nQ_1 = [[1.5, 1], [1, 2.5]], c_1 = [4, 2], d_1 = 1.5\nQ_2 = [[8.5, 2], [2, 5.5]], c_2 = [0, 4], d_2 = 4.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -1.1091141767915658,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 312,
+      "output_tokens": 21334,
+      "reasoning_judgment": {
+        "explanation": "The model correctly formulates the quadratic objective and all constraints, translating all coefficients from the canonical matrix and vector notation into explicit quadratic and linear expressions, and checks convexity. The solution approach is thorough, applying unconstrained minimization, verifying feasibility for all constraints, and then correctly proceeds to use KKT/active constraint reasoning. The model explores boundary cases and parametrizes the intersection of constraints, searching for the lowest feasible objective. This constitutes a valid route to optimality for a convex QCQP, even though numerical values are iteratively estimated rather than precisely solved. All constraints are handled explicitly and correctly at each tested candidate, never ignoring or misapplying directions or RHS. There is no unsupported value or inappropriate use of infeasible points\u2014the answer arises from feasible candidates with explicit constraint and objective calculations. Thus, there is no hallucination. While the final answer is approximate and not cleanly stated, all major steps for global optimality are shown or attempted.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "The model does not precisely compute the algebraic minimizer, relying instead on well-justified boundary search and numerical approximations, but the global optimality argument is valid."
+      },
+      "arithmetic_judgment": {
+        "judgment_error": "Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4.1 in organization org-6ru7gYwnbPWFedQgUM4VSbap on tokens per min (TPM): Limit 30000, Used 20556, Requested 10690. Please try again in 2.492s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}"
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-1.109; distance_from_expected=0.00; model_recognized_it=false; reason_not_recognized=continued_refinement; context=QCQP with 2 quadratic and 1 norm constraint; model narrowed objective to -1.109 at feasible points, but kept refining extremal values and did not commit before cutoff.; normalized_note=The model successfully refined its search for the minimum objective value by checking many feasible points along the constraint boundaries. It repeatedly computed objective values around -1.104 and -1.109 for points passing all constraints, with clear awareness these are near-optimal. However, instead of committing to the found minimum (e.g., -1.109 as computed for x2=0.615, x1 \u2248 -0.272), the model kept probing for additional improvements and continued interpolating between values. The response cuts off in the middle of a calculation for x2=0.613, which strongly indicates the model was in a continued refinement loop rather than about to finalize its answer. Therefore, 'continued_refinement' is the behavioral root cause..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-1.109",
+        "distance_from_expected": "0.00",
+        "model_recognized_it": false,
+        "reason_not_recognized": "continued_refinement",
+        "context": "QCQP with 2 quadratic and 1 norm constraint; model narrowed objective to -1.109 at feasible points, but kept refining extremal values and did not commit before cutoff."
+      },
+      "primary_error_type": "continued_refinement",
+      "secondary_error_types": []
+    },
+    {
+      "index": 4,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 16.0.\n\nQ_0 = [[5, -4], [-4, 6]]\nc_0 = [3, -3]\nQ_1 = [[5.5, -4], [-4, 4.5]], c_1 = [-3, 1], d_1 = 5.5\nQ_2 = [[1.5, 0], [0, 4.5]], c_2 = [-4, -2], d_2 = -0.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.5388452380075851,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 312,
+      "output_tokens": 17476,
+      "reasoning_judgment": {
+        "explanation": "The model formulated the problem and all constraints correctly, including quadratic forms, linear terms, and inequality directions, so formulation_score=2. For the solution approach, it found the unconstrained minimizer, checked its feasibility, then (seeing it is infeasible for constraint 2) correctly reasoned that the minimum lies on the boundary of constraint 2. It set up the KKT system for this case but switched to a one-dimensional boundary search using x2 as a parameter, solving for x1 (no unjustified restriction), then systematically searched feasible values to minimize the objective, checking feasibility for all constraints at each step. The method is not a complete global optimality proof, as the search is essentially point sampling along the boundary (not a closed-form KKT solution), so approach_score=1. For constraints, the model carefully checked each constraint for every candidate point, so constraint_score=2. There is no hallucination, as every answer arises from shown calculations with no known invalid or unsupported point used as final minimum.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Did not completely solve the KKT system or provide active-set equations for a closed-form global optimum; instead, it used a boundary sampling approach."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model's key arithmetic calculations (computing x*, objective at x*, and constraint 2 value at x*) were accurate. No arithmetic errors were found in any of the model's computations; all results matched direct evaluation. Any discrepancy with the expected answer is rooted in problem reasoning or validation steps, not arithmetic mistake.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-0.5389; distance_from_expected=0.00005; model_recognized_it=false; reason_not_recognized=continued_refinement; normalized_note=Within the model's solution, it performs thorough KKT-based boundary searches, finding (around x2 = 0.42, x1 \u2248 0.1187) a minimum objective near -0.5389, very close (within 0.01) to the expected answer. However, instead of stopping, the model repeatedly refines by testing slightly higher x2 values, recomputing the minimum at several nearby x2 values (e.g., x2 = 0.43, 0.44, etc.), but never finalizes a single value as 'the minimum'. The sequence shows the model in an active continued bisection/refinement loop, not rounding or dismissing. The response never converges on a single value but keeps calculating. Thus, the behavioral reason is continued_refinement, not token_limit or dismissed..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-0.5389",
+        "distance_from_expected": "0.00005",
+        "model_recognized_it": false,
+        "reason_not_recognized": "continued_refinement",
+        "context": null
+      },
+      "primary_error_type": "partial_reasoning_failure",
+      "secondary_error_types": [
+        "continued_refinement"
+      ]
+    },
+    {
+      "index": 5,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 9.0.\n\nQ_0 = [[9, -6], [-6, 6]]\nc_0 = [4, 3]\nQ_1 = [[1.5, 1], [1, 2.5]], c_1 = [-4, 0], d_1 = 2.0\nQ_2 = [[1.5, -2], [-2, 5.5]], c_2 = [1, -2], d_2 = 4.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -2.2688233808525147,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 311,
+      "output_tokens": 17764,
+      "reasoning_judgment": {
+        "explanation": "Formulation: The model fully and correctly rewrites the objective and all three constraints, carefully expands quadratic and linear terms, and verifies convexity of the problem matrices. The translation from the problem data to algebraic form is accurate.\n\nApproach: The model systematically attempts several standard convex programming strategies: first checking the unconstrained minimum, then analyzing which constraints are active via KKT and boundary search, and then attempting to reduce the system via variable elimination. It performs substantial symbolic manipulation and point sampling to seek a globally optimal solution, but does not conclusively solve the KKT system or boundary-active intersection analytically or with a final proof of global optimality.\n\nConstraint Handling: The model checks feasibility at each proposed/sample point and understands that constraints must be satisfied at the optimizer, but mostly samples, interpolates, or explores algebraically instead of completing the active-set or KKT proof. It does not make any feasibility errors.\n\nHallucination: There is no unsupported or identified-infeasible final answer given; the model never commits to a value from an infeasible point nor produces a number without derivation. Its reasoning is rigorous, if unfinished.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 1,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "Did not establish or solve KKT or active constraint system conclusively to prove or find the global optimum."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model incorrectly computes the inverse of Q0, leading to the wrong unconstrained minimizer x*. Instead of getting x* = [-2.333, -2.833], the correct computation yields x* = [-3, -2]. This foundational arithmetic error propagates through all further feasibility checks and objective value calculations. All subsequent computations using this minimizer are thus cascaded from this root arithmetic error. No additional independent errors were found in the verified steps.",
+        "arithmetic_error_found": true,
+        "first_error_step": "Computation of the inverse of Q0 and x_unconstrained = -Q0^{-1} c0.",
+        "computed_value": "x* = [-2.333, -2.833] (from -(1/18)[42,51])",
+        "correct_value": "x* = [-3, -2]",
+        "error_magnitude": "medium (5-20%)",
+        "cascaded": true,
+        "cascade_description": "All feasibility and KKT checks for constraints, and searches for the minimum, use the incorrect unconstrained minimum value.",
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=A correct value (-2.1667, within 0.01 of the expected answer -2.26882) is found in the reasoning: for x = (-1/3, -1/3), the model computes f \u2248 -2.1667. This value is evidently tied to the minimum objective, as it's calculated while evaluating feasible points and explicitly compared as a candidate minimum. However, the model continues searching for lower values and further explores neighboring points, even after identifying -2.1667 as the lowest objective so far. It refines x and f repeatedly instead of committing, indicating continued_refinement behavior..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "partial_constraint_handling_failure",
+      "secondary_error_types": [
+        "partial_reasoning_failure",
+        "arithmetic_failure"
+      ]
+    },
+    {
+      "index": 6,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[1, 0], [0, 3]]\nc_0 = [0, -1]\nQ_1 = [[8.5, -2], [-2, 5.5]], c_1 = [2, -1], d_1 = 55.5\nQ_2 = [[1.5, -2], [-2, 5.5]], c_2 = [-2, 0], d_2 = 18.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.16666666666666666,
+      "model_answer": -1.17,
+      "correct": false,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": "stop",
+      "input_tokens": 316,
+      "output_tokens": 3254,
+      "reasoning_judgment": {
+        "explanation": "The model correctly formulated the objective and all constraints (including all coefficients and inequality directions), earning full marks for formulation. It then found and checked the unconstrained minimizer, verified all constraints were satisfied, and correctly concluded (with detailed reasoning) that the unconstrained minimizer is the global minimum due to convexity. This justifies global optimality, so approach_score=2. It also verified that the constraints are all satisfied at the candidate minimizer, so constraint_score=2. However, the final answer presented in the JSON response (\u22121.17) is unsupported: the reasoning several times correctly derives \u22121/6\u2248\u22120.1667 as the minimum, but the reported answer is \u22121.17 with no explanation or calculation matching that value. This is an unsupported final number, so hallucination=true with cause category A (unsupported final number). The failure point is the output, where the answer \u22121.17 does not derive from the reasoning.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": true,
+        "hallucination_description": "The model's reasoning repeatedly derives \u22120.1667 as the minimum but the final answer given is \u22121.17 with no derivation supporting it (unsupported final number, category A).",
+        "failure_point": "Final output: answer \u22121.17 is unsupported by all reasoning steps, which point to \u22120.1667."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The core numerical work\u2014finding the unconstrained minimum at (0,1/3), evaluating constraints, and computing the objective value of -1/6 \u2248 -0.1667\u2014was all performed accurately by the model. The final answer of '-1.17' is a reporting error (likely a typo), not an arithmetic mistake, since all the intermediate computations are correct. Thus, there is no arithmetic error in the model's calculations per your criteria.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-0.1667; distance_from_expected=0.00; model_recognized_it=false; reason_not_recognized=dismissed; normalized_note=The model repeatedly computes and emphasizes the correct minimum value (\u22121/6 \u2248 \u22120.1667) in its reasoning, confirming feasibility and convexity, and provides several precise calculations supporting this value. However, instead of reporting \u22120.1667 as its final answer, it reports \u22121.17 (which is a clear error, likely due to miscopying, misrounding, or confusion at the end). This indicates the model had the correct value and process but explicitly replaced it with an incorrect reported answer, so the correct value was dismissed in favor of an incorrect one..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-0.1667",
+        "distance_from_expected": "0.00",
+        "model_recognized_it": false,
+        "reason_not_recognized": "dismissed",
+        "context": null
+      },
+      "primary_error_type": "hallucination",
+      "secondary_error_types": [
+        "dismissed_correct_answer"
+      ]
+    },
+    {
+      "index": 7,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 33.971.\n\nQ_0 = [[3, 1], [1, 6]]\nc_0 = [1, 3]\nQ_1 = [[5.5, 2], [2, 1.5]], c_1 = [-2, 0], d_1 = 51.0\nQ_2 = [[5.5, 0], [0, 5.5]], c_2 = [3, -2], d_2 = 45.0\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -0.7941176470588234,
+      "model_answer": -1.79,
+      "correct": false,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": "stop",
+      "input_tokens": 316,
+      "output_tokens": 3160,
+      "reasoning_judgment": {
+        "explanation": "The model correctly transcribed the objective and all constraints (including quadratic/linear terms, directions, and right-hand sides), so formulation_score=2. Its approach was robust: it identified the unconstrained minimizer (using Q0 and c0), checked its feasibility for all constraints, and recognized that, given convexity and feasible unconstrained minimizer, this point is globally optimal. This constitutes a complete global optimality argument, so approach_score=2. All constraints were checked explicitly and found satisfied at the optimizer, so constraint_score=2. However, the final answer reported as -1.79 is a clear arithmetic error\u2014the correct symbolic/decimal value was calculated elsewhere as approximately -0.79 (specifically, -459/578 \u2248 -0.7941). Despite the arithmetic mistake in the answer box, the model's derivation supported the only feasible and optimal solution. Therefore, hallucination=false: the arithmetic error does not arise from using an unsupported, infeasible, or solver-produced number, and did not contradict any feasibility checks.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "final arithmetic calculation"
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model made an arithmetic error in evaluating the objective at the unconstrained minimum x* = (-3/17, -8/17). It claimed a value of -1.79, but the correct calculation gives approximately -0.7941. The computation of x* was correct, but the error in the final step led to an incorrect answer. No cascade or additional independent arithmetic errors were found.",
+        "arithmetic_error_found": true,
+        "first_error_step": "Evaluation of the objective at x* = (-3/17, -8/17)",
+        "computed_value": "-1.79",
+        "correct_value": "-0.7941",
+        "error_magnitude": "large (> 20%)",
+        "cascaded": false,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-0.7941; distance_from_expected=0.00002; model_recognized_it=false; reason_not_recognized=dismissed; context=Model computes and confirms -0.7941 as minimum repeatedly in reasoning, but outputs -1.79 as final answer.; normalized_note=The model correctly computes and repeats the exact minimum as -459/578 \u2248 -0.7941 in its reasoning, with multiple checks leading to values like -0.7941 and 'approximately -0.79.' However, when actually committing to a final answer in its response, it erroneously outputs -1.79, a value unrelated to its thorough prior calculations. This is classic 'dismissed' behavior: the correct value appears in the reasoning, is explicitly identified as the objective minimum, but is replaced with an incorrect answer in the output block. There is no evidence the model intended to refine further or was cut off by a token limit..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-0.7941",
+        "distance_from_expected": "0.00002",
+        "model_recognized_it": false,
+        "reason_not_recognized": "dismissed",
+        "context": "Model computes and confirms -0.7941 as minimum repeatedly in reasoning, but outputs -1.79 as final answer."
+      },
+      "primary_error_type": "dismissed_correct_answer",
+      "secondary_error_types": [
+        "arithmetic_failure"
+      ]
+    },
+    {
+      "index": 8,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[6, -1], [-1, 2]]\nc_0 = [4, 3]\nQ_1 = [[5.5, -3], [-3, 5.5]], c_1 = [1, -2], d_1 = 17.5\nQ_2 = [[4.5, -2], [-2, 5.5]], c_2 = [2, -2], d_2 = 15.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -4.9329953915187605,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 316,
+      "output_tokens": 17250,
+      "reasoning_judgment": {
+        "explanation": "The model correctly reformulated the problem, expanded all quadratic forms and constraints, and consistently checked the exact forms throughout (formulation_score=2). For the solution approach, the model systematically set up KKT conditions for both single-active and candidate doubly-active constraints, derived the associated stationarity systems, and performed a combination of analytical boundary analysis and one-dimensional search, interpolating with constraint values to approximate the optimizer on the active boundary. Although it resorted to interpolation rather than a closed-form KKT solve, all steps were justified, and the missing closed-form is due to the algebraic complexity, not a logic error (approach_score=2, because the global optimum is still justified by convexity and constraint activity arguments). Constraint handling is thorough: every sampled (approximate) optimizer is checked for all constraints, both inequalities and the norm constraint, and feasibility is always enforced (constraint_score=2). No hallucination is present\u2014the final answer is supported by the reasoning and is for a feasible point (hallucination=false). The solution balances analytic rigor with practical justification and never treats an infeasible point as optimal.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "None; the reasoning is thorough, only minor approximation in the numeric search for the optimizer."
+      },
+      "arithmetic_judgment": {
+        "explanation": "Although the model initially makes a sign confusion when applying x* = -Q0^{-1}c0, it ultimately gets the correct unconstrained minimizer x* = [-1,-2] and verifies that the gradient at this point is zero. All subsequent arithmetic (matrix-vector products, constraint and objective evaluations) at this x* are computed correctly. The initial confusion is self-corrected before it cascades to any downstream error. No independent arithmetic errors remain.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=A value of approximately -4.91 was obtained multiple times in the model's reasoning when interpolating on the boundary of constraint 2 (very close to the true minimum -4.93299, within 0.01). The model carefully cross-checked feasibility of this solution and noted it matches constraints, stating the minimum is 'about -4.90', 'approximately -4.91', and 'rounded to two decimal places, -4.91 is acceptable.' However, the model continued to recompute, interpolate further, and consider both single and double active constraints, aiming for more accuracy or to check if a lower value existed, but never committed to a final answer before ending. Thus, continued_refinement is the main behavioral reason..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "no_correct_value_found",
+      "secondary_error_types": []
+    },
+    {
+      "index": 9,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 16.0.\n\nQ_0 = [[6, 5], [5, 6]]\nc_0 = [1, -3]\nQ_1 = [[8.5, -6], [-6, 5.5]], c_1 = [2, 3], d_1 = 12.5\nQ_2 = [[8.5, 4], [4, 4.5]], c_2 = [3, -2], d_2 = 15.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -2.326220239708214,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 314,
+      "output_tokens": 18115,
+      "reasoning_judgment": {
+        "explanation": "The model's problem formulation is correct: it explicitly writes out the quadratic objective, both quadratic constraints, and the norm ball, with correct coefficients and directions. The approach is rigorous: the model systematically checks the unconstrained minimizer, confirms (by calculation) which constraints are violated and which are satisfied, and then explores the boundary (active constraint) cases. The model performs substantial algebra to set up, and approximately solve, both the single-active and double-active (both quadratic constraints) KKT systems. The constraint handling is thorough: each candidate point is checked for all constraints, and the model identifies when constraints are active, inactive, or violated. The chain of reasoning ultimately justifies global optimality, as the candidate yielding the minimal objective (with bound constraints active) is found and compared. There is no evidence of hallucination; all numbers/results are derived step-by-step. The only minor weakness is extensive numeric trial rather than explicit solution of the two-constraint active set, but the exhaustive interpolations provide a plausible global search in this 2D convex QCQP.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "No failure -- solution is detailed, methodical, and globally optimal within the presented reasoning."
+      },
+      "arithmetic_judgment": {
+        "explanation": "All key arithmetic steps, including the unconstrained minimum's gradient vanishing and the evaluation of the objective and constraints at the claimed nearly-optimal point, are numerically accurate within negligible error. Values computed in the model's reasoning align with direct evaluation. There are no arithmetic errors in the model's calculations.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-2.3256; distance_from_expected=0.0006; model_recognized_it=false; reason_not_recognized=continued_refinement; context=QCQP minimum, iterative bisection and patch-refinement near optimal value; normalized_note=A value within 0.01 of the expected minimum objective (around -2.3256) appears several times in the detailed case analysis, particularly when the model tries x1 \u2248 -0.58 and computes the objective \u2248 -2.3256. However, the model does not commit to this as its final answer, instead continuing to try more nearby x1 values, additional feasibility checks, and interpolation. The model appears to be aware that this is 'near' the minimum, but continues to refine the result. The response ended while the model was still performing this refinement, not because of an explicit decision or dismissal..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-2.3256",
+        "distance_from_expected": "0.0006",
+        "model_recognized_it": false,
+        "reason_not_recognized": "continued_refinement",
+        "context": "QCQP minimum, iterative bisection and patch-refinement near optimal value"
+      },
+      "primary_error_type": "continued_refinement",
+      "secondary_error_types": []
+    },
+    {
+      "index": 10,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 27.416.\n\nQ_0 = [[1, 0], [0, 3]]\nc_0 = [4, 2]\nQ_1 = [[4.5, 4], [4, 8.5]], c_1 = [0, 3], d_1 = 50.5\nQ_2 = [[5.5, 1], [1, 2.5]], c_2 = [-3, 3], d_2 = 20.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -5.848400114093492,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 316,
+      "output_tokens": 16228,
+      "reasoning_judgment": {
+        "explanation": "The model correctly and thoroughly formulated the QCQP, identifying the objective and all three constraints with correct forms, variables, and directions (formulation_score=2). For the solution approach, the model followed a valid and systematic path: it first checked the unconstrained minimizer, verified constraint violations, then explored boundary and intersection cases, attempted to solve active set equations, considered KKT conditions, and performed detailed algebraic substitutions to find feasible candidates. It explicitly checked feasibility and constraint satisfaction at multiple points. However, it ultimately relied on heuristic grid/point search and descent on restricted subspaces, then chose the best feasible sampled point rather than solving the global active set system to full algebraic completion or establishing optimality via a convexity or KKT-based proof. Since it did not conclude with an airtight global optimality proof for the constrained set, approach_score=1. The constraint handling is strong: every sampled point had constraints explicitly calculated and checked, active/inactive sets were correctly identified, and feasibility at the reported feasible candidates was thoroughly verified, so constraint_score=2. Hallucination is false: the model never accepted a known-infeasible point as optimal nor produced an unsupported number; every outputed value had clear derivation down to the algebra and explicit constraint checks.",
+        "formulation_score": 2,
+        "approach_score": 1,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "The reasoning ultimately relied on sampled point evaluation and local improvements\u2014rather than completing the algebraic KKT/active set system or explicitly proving global optimality\u2014so the reasoning failed to fully establish global optimality."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The model claims for the unconstrained minimum x = (-4, -2/3): constraint 1 value is 97.11, constraint 2 is 104.444, and norm squared is 16.44. Our Python calculation gets constraint 1: 95.11, constraint 2: 104.44, and norm squared: 16.44. The constraint 1 value differs by ~2%. This difference is due to the model's hand calculation approximations, not a major arithmetic blunder. All other key calculations (e.g., objective values at tested points) are accurate by direct verification. No concrete arithmetic error is present in the computations, just non-substantive rounding/estimation.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "No correct value within 0.01 was retained as a valid final-answer-recognition case; normalized_note=Although the model performs extensive calculations and approaches feasible points (e.g., x1=-1.5, x2=-0.666 gives objective \u2248 -5.541), it never computes or explicitly mentions the precise optimal value (-5.848...), nor does it present any value within 0.01 of the expected answer. Intermediate values are above the threshold (such as -5.541 and -6.666), and none fall within 0.01 of the expected minimum. Therefore, correct_value_in_reasoning is false, and no recognition failure classification is applicable..",
+        "correct_value_in_reasoning": false,
+        "correct_value_found": null,
+        "distance_from_expected": null,
+        "model_recognized_it": null,
+        "reason_not_recognized": null,
+        "context": null
+      },
+      "primary_error_type": "partial_reasoning_failure",
+      "secondary_error_types": []
+    },
+    {
+      "index": 11,
+      "question": "Consider the convex quadratically constrained quadratic program over x in R^2:\nMinimize (1/2) x^T Q_0 x + c_0^T x\nsubject to x^T Q_i x + c_i^T x <= d_i for i=1..2,\nand ||x||_2^2 <= 16.0.\n\nQ_0 = [[2, -2], [-2, 6]]\nc_0 = [-3, -1]\nQ_1 = [[5.5, 2], [2, 1.5]], c_1 = [0, 1], d_1 = 6.5\nQ_2 = [[5.5, -1], [-1, 1.5]], c_2 = [2, 2], d_2 = 5.5\n\nWhat is the minimum value of the objective?",
+      "expected_answer": -2.317253839678489,
+      "model_answer": null,
+      "correct": null,
+      "problem_type": "qcqp",
+      "level": "level-2",
+      "finish_reason": null,
+      "input_tokens": 312,
+      "output_tokens": 15894,
+      "reasoning_judgment": {
+        "explanation": "The model gives a thorough and careful symbolic and numeric analysis of this 2D convex QCQP, correctly formulating the problem and all constraints (including quadratic, linear, and norm terms). For solution approach, it attempts KKT analysis: identifying candidate active sets, deriving appropriate systems, and even correcting Lagrange sign conventions. It analyzes the intersection of active constraints and tests feasibility and KKT equations to rule out infeasible candidates. It also attempts the single-active-constraint case by solving for Lagrange multipliers, using correct expressions. Although the model does not navigate all arithmetic to a precise final answer (which is acceptable since the question is reasoning not computation), its method is globally valid for such a problem. Constraints are handled properly, always checked for feasibility, and appropriate active sets are distinguished. The model does not hallucinate: no unsupported claim or commitment to a known-infeasible solution is made.",
+        "formulation_score": 2,
+        "approach_score": 2,
+        "constraint_score": 2,
+        "hallucination": false,
+        "hallucination_description": null,
+        "failure_point": "None\u2014the model provides a valid global optimization reasoning path and never commits to an unsupported or infeasible solution."
+      },
+      "arithmetic_judgment": {
+        "explanation": "The earliest critical arithmetic, solving Q0 x + c0 = 0 for the unconstrained minimum x* = (2.5, 1), is correct. The subsequent evaluations of both quadratic constraints and the squared norm at x* also match the model's calculations exactly. No arithmetic errors were found in any major steps to this point. Any discrepancies with expectations are not due to arithmetic mistakes in the model's work.",
+        "arithmetic_error_found": false,
+        "first_error_step": null,
+        "computed_value": null,
+        "correct_value": null,
+        "error_magnitude": null,
+        "cascaded": null,
+        "cascade_description": null,
+        "additional_independent_errors": 0,
+        "additional_independent_errors_description": null
+      },
+      "final_answer_recognition_judgment": {
+        "explanation": "A correct value within 0.01 appeared in the reasoning; value=-2.3172; distance_from_expected=0.00005; model_recognized_it=false; reason_not_recognized=continued_refinement; context=Long, detailed, iterative KKT solves and bisection with near-correct objective values reached, but model continues updating lambda/candidates and never finalizes answer.; normalized_note=Within the massive response, the model incrementally refines Lagrange multipliers and candidate points, repeatedly evaluating the objective and constraints numerically. It approaches the correct minimum value (within 0.01 of -2.317253839678489) during its search, but each time it finds a close value, it continues refining the candidate, interpolating, or checking feasibility/KKT. The model does not commit to any value as the explicit final answer, and the behavior is classic continued_refinement: the model stays in the loop of local improvement and does not signal a final answer in the text. The API finish_reason is null, so cutoff is due to length/verbosity, not token_limit abruptness..",
+        "correct_value_in_reasoning": true,
+        "correct_value_found": "-2.3172",
+        "distance_from_expected": "0.00005",
+        "model_recognized_it": false,
+        "reason_not_recognized": "continued_refinement",
+        "context": "Long, detailed, iterative KKT solves and bisection with near-correct objective values reached, but model continues updating lambda/candidates and never finalizes answer."
+      },
+      "primary_error_type": "continued_refinement",
+      "secondary_error_types": []
+    }
+  ]
+}
